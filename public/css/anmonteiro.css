@@ -1,0 +1,21 @@
+
+/* Justify content */
+.post :not(.post-title):not(.post-date),
+.page :not(.page-title) {
+  text-align: justify;
+}
+
+.post div.contact-showcase,
+.page div.contact-showcase{
+  font-size: 200%;
+  text-align: center;
+}
+
+.contact-showcase a {
+  margin: 0 0.5em;
+}
+
+/*
+.sidebar-item.description {
+  text-align: justify;
+}*/
