@@ -22,8 +22,8 @@ In case you're wondering, this site is:
 Feel free to get in touch with me:
 
 <div class="contact-showcase">
-  <a href="http://www.github.com/anmonteiro"><span class="icon-github-circled"></span></a>
-  <a href="http://www.twitter.com/anmonteiro90"><span class="icon-twitter"></span></a>
-  <a href="mailto:anmonteiro@gmail.com"><span class="icon-mail-alt"></span></a>
-  <a href="http://www.linkedin.com/in/anmonteiro"><span class="icon-linkedin"></span></a>
+  <a href="http://www.github.com/{{ site.author.github_username }}"><span class="icon-github-circled"></span></a>
+  <a href="http://www.twitter.com/{{ site.author.twitter_username }}"><span class="icon-twitter"></span></a>
+  <a href="mailto:{{ site.author.email }}"><span class="icon-mail-alt"></span></a>
+  <a href="http://www.linkedin.com/in/{{ site.author.linkedin_username }}"><span class="icon-linkedin"></span></a>
 </div>
