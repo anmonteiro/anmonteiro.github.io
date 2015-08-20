@@ -9,7 +9,7 @@ description: > # this means to ignore newlines until "baseurl:"
   lifestyle.
 
 baseurl: "" # the subpath of your site, e.g. /blog/
-url: ""#"http://anmonteiro.com" # the base hostname & protocol for your site
+url: "http://anmonteiro.com" # the base hostname & protocol for your site
 
 author:
   name: 'António Nuno Monteiro'
@@ -17,6 +17,7 @@ author:
   twitter_username: anmonteiro90
   github_username:  anmonteiro
   linkedin_username: anmonteiro
+  stackoverflow_username: anmonteiro
 
 excerpt_separator: <!--more-->
 
