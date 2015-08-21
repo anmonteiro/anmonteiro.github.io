@@ -1,7 +1,19 @@
-/* Masthead & RSS Feed link */
+/*
+ * Masthead
+ */
 
 .masthead-title {
   float: left;
+}
+
+@media (max-width: 48rem) {
+  .masthead-title {
+    margin-left: 4rem;
+  }
+
+  .masthead-title small {
+    display: inline;
+  }
 }
 
 .masthead-feed {
@@ -10,7 +22,10 @@
   margin-bottom: 0;
 }
 
-/* Use clearfix from Twitter Bootstrap */
+/*
+ * Use clearfix from Twitter Bootstrap
+ * https://github.com/twbs/bootstrap/blob/3a2d6e40503019823bf197f278681e830bc14f31/less/mixins/clearfix.less
+ */
 .clearfix:before,
 .clearfix:after {
   display: table;
@@ -21,11 +36,10 @@
   clear: both;
 }
 
-@media (max-width: 48rem) {
-  .masthead-title {
-    margin-left: 3rem;
-  }
-}
+
+/*
+ * Pages & Posts
+ */
 
 /* Justify content */
 .post :not(.post-title):not(.post-date),
@@ -38,6 +52,17 @@
   font-size: 200%;
   text-align: center;
 }
+
+/* Twitter plug */
+.content .twitter-plug {
+  margin-top: -2rem;
+  margin-bottom: 1rem;
+}
+
+
+/*
+ * About page
+ */
 
 .contact-showcase a {
   margin: 0 0.5em;

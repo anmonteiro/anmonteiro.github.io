@@ -22,8 +22,8 @@ In case you're wondering, this site is:
 Feel free to get in touch with me:
 
 <div class="contact-showcase">
-  <a href="http://www.github.com/{{ site.author.github_username }}"><span class="icon-github-circled"></span></a>
   <a href="http://www.twitter.com/{{ site.author.twitter_username }}"><span class="icon-twitter"></span></a>
+  <a href="http://www.github.com/{{ site.author.github_username }}"><span class="icon-github-circled"></span></a>
   <a href="http://stackoverflow.com/users/3417023/{{ site.author.stackoverflow_username }}"><span class="icon-stackoverflow"></span></a>
   <a href="mailto:{{ site.author.email }}"><span class="icon-mail-alt"></span></a>
   <a href="http://www.linkedin.com/in/{{ site.author.linkedin_username }}"><span class="icon-linkedin"></span></a>
