@@ -68,6 +68,16 @@
   margin: 0 0.5em;
 }
 
+
+/*
+ * Archive page
+ */
+
+.archive-year .item-date {
+  color: #808080;
+}
+
+
 /*
 .sidebar-item.description {
   text-align: justify;
