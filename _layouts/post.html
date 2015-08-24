@@ -30,14 +30,14 @@ layout: default
               </a>
             </h3>
           </li>
-          {% assign post_count = post_count | plus: 1 %}
+          {% capture post_count %}{{ post_count | plus: 1 }}{% endcapture %}
           {% break %}
         {% endif %}
       {% endfor %}
     {% endfor %}
 
     {% unless post_count == site.data.vars.RELATED_POSTS_THRESHOLD %}
-      {% assign posts_left = {{site.data.vars.RELATED_POSTS_THRESHOLD|minus:post_count}} %}
+      {% capture posts_left %}{{ site.data.vars.RELATED_POSTS_THRESHOLD | minus: post_count }}{% endcapture %}
       {% for post in site.related_posts %}
         {% if posts_left == 0 %}
           {% break %}
