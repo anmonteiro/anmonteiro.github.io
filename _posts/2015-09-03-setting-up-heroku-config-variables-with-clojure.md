@@ -59,7 +59,7 @@ Well, the solution is to bind your variables at runtime, inside a function call 
 ;; 2. "alter-var-root" it in a function which is
 ;;  called when the app starts
 (defn init-config []
-  (alter-var-root (var MY-VAR) (constantly (System/getenv "MY-VAR"))))
+  (alter-var-root #'MY-VAR (constantly (System/getenv "MY-VAR"))))
 ```
 
 Either option will work in Heroku, as long as reading the environment is done at runtime. A third alternative can be accomplished by using the [Environ](https://github.com/weavejester/environ) library. It allows for a more programatic approach and encompasses a handful of other features that you might find useful. Refer to its GitHub page for more information.
