@@ -13,12 +13,12 @@ Configuration or environment variables are really useful whether you want to ext
 In your Heroku app dashboard, go into settings and click "Reveal Config Vars". If you haven't added any configuration variables yet, it should look something like this:
 
 ![No configuration variables][link-empty]
-[link-empty]: {{ site.baseurl }}{{ site.data.vars.img_path }}/config_vars_empty.png "No configuration variables"
+[link-empty]: https://cloud.githubusercontent.com/assets/661909/10079248/392b124c-62e9-11e5-9b9f-3b796b135d09.png "No configuration variables"
 
 Go ahead, then, and click "Edit" to add the configuration variables you want to add. The next image shows what you should now be seeing. Type in the key and the value for each one.
 
 ![Add configuration variables][link-add]
-[link-add]: {{ site.baseurl }}{{ site.data.vars.img_path }}/config_vars_add.png "Add configuration variables"
+[link-add]: https://cloud.githubusercontent.com/assets/661909/10079262/49fb210c-62e9-11e5-965f-2c97fbec80e5.png "Add configuration variables"
 
 ### 2. Reference your variables in your Clojure code
 

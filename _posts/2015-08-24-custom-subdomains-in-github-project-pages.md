@@ -15,8 +15,8 @@ So, if you'd like to publish your project page under `pjname.mydomain.com`, even
 1. [Add a CNAME file](https://help.github.com/articles/adding-a-cname-file-to-your-repository/) to your project's repository. The content of this file must be a single line specifying the bare subdomain for your project's custom subdomain (e.g. `pjname.mydomain.com`).
 2. In your DNS provider's settings, create a new CNAME record that points `pjname` to either the root (usually denoted by `@`), if you have previously set up an [apex domain](https://help.github.com/articles/about-custom-domains-for-github-pages-sites/#apex-domains), or to `myusername.github.io` if you've set up a [custom subdomain](https://help.github.com/articles/about-custom-domains-for-github-pages-sites/#subdomains). It should look something like this:
 
-[![DNS CNAME records][link]]({{ site.baseurl }}{{ site.data.vars.img_path }}/custom_subdomains.png)
-[link]: {{ site.baseurl }}{{ site.data.vars.img_path }}/custom_subdomains.png "DNS CNAME records"
+![DNS CNAME records][link]
+[link]: https://cloud.githubusercontent.com/assets/661909/10079183/f59da364-62e8-11e5-9f48-da75657059f6.png "DNS CNAME records"
 
 And that's it! After a few moments the changes should take effect. Thanks for reading!
 
