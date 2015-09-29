@@ -72,6 +72,9 @@
 /*
  * Archive page
  */
+.archive-year {
+  font-family: "PT Sans", Helvetica, Arial, sans-serif;
+}
 
 .archive-year .item-date {
   color: #808080;
