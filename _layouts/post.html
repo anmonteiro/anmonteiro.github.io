@@ -20,8 +20,9 @@ layout: default
   <h2>Related Posts</h2>
   <ul class="related-posts">
     {% assign post_count = 0 %}
+    {% assign THRESHOLD = site.data.vars.RELATED_POSTS_THRESHOLD %}
     {% for post in site.related_posts %}
-      {% if post_count == site.data.vars.RELATED_POSTS_THRESHOLD %}
+      {% if post_count == THRESHOLD %}
         {% break %}
       {% endif %}
       {% for tag in post.tags %}
@@ -34,14 +35,14 @@ layout: default
               </a>
             </h3>
           </li>
-          {% capture post_count %}{{ post_count | plus: 1 }}{% endcapture %}
+          {% assign post_count = post_count | plus: 1 %}
           {% break %}
         {% endif %}
       {% endfor %}
     {% endfor %}
 
-    {% unless post_count == site.data.vars.RELATED_POSTS_THRESHOLD %}
-      {% capture posts_left %}{{ site.data.vars.RELATED_POSTS_THRESHOLD | minus: post_count }}{% endcapture %}
+    {% assign posts_left = THRESHOLD | minus: post_count %}
+    {% unless posts_left > 0 %}
       {% for post in site.related_posts %}
         {% if posts_left == 0 %}
           {% break %}
@@ -51,10 +52,12 @@ layout: default
         {% for tag in post.tags %}
           {% if page.tags contains tag %}
             {% assign already_related = true %}
+            {% break %}
           {% endif %}
         {% endfor %}
-        {% unless already_related == true %}
+        {% unless already_related %}
           {% assign posts_left = posts_left | minus: 1 %}
+          {{posts_left}}
           <li>
             <h3>
               <a href="{{ site.baseurl }}{{ post.url }}">
