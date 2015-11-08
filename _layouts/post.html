@@ -42,7 +42,7 @@ layout: default
     {% endfor %}
 
     {% assign posts_left = THRESHOLD | minus: post_count %}
-    {% unless posts_left > 0 %}
+    {% unless posts_left == 0 %}
       {% for post in site.related_posts %}
         {% if posts_left == 0 %}
           {% break %}
@@ -57,7 +57,6 @@ layout: default
         {% endfor %}
         {% unless already_related %}
           {% assign posts_left = posts_left | minus: 1 %}
-          {{posts_left}}
           <li>
             <h3>
               <a href="{{ site.baseurl }}{{ post.url }}">
