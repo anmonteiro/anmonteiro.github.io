@@ -1,5 +1,5 @@
-DRAFTS = --drafts
-OPTS = --watch --host=0.0.0.0
+OPTS = --watch --host=0.0.0.0 --incremental
+DRAFTS = $(OPTS) --drafts
 JEKYLL_CMD = jekyll serve
 SITE = ./_site
 
@@ -9,7 +9,7 @@ run:
 	$(JEKYLL_CMD) $(OPTS)
 
 drafts:
-	$(JEKYLL_CMD) $(OPTS) $(DRAFTS)
+	$(JEKYLL_CMD) $(DRAFTS)
 
 clean:
 	rm -rf $(SITE)
