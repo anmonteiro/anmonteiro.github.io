@@ -1,4 +1,4 @@
-OPTS = --watch --host=0.0.0.0 --incremental
+OPTS = --watch --host=0.0.0.0
 DRAFTS = $(OPTS) --drafts
 JEKYLL_CMD = jekyll serve
 SITE = ./_site
