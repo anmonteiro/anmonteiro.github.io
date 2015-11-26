@@ -24,3 +24,6 @@ excerpt_separator: <!--more-->
 # Build settings
 markdown: redcarpet
 highlighter: pygments
+gems:
+  - jekyll-paginate
+  - jekyll-gist
