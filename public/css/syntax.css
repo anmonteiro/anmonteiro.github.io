@@ -54,7 +54,8 @@
 .sx { color: #CC3300 } /* Literal.String.Other */
 .sr { color: #33AAAA } /* Literal.String.Regex */
 .s1 { color: #CC3300 } /* Literal.String.Single */
-.ss { color: #FFCC33 } /* Literal.String.Symbol */
+.ss { color: #2E9FFF } /* Literal.String.Symbol */
+/*.ss { color: #FFCC33 } /* Literal.String.Symbol */
 .bp { color: #336666 } /* Name.Builtin.Pseudo */
 .vc { color: #003333 } /* Name.Variable.Class */
 .vg { color: #003333 } /* Name.Variable.Global */
