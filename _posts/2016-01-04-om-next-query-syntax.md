@@ -282,6 +282,6 @@ For future (and quick) reference, a single list with every example from this pos
 
 ### References
 
-- [Official query expression grammar](https://github.com/omcljs/om/blob/9ea96efc0367d6b49a7aeb8eef5014fb55f3ba6e/src/main/om/next/impl/parser.cljc)
+- [Official query expression grammar](https://github.com/omcljs/om/blob/9ea96efc0367d6b49a7aeb8eef5014fb55f3ba6e/src/main/om/next/impl/parser.cljc#L15-L22)
 - [Datomic Pull Syntax Docs](http://docs.datomic.com/pull.html)
 - [Om Wiki](https://github.com/omcljs/om/wiki)
