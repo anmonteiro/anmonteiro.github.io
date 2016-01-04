@@ -68,7 +68,7 @@ As with property query, we can also parameterize joins. The syntax for a paramet
 
 ### Reference (Idents & Links) queries
 
-When working with normalized data, using an `ident` reference in a query will direct the Om Next parser to lookup the element with that reference at the root of the application state.
+When working with normalized data, using an `Ident` reference in a query will direct the Om Next parser to lookup the element with that reference at the root of the application state.
 
 ```clojure
 ;; using an `ident` will yield (get-in state [:item/by-id 0])
