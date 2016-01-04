@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Om Next Study Material
-tags: clojure clojurescript
+tags: clojure clojurescript om
 ---
 
 It has been a while since Martin Klepsch posted his [Om Next reading list](http://www.martinklepsch.org/posts/om-next-reading-list.html). If you're learning Om Next or planning to, there are a bunch more excellent resources that have recently appeared, and this post compiles a list of some of them.
