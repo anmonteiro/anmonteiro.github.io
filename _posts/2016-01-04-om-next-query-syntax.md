@@ -247,7 +247,7 @@ Now, in order to pass parameters to a mutation, one can use the following syntax
 
 ## **Everything in one place**
 
-For future (and quick) reference, a single list with every example from this post follows. As a freebie, here's a reference card ([light](https://cloud.githubusercontent.com/assets/661909/12103001/38cb6b16-b33f-11e5-9203-e1dea12723f5.png), [dark](https://cloud.githubusercontent.com/assets/661909/12103009/4617f776-b33f-11e5-8006-d2689b576030.png)) with the contents below.
+For future (and quick) reference, a single list with every example from this post follows. As a freebie, here's a reference card ([light](https://cloud.githubusercontent.com/assets/661909/12114476/81a8a37e-b3aa-11e5-9c3f-2986e2eaee78.png), [dark](https://cloud.githubusercontent.com/assets/661909/12114475/81a710b8-b3aa-11e5-9ece-78bdafb9af64.png)) with the contents below.
 
 ```clojure
 ;; Reads
