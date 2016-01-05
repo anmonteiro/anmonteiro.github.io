@@ -34,7 +34,7 @@ A property read that takes in one or more parameters (possibly defined in a comp
     {:some/param 42})
   static om/IQuery
   (query [this]
-    [(:some/key {:some/param ?some/param})]))
+    '[(:some/key {:some/param ?some/param})]))
 ```
 
 ### Join query
@@ -75,7 +75,7 @@ When working with normalized data, using an `Ident` reference in a query will di
 [[:item/by-id 0]]
 
 ;; Using a `_` will produce (get-in state [:active/panel])
-[[:active/panel _]]
+'[[:active/panel _]]
 ```
 
 ### Union query
@@ -144,16 +144,16 @@ You can also specify Om Next queries that recurse into themselves. This is usefu
 (defui Node
   static om/IQuery
   (query [this]
-    [:id :value {:children ...}]))
+    '[:id :value {:children ...}]))
 
 ;; One that expresses the node tree
 (defui Tree
   static om/IQuery
   (query [this]
-    [{:tree (om/get-query Node)}]))
+    `[{:tree ~(om/get-query Node)}]))
 
 ;; the entire query would be:
-[{:tree [:id :value {:children ...}]}]
+'[{:tree [:id :value {:children ...}]}]
 ;; we can also specify a recursion limit by specifying
 ;; a number instead of '... .
 ;; the query below will only allow 5-depth recursion
@@ -207,15 +207,15 @@ Our last example is a composition of the last two. What if we have heterogeneous
 (defui Tree
   static om/IQuery
   (query [this]
-    [{:tree (om/get-query ItemNode)}]))
+    `[{:tree ~(om/get-query ItemNode)}]))
 
 ;; the complete query:
 '[{:tree {:node/foo [:id :node/type :foo/value {:children ...}]
           :node/bar [:id :node/type :bar/value {:children ...}]}}]
 
 ;; again, expressing a recursion limit
-'[{:tree {:node/foo [:id :node/type :foo/value {:children 5}]
-          :node/bar [:id :node/type :bar/value {:children 5}]}}]
+[{:tree {:node/foo [:id :node/type :foo/value {:children 5}]
+         :node/bar [:id :node/type :bar/value {:children 5}]}}]
 
 ```
 
@@ -259,18 +259,18 @@ For future (and quick) reference, a single list with every example from this pos
 [({:some/key [:subkey/one :subkey/two]} {:some/param 42})] ;; parameterized join
 
 [[:item/by-id 0]] ;; ident reference
-[[:active/panel _]] ;; link reference
+'[[:active/panel _]] ;; link reference
 
 [{:items/list {:foo [:item/id :item/type :foo/value]
                :bar [:item/id :item/type :bar/value]}}] ;; union query
 
-[{:tree [:id :value {:children ...}]}] ;; recursive query
+'[{:tree [:id :value {:children ...}]}] ;; recursive query
 [{:tree [:id :value {:children 5}]}] ;; recursive query with recursion limit
 
 '[{:tree {:node/foo [:id :node/type :foo/value {:children ...}]
           :node/bar [:id :node/type :bar/value {:children ...}]}}] ;; recursive union query
-'[{:tree {:node/foo [:id :node/type :foo/value {:children 5}]
-          :node/bar [:id :node/type :bar/value {:children 5}]}}] ;; recursive union query with recursion limit
+[{:tree {:node/foo [:id :node/type :foo/value {:children 5}]
+         :node/bar [:id :node/type :bar/value {:children 5}]}}] ;; recursive union query with recursion limit
 
 
 ;; Mutations
