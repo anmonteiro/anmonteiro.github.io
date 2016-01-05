@@ -201,8 +201,8 @@ Our last example is a composition of the last two. What if we have heterogeneous
     [type id])
   static om/IQuery
   (query [this]
-    {:node/foo (om/get-query UnionFooNode)
-     :node/bar (om/get-query UnionBarNode)}))
+    `{:node/foo ~(om/get-query FooNode)
+      :node/bar ~(om/get-query BarNode)}))
 
 (defui Tree
   static om/IQuery
