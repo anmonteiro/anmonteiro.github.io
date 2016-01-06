@@ -161,12 +161,10 @@ You can also specify Om Next queries that recurse into themselves. This is usefu
 
 ```
 
-**Note:** at the time of this writing, support for recursion limit is still waiting to be merged into Om in this [pull request](https://github.com/omcljs/om/pull/561)
-
 
 ### Recursive union query
 
-Our last example is a composition of the last two. What if we have heterogeneous recursive components? That almost makes my brain hurt! Support for this feature is complete but at the time of this writing still waiting to be merged in Om ([pull request](https://github.com/omcljs/om/pull/562)).
+Our last example is a composition of the last two. What if we have heterogeneous recursive components? That almost makes my brain hurt! Let's get into it:
 
 ```clojure
 ;; heterogeneous recursive state
