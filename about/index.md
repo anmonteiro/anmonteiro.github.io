@@ -19,7 +19,7 @@ In case you're wondering, this site is:
 * Coded with the awesome [Atom](https://atom.io/) editor
 
 
-Feel free to get in touch with me:
+Feel free to get in touch:
 
 <div class="contact-showcase">
   <a href="http://www.twitter.com/{{ site.author.twitter_username }}"><span class="icon-twitter"></span></a>
