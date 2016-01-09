@@ -1,6 +1,6 @@
 ---
 layout: post
-title: An Exploration of Object Recursion Design Patterns with Om Next Recursive Queries - Part 1
+title: An Exploration of Object Recursion Design Patterns in Om Next - Part 1: Composite
 tags: clojure clojurescript om
 ---
 
