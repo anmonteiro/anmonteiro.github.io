@@ -36,10 +36,17 @@
 
 (def cards-pt1
   {:composite-data-card (devcard "CompositeData" "" pat/composite-data-card {:heading false})
-   :composite-component-card (devcard "Composite" "" pat/composite-component-card {:heading false})})
+   ;:composite-component-card (devcard "Composite" "" pat/composite-component-card {:heading false})
+   })
+
+(def cards-pt2
+  {:undecorated-data-card (devcard "Undecorated Data" "" pat/undecorated-data-card {:heading false})
+   :decorated-data-card (devcard "Decorated Data" "" pat/decorated-data-card {:heading false})
+   :undecorated-component-card (devcard "Undecorated Component" "" pat/undecorated-component-card {:heading false})
+   :decorated-component-card (devcard "Decorated Component" "" pat/decorated-component-card {:heading false})})
 
 (defn render-cards []
-  (loop [idx 1 cards (vals cards-pt1)]
+  (loop [idx 1 cards (vals cards-pt2)]
     (when (seq cards)
       (js/ReactDOM.render (first cards)
         (js/document.getElementById (str "dp-card-" idx)))
