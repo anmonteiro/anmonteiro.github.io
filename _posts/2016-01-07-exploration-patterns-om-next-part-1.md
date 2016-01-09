@@ -19,9 +19,9 @@ The Composite is part of the design pattern collection in the [Gang of Four book
 
 ## Our example
 
-### The data
-
 In our simplified example, we want to render a square that can arbitrarily contain other squares. Using the nomenclature in the above diagram, we need to define Om Next components for both the `Leaf` and the `Composite`. `Composite` components can have `children`, whereas `Leaf` components cannot. We will also have our version of `Component`, which aggregates the queries for both others, and dispatches rendering to them <sup><sub>1</sub></sup>.
+
+### The data
 
 We start with the data below. Each square contains attributes for its width, height and color. Each item also has an `id`; this reveals helpful in normalizing the data.
 
