@@ -76,7 +76,7 @@ Once we have properly implemented our parser and render methods, we get the foll
 </div>
 
 
-You can find the complete source code for this post [here](https://gist.github.com/anmonteiro/2b282aa35380558a8b1d).
+You can find the complete source code for this post [here](https://gist.github.com/anmonteiro/2b282aa35380558a8b1d#file-composite-cljs).
 
 In the next post we will talk about the [Decorator](https://en.wikipedia.org/wiki/Decorator_pattern) design pattern. Stay tuned!
 
