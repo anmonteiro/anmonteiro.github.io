@@ -4,7 +4,7 @@
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.8.0-RC4"]
-                 [org.clojure/clojurescript "1.7.189"]
+                 [org.clojure/clojurescript "1.7.228"]
                  [org.omcljs/om "1.0.0-alpha29-SNAPSHOT"]
                  [devcards "0.2.1-3"]]
 
@@ -19,9 +19,11 @@
                                    :output-dir "resources/public/devcards/js/out"
                                    :main "recursion-examples.core"
                                    :asset-path "/resources/public/devcards/js/out";"/devcards/js/out"
+                                   :parallel-build true
                                    :optimizations :none
                                    :source-map true}}
                        {:id "recursion-examples-prod"
                         :source-paths ["assets/cljs/recursion-examples"]
                         :compiler {:output-to "resources/public/devcards/js/devcards-examples-prod.js"
+                                   :parallel-build true
                                    :optimizations :advanced}}]})
