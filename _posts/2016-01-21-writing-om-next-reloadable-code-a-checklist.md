@@ -35,6 +35,8 @@ Applying the <code>:once</code> metadata to your Om Next components is the equiv
       (om/force-root-render! reconciler))))
 ```
 
+I hope the above advice will prove useful in your Om Next journey. Thanks for reading!
+
 ---
 
 <sup><sub>1</sub></sup> also keep in mind that this might not be desirable if you change whatever that definition contains. A full reload will probably be necessary in that case.
