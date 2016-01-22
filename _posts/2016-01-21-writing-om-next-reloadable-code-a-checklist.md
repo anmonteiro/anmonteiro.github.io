@@ -16,7 +16,7 @@ As stated in the <a href="https://github.com/bhauman/lein-figwheel#writing-reloa
 
 <li><h3><strong><code>(defui ^:once MyComponent)</code> is also a thing</strong></h3></li>
 
-Applying the <code>:once</code> metadata to your Om Next components is the equivalent of using <code>defonce</code> to define the top-level variables in your program. It will prevent the React components constructors from being redefined, while patching those components' JavaScript prototypes to use the newly written (and hotloaded) code <sup><sub>2</sub></sup>.
+Applying the <code>:once</code> metadata to your Om Next components is the equivalent of using <code>defonce</code> to define the top-level variables in your program. It will prevent the React components constructors from being redefined, while patching those components' JavaScript prototypes to use the newly written (and hotloaded) code.
 
 
 <li><h3><strong>only call <code>add-root!</code> on the initial load</strong></h3></li>
@@ -40,5 +40,3 @@ I hope the above advice will prove useful in your Om Next journey. Thanks for re
 ---
 
 <sup><sub>1</sub></sup> also keep in mind that this might not be desirable if you change whatever that definition contains. A full reload will probably be necessary in that case.
-
-<sup><sub>2</sub></sup> the advertised behavior doesn't quite work like that at the time of this writing as [a PR which fixes it](https://github.com/omcljs/om/pull/583) is waiting to make its way into Om master. Meanwhile, you can get away with using JavaScript's `Object.setPrototypeOf` in your reload hooks (e.g. `(js/Object.setPrototypeOf c (.-prototype RootComponent))`).
