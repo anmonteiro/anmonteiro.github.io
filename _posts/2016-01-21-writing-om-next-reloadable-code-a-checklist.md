@@ -31,8 +31,7 @@ Applying the <code>:once</code> metadata to your Om Next components is the equiv
     (let [target (js/document.getElementById "app")]
       (om/add-root! reconciler RootComponent target)
       (reset! root RootComponent))
-    (let [c (om/class->any reconciler RootComponent)]
-      (om/force-root-render! reconciler))))
+    (om/force-root-render! reconciler)))
 ```
 
 I hope the above advice will prove useful in your Om Next journey. Thanks for reading!
