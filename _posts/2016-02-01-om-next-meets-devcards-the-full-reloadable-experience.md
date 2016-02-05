@@ -22,16 +22,16 @@ As mentioned in the [checklist]({% post_url 2016-01-21-writing-om-next-reloadabl
 
     ```clojure
     ;; for Leiningen:
-    [devcards-om-next "0.1.0"]
+    [devcards-om-next "0.1.1"]
     ```
 
 2. Require the `devcards-om-next` macros in your namespace along with Devcards itself:
 
     ```clojure
     (ns my-ns.core
-      (:require [om.next :as om :refer-macros [defui]])
-      (:require-macros [devcards.core :as devcards :refer [defcard]]
-                      [devcards-om-next.core :as devcards-om-next :refer [om-next-root defcard-om-next]]))
+      (:require-macros [devcards.core :as devcards :refer [defcard]])
+      (:require [devcards-om-next.core :as don :refer-macros [om-next-root defcard-om-next]]
+                [om.next :as om :refer-macros [defui]]))
     ```
 
 3. Write your cards in the normal reloadable manner. `om-next-root` is the simplest of the two. `defcard-om-next` is a shortcut for `defcard` plus `om-next-root`. Both take an Om Next component and a reconciler, but they can also take a state map or atom instead. Below is a small example. I encourage you to run it with [Figwheel](https://github.com/bhauman/lein-figwheel), increment the counter, modify e.g. the button label and watch your changes being pushed to the browser as the component's local state remains unchanged <sup><sub>1</sub></sup>. Pretty cool!
