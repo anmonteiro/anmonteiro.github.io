@@ -16,15 +16,15 @@ This section covers the syntax for read queries, which are the ones we put into 
 
 The simplest, self-explanatory case of reading a single property.
 
-```clojure
+{% highlight clojure %}
 [:some/key]
-```
+{% endhighlight %}
 
 ### Parameterized property read
 
 A property read that takes in one or more parameters (possibly defined in a component's implementation of the `IQueryParams` protocol). These parameters are passed as the third argument to the `read` parsing function.
 
-```clojure
+{% highlight clojure %}
 [(:some/key {:some/param 42})]
 
 ;; Using it in IQuery & IQueryParams
@@ -35,13 +35,13 @@ A property read that takes in one or more parameters (possibly defined in a comp
   static om/IQuery
   (query [this]
     '[(:some/key {:some/param ?some/param})]))
-```
+{% endhighlight %}
 
 ### Join query
 
 A join refers to reading a property of the state, e.g. a vector of elements, while specifying the exact (sub-)set of sub-properties that should be read for each item in that vector.
 
-```clojure
+{% highlight clojure %}
 ;; given this state
 (def state {:some/key [{:subkey/one 1
                         :subkey/two 2
@@ -56,33 +56,33 @@ A join refers to reading a property of the state, e.g. a vector of elements, whi
 
 ;; this one reads every sub-key
 '[{:some/key [*]}]
-```
+{% endhighlight %}
 
 ### Parameterized join query
 
 As with property query, we can also parameterize joins. The syntax for a parameterized join follows.
 
-```clojure
+{% highlight clojure %}
 [({:some/key [:subkey/one :subkey/two]} {:some/param 42})]
-```
+{% endhighlight %}
 
 ### Reference (Idents & Links) queries
 
 When working with normalized data, using an `Ident` reference in a query will direct the Om Next parser to lookup the element with that reference at the root of the application state.
 
-```clojure
+{% highlight clojure %}
 ;; using an `ident` will yield (get-in state [:item/by-id 0])
 [[:item/by-id 0]]
 
 ;; Using a `_` will produce (get-in state [:active/panel])
 '[[:active/panel _]]
-```
+{% endhighlight %}
 
 ### Union query
 
 Certain types of applications require us to handle heterogeneous data that share the same parent. Union queries provide the basis to handle such heterogeneity by allowing us to define just that — there might live different pieces of data under a certain application state key.
 
-```clojure
+{% highlight clojure %}
 ;; Given the following app state:
 (def state {:items/list [{:item/id 0 :item/type :foo :foo/value 42}
                          {:item/id 1 :item/type :bar :bar/value 43}]})
@@ -121,13 +121,13 @@ Certain types of applications require us to handle heterogeneous data that share
 ;; the entire (ItemList) query will then be:
 [{:items/list {:foo [:item/id :item/type :foo/value]
                :bar [:item/id :item/type :bar/value]}}]
-```
+{% endhighlight %}
 
 ### Recursive query
 
 You can also specify Om Next queries that recurse into themselves. This is useful when your components can host themselves. The following example illustrates this.
 
-```clojure
+{% highlight clojure %}
 ;; say we have the following app state. notice that each
 ;; node can contain children of its type. this is where
 ;; recursion is useful
@@ -158,15 +158,14 @@ You can also specify Om Next queries that recurse into themselves. This is usefu
 ;; a number instead of '... .
 ;; the query below will only allow 5-depth recursion
 [{:tree [:id :value {:children 5}]}]
-
-```
+{% endhighlight %}
 
 
 ### Recursive union query
 
 Our last example is a composition of the last two. What if we have heterogeneous recursive components? That almost makes my brain hurt! Let's get into it:
 
-```clojure
+{% highlight clojure %}
 ;; heterogeneous recursive state
 (def state
   {:tree {:id 0 :node/type :node/foo
@@ -214,8 +213,7 @@ Our last example is a composition of the last two. What if we have heterogeneous
 ;; again, expressing a recursion limit
 [{:tree {:node/foo [:id :node/type :foo/value {:children 5}]
          :node/bar [:id :node/type :bar/value {:children 5}]}}]
-
-```
+{% endhighlight %}
 
 ## **Mutations**
 
@@ -223,31 +221,31 @@ Mutation syntax is pretty simple in the sense that there aren't so many combinat
 
 ### Simple mutation
 
-```clojure
+{% highlight clojure %}
 [(do/something!)]
 
 ;; it would look like this in a call to `transact!`
 (om/transact! c [(do/something!)])
-```
+{% endhighlight %}
 
 
 ### Parameterized mutation
 
 Now, in order to pass parameters to a mutation, one can use the following syntax:
 
-```clojure
+{% highlight clojure %}
 [(do/something! {:some/param 42})]
 
 ;; which would look like this when calling `transact!`
 (om/transact! c [(do/something! {:some/param 42})])
-```
+{% endhighlight %}
 
 
 ## **Everything in one place**
 
 For future (and quick) reference, a single list with every example from this post follows. As a freebie, here's a reference card ([light](https://cloud.githubusercontent.com/assets/661909/12114476/81a8a37e-b3aa-11e5-9c3f-2986e2eaee78.png), [dark](https://cloud.githubusercontent.com/assets/661909/12114475/81a710b8-b3aa-11e5-9ece-78bdafb9af64.png)) with the contents below.
 
-```clojure
+{% highlight clojure %}
 ;; Reads
 [:some/key] ;; property read
 [(:some/key {:some/param 42})] ;; parameterized property read
@@ -276,7 +274,7 @@ For future (and quick) reference, a single list with every example from this pos
 [(do/something!)] ;; simple mutation
 
 [(do/something! {:some/param 42})] ;; parameterized mutation
-```
+{% endhighlight %}
 
 ### References
 

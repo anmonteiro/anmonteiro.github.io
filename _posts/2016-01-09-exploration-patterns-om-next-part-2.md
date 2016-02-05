@@ -40,16 +40,16 @@ Now, the data in our decorators is quite similar to the Composite case, in the s
 
 We start by defining our `ConcreteComponent`. Its query is quite simple: the square's attributes.
 
-```clj
+{% highlight clojure %}
 (defui ConcreteComponent
   static om/IQuery
   (query [this]
     '[:id :width :height :color]))
-```
+{% endhighlight %}
 
 The concrete decorators are presented below. They each query for their own set of attributes; those represent the functionality they add to the core object. The only attributes our concrete decorators have in common are the `id` by which they are identified, and the recursion query (`{:next ...}`) which simply tells Om Next that we are expecting to find an object of the same type under that entry <sup><sub>1</sub></sup>.
 
-```clj
+{% highlight clojure %}
 (defui ImageDecorator
   static om/IQuery
   (query [this]
@@ -59,11 +59,11 @@ The concrete decorators are presented below. They each query for their own set o
   static om/IQuery
   (query [this]
     '[:id :decorator/text {:next ...}]))
-```
+{% endhighlight %}
 
 How should `Component` be defined, then? Just like in the Decorator pattern diagram, it sits on top of our hierarchy, and delegates functionality to its child components. As such, it needs to aggregate the queries of all the children and define their identity. Our `Ident`s are defined using the following approach. We know that `TextDecorator`s have a `:decorator/text` attribute and `ImageDecorator`s have a `:decorator/image` attribute. If we find none in `props`, we are in the presence of the core object itself. `Component` is shown below.
 
-```clj
+{% highlight clojure %}
 (defui Component
   static om/Ident
   (ident [this {:keys [id decorator/text decorator/image]}]
@@ -76,16 +76,16 @@ How should `Component` be defined, then? Just like in the Decorator pattern diag
     {:text (om/get-query TextDecorator)
      :image (om/get-query ImageDecorator)
      :component (om/get-query ConcreteComponent)}))
-```
+{% endhighlight %}
 
 The last piece of our example is a component that contains the top-level query which finalizes the definition of the union query. This is also our root component. We will call it `DecoratorApp`.
 
-```clj
+{% highlight clojure %}
 (defui DecoratorApp
   static om/IQuery
   (query [this]
     [{:decorator/app (om/get-query Component)}]))
-```
+{% endhighlight %}
 
 ## The end result
 

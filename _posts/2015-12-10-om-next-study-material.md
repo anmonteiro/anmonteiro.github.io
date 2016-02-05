@@ -7,6 +7,7 @@ tags: clojure clojurescript om
 It has been a while since Martin Klepsch posted his [Om Next reading list](http://www.martinklepsch.org/posts/om-next-reading-list.html). If you're learning Om Next or planning to, there are a bunch more excellent resources that have recently appeared, and this post compiles a list of some of them.
 
 <!--more-->
+
 ### **David Nolen's talks**
 
 [David Nolen](https://twitter.com/swannodette) has recently given a few talks presenting Om Next. They are presented in this section in chronological order &mdash; some content from previous talks might already be slightly outdated, but they all contain very good content (you can always get updated content every next talk :-) ).

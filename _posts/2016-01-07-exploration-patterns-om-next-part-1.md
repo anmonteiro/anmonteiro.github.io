@@ -33,7 +33,7 @@ We start with the data below. Each square contains attributes for its width, hei
 
 Our `Leaf` and `Composite` components are shown below <sup><sub>2</sub></sup>. Their queries are trivial, in the sense that they just declare the attributes we have talked about before. The only exception, which you might have not seen before, is the `{:children ...}` part. This is how we declare recursion in Om Next. Refer to my post about Om Next's [query syntax]({% post_url 2016-01-04-om-next-query-syntax %}) where I explain this and other bits in detail.
 
-```clj
+{% highlight clojure %}
 (defui Leaf
   static om/IQuery
   (query [this]
@@ -43,11 +43,11 @@ Our `Leaf` and `Composite` components are shown below <sup><sub>2</sub></sup>. T
   static om/IQuery
   (query [this]
     '[:id :width :height :color {:children ...}]))
-```
+{% endhighlight %}
 
 Now that we have declared our most concrete components, we need to declare the one that is analogous to the Component in the Composite pattern diagram. Our `Component` needs to aggregate the queries of the others, and declare its `Ident`, a unique key by which each data item is identified in our example. Besides defining an `id`, we could also have a the type of an item in our data; in our simple example this is not necessary as we know leaves can't have children. It looks like this:
 
-```clj
+{% highlight clojure %}
 (defui Component
   static om/Ident
   (ident [this {:keys [id children]}]
@@ -58,16 +58,16 @@ Now that we have declared our most concrete components, we need to declare the o
   (query [this]
     {:leaf (om/get-query Leaf)
      :composite (om/get-query Composite)}))
-```
+{% endhighlight %}
 
 We will need a root component, which we will call `CompositeApp`. This one helps define the union query in `Component`.
 
-```clj
+{% highlight clojure %}
 (defui CompositeApp
   static om/IQuery
   (query [this]
     [{:composite/item (om/get-query Component)}]))
-```
+{% endhighlight %}
 
 Once we have properly implemented our parser and render methods, we get the following result, which is exactly what we intended. Squares that contain other squares.
 

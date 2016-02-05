@@ -23,7 +23,7 @@ Applying the <code>:once</code> metadata to your Om Next components is the equiv
 <code>add-root!</code> mounts an Om Next component in the DOM. The problem with calling <code>add-root!</code> on reload is that successive calls to this function will result in the Om Next reconciler unmounting any components currently mounted on the target node prior to actually performing the new mounting operation. Below is a simple code example of how to achieve what I've been describing. I imagine variations of it can be used as a <a href="https://github.com/bhauman/lein-figwheel#configure-your-builds">Figwheel reload hook</a>.
 </ul>
 
-```clj
+{% highlight clojure %}
 (defonce root (atom nil))
 
 (defn init []
@@ -32,7 +32,7 @@ Applying the <code>:once</code> metadata to your Om Next components is the equiv
       (om/add-root! reconciler RootComponent target)
       (reset! root RootComponent))
     (om/force-root-render! reconciler)))
-```
+{% endhighlight %}
 
 I hope the above advice will prove useful in your Om Next journey. Thanks for reading!
 

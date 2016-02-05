@@ -18,56 +18,57 @@ As mentioned in the [checklist]({% post_url 2016-01-21-writing-om-next-reloadabl
 
 ## Examples / How-tos
 
-1. Start by adding the `devcards-om-next` dependency information to your project:
+-  Start by adding the `devcards-om-next` dependency information to your project:
 
-    ```clojure
-    ;; for Leiningen:
-    [devcards-om-next "0.1.1"]
-    ```
+{% highlight clojure %}
+;; for Leiningen:
+[devcards-om-next "0.1.1"]
+{% endhighlight %}
 
-2. Require the `devcards-om-next` macros in your namespace along with Devcards itself:
 
-    ```clojure
-    (ns my-ns.core
-      (:require-macros [devcards.core :as devcards :refer [defcard]])
-      (:require [devcards-om-next.core :as don :refer-macros [om-next-root defcard-om-next]]
-                [om.next :as om :refer-macros [defui]]))
-    ```
+-  Require the `devcards-om-next` macros in your namespace along with Devcards itself:
 
-3. Write your cards in the normal reloadable manner. `om-next-root` is the simplest of the two. `defcard-om-next` is a shortcut for `defcard` plus `om-next-root`. Both take an Om Next component and a reconciler, but they can also take a state map or atom instead. Below is a small example. I encourage you to run it with [Figwheel](https://github.com/bhauman/lein-figwheel), increment the counter, modify e.g. the button label and watch your changes being pushed to the browser as the component's local state remains unchanged <sup><sub>1</sub></sup>. Pretty cool!
+{% highlight clojure %}
+(ns my-ns.core
+  (:require-macros [devcards.core :as devcards :refer [defcard]])
+  (:require [devcards-om-next.core :as don :refer-macros [om-next-root defcard-om-next]]
+            [om.next :as om :refer-macros [defui]]))
+{% endhighlight %}
 
-    ```clojure
-    ;; use ^:once meta in `defui`
-    (defui ^:once Counter
-      Object
-      (initLocalState [this]
-        {:val 1})
-      (render [this]
-        (let [{:keys [val]} (om/get-state this)]
-          (dom/div nil
-            (str "val: " val)
-            (dom/button
-              #js {:onClick #(om/update-state! this update :val inc)}
-              "inc!")))))
+-  Write your cards in the normal reloadable manner. `om-next-root` is the simplest of the two. `defcard-om-next` is a shortcut for `defcard` plus `om-next-root`. Both take an Om Next component and a reconciler, but they can also take a state map or atom instead. Below is a small example. I encourage you to run it with [Figwheel](https://github.com/bhauman/lein-figwheel), increment the counter, modify e.g. the button label and watch your changes being pushed to the browser as the component's local state remains unchanged <sup><sub>1</sub></sup>. Pretty cool!
 
-    ;; defonce the reconciler
-    (defonce counter-reconciler
-      (om/reconciler {:state {}
-                      :parser {:read (fn [] {:value {}})}}))
+{% highlight clojure %}
+;; use ^:once meta in `defui`
+(defui ^:once Counter
+  Object
+  (initLocalState [this]
+    {:val 1})
+  (render [this]
+    (let [{:keys [val]} (om/get-state this)]
+      (dom/div nil
+        (str "val: " val)
+        (dom/button
+          #js {:onClick #(om/update-state! this update :val inc)}
+          "inc!")))))
 
-    ;; the usual `defcard` calls `om-next-root`
-    (defcard om-next-root-example
-      "`om-next-root` takes a component class and (optionally)
-       a map with the state or a reconciler"
-      (om-next-root Counter))
+;; defonce the reconciler
+(defonce counter-reconciler
+  (om/reconciler {:state {}
+                  :parser {:read (fn [] {:value {}})}}))
 
-    ;; `defcard-om-next` takes every normal `defcard` argument
-    ;; (documentation, devcard, options, etc.), and the arguments of `om-next-root`
-    (defcard-om-next defcard-om-next-example
-      "`defcard-om-next` example with a Component class and a reconciler"
-      Counter
-      counter-reconciler)
-    ```
+;; the usual `defcard` calls `om-next-root`
+(defcard om-next-root-example
+  "`om-next-root` takes a component class and (optionally)
+   a map with the state or a reconciler"
+  (om-next-root Counter))
+
+;; `defcard-om-next` takes every normal `defcard` argument
+;; (documentation, devcard, options, etc.), and the arguments of `om-next-root`
+(defcard-om-next defcard-om-next-example
+  "`defcard-om-next` example with a Component class and a reconciler"
+  Counter
+  counter-reconciler)
+{% endhighlight %}
 
 I hope these new helpers are useful in your journey writing reloadable Om Next cards. Thanks for reading!
 

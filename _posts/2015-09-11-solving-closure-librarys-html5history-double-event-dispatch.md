@@ -13,7 +13,7 @@ Most Clojurescript apps that rely on browser routing are wired in some manner to
 Opting for the hash based routing approach with Google Closure's Html5history module can be done with the following (simplistic) Clojurescript code:
 
 
-```Clojure
+{% highlight clojure %}
 ;; instantiate an Html5History object
 (let [history (goog.history.Html5History.)]
   ;; listen for navigation events
@@ -26,11 +26,11 @@ Opting for the hash based routing approach with Google Closure's Html5history mo
   (doto history
     (.setUseFragment true)
     (.setEnabled true)))
-```
+{% endhighlight %}
 
 Inspecting the (used above) [`setUseFragment`](https://github.com/google/closure-library/blob/master/closure/goog/history/html5history.js#L203) function internals reveals the following:
 
-```javascript
+{% highlight javascript %}
 if (useFragment) {
   goog.events.listen(this.window_, goog.events.EventType.HASHCHANGE,
       this.onHistoryEvent_, false, this);
@@ -38,7 +38,7 @@ if (useFragment) {
       goog.events.unlisten(this.window_, goog.events.EventType.HASHCHANGE,
           this.onHistoryEvent_, false, this);
 }
-```
+{% endhighlight %}
 
 However, looking at the [object instantiation](https://github.com/google/closure-library/blob/master/closure/goog/history/html5history.js#L76) we see that the module also listens for the `goog.events.EventType.POPSTATE` event. On browsers that don't support the [`pushState` API](http://caniuse.com/#search=pushstate) this represents absolutely no problem, since one should use `goog.History` instead of `goog.History.Html5History` anyway. But on browsers in which pushState is supported, we end up receiving two `NAVIGATE` events. This can easily become the root of unexpected behavior.
 
@@ -47,7 +47,7 @@ However, looking at the [object instantiation](https://github.com/google/closure
 
 Since our focus is on using fragment routing, we don't really need to be listening to the `popstate` browser event. On the other hand, we want to preserve `popstate` behavior in case we switch to the `pushState` API routing. To tackle this, I use the following approach:
 
-```Clojure
+{% highlight clojure %}
 ;; only remove popstate event listener when using
 ;; fragment based routing
 (if (.-useFragment_ history)
@@ -56,7 +56,7 @@ Since our focus is on using fragment routing, we don't really need to be listeni
                      (.-onHistoryEvent_ history)
                      false
                      history))
-```
+{% endhighlight %}
 
 It allows to unsubscribe from `popstate` events while still preserving that behavior when not using fragments.
 

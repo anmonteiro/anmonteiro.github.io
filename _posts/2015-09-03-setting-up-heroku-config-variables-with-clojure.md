@@ -12,21 +12,20 @@ Configuration or environment variables are really useful whether you want to ext
 
 In your Heroku app dashboard, go into settings and click "Reveal Config Vars". If you haven't added any configuration variables yet, it should look something like this:
 
-![No configuration variables][link-empty]
-[link-empty]: https://cloud.githubusercontent.com/assets/661909/10079248/392b124c-62e9-11e5-9b9f-3b796b135d09.png "No configuration variables"
+<img title="No configuration variables" src="https://cloud.githubusercontent.com/assets/661909/10079248/392b124c-62e9-11e5-9b9f-3b796b135d09.png">
 
 Go ahead, then, and click "Edit" to add the configuration variables you want to add. The next image shows what you should now be seeing. Type in the key and the value for each one.
 
-![Add configuration variables][link-add]
-[link-add]: https://cloud.githubusercontent.com/assets/661909/10079262/49fb210c-62e9-11e5-965f-2c97fbec80e5.png "Add configuration variables"
+<img title="Add configuration variables" src="https://cloud.githubusercontent.com/assets/661909/10079262/49fb210c-62e9-11e5-965f-2c97fbec80e5.png">
 
 ### 2. Reference your variables in your Clojure code
 
 Now for the trickier part. You might be tempted to simply write something like the following (which was actually what I was doing):
 
-```Clojure
+{% highlight clojure %}
 (def MY-VAR (System/getenv "MY-VAR"))
-```
+{% endhighlight %}
+
 However, as per [Heroku's documentation](https://devcenter.heroku.com/articles/getting-started-with-clojure#define-config-vars), only *"at runtime, config vars are exposed as environment variables to the application"*, and since `def` calls are bound at compile time, the above code would not work.
 
 <h4 style="text-shadow: 1px 0 #000;letter-spacing: 1px;"> So, what's the solution?</h4>
@@ -35,7 +34,7 @@ Well, the solution is to bind your variables at runtime, inside a function call 
 
 **- But you shouldn't declare vars inside functions, or [change them](https://github.com/bbatsov/clojure-style-guide#alter-var) using `def` calls!** - the attentive reader argues; correctly. The code that follows doesn't do either.
 
-```Clojure
+{% highlight clojure %}
 ;;;;;;;;;;;;;;
 ;; option A ;;
 ;;;;;;;;;;;;;;
@@ -60,7 +59,7 @@ Well, the solution is to bind your variables at runtime, inside a function call 
 ;;  called when the app starts
 (defn init-config []
   (alter-var-root #'MY-VAR (constantly (System/getenv "MY-VAR"))))
-```
+{% endhighlight %}
 
 Either option will work in Heroku, as long as reading the environment is done at runtime. A third alternative can be accomplished by using the [Environ](https://github.com/weavejester/environ) library. It allows for a more programatic approach and encompasses a handful of other features that you might find useful. Refer to its GitHub page for more information.
 
