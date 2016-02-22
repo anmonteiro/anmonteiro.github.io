@@ -9,7 +9,7 @@ title: Archive
     {% unless forloop.first %}
 </ul>
     {% endunless %}
-**<h2>{{ currentyear }}</h2>**
+<h2 style="font-weight: bold;">{{ currentyear }}</h2>
 <ul class="archive-year">
     {% capture year %}{{ currentyear }}{% endcapture %}
   {% endif %}
