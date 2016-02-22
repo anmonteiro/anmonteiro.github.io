@@ -16,7 +16,7 @@ In case you're wondering, this site is:
 
 * Built on [Jekyll](http://jekyllrb.com) and [Lanyon](http://lanyon.getpoole.com/);
 * Hosted on [GitHub Pages](https://pages.github.com)
-* Coded with the awesome [Atom](https://atom.io/) editor
+* Coded in [Emacs](https://xkcd.com/378/)
 
 
 Feel free to get in touch:
