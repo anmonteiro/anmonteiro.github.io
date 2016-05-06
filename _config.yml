@@ -3,6 +3,7 @@ permalink: /:year/:month/:title/
 paginate: 5
 title: anmonteiro
 tagline: 'Code ramblings'
+keywords: software,engineering,functional,programming
 description: > # this means to ignore newlines until "baseurl:"
   I'm a Software Engineer with a passion for entrepreneurship and open-source
   software. This is where I write about software engineering, programming and

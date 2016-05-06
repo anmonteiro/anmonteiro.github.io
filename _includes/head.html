@@ -1,21 +1,43 @@
+{% capture page_title %}{% if page.title == "Home" %}{{ site.title }} &middot; {{ site.tagline }}{% else %}{{ page.title }} &middot; {{ site.title }}{% endif %}{% endcapture %}
+{% capture page_description %}{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 150 }}{% else %}{{ site.description }}{% endif %}{% endcapture %}
 <head>
-  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
-
-  <!-- Site description -->
-  <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
-
   <!-- Enable responsiveness on mobile devices-->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
-  <title>
-    {% if page.title == "Home" %}
-      {{ site.title }} &middot; {{ site.tagline }}
-    {% else %}
-      {{ page.title }} &middot; {{ site.title }}
-    {% endif %}
-  </title>
+  <meta name="keywords" content="{% if page.tags %}{{ page.tags | join: ',' }}{% else %}{{ site.keywords }}{% endif %}">
+
+  <!-- Site description -->
+  <meta name="description" content="{{ page_description }}">
+
+  <meta name="googlebot" content="index,follow">
+
+  <!-- Facebook / Open graph -->
+  <meta property="og:url" content="{{ site.url }}{{ page.url }}">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="{{ page_title }}">
+  <meta property="og:image" content="{{ site.url }}/public/img/profile_pic.png">
+  <meta property="og:description" content="{{ page_description }}">
+  <meta property="og:site_name" content="{{ site.title }} · {{ site.tagline }}">
+  <meta property="og:locale" content="en_US">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@anmonteiro90">
+  <meta name="twitter:creator" content="@anmonteiro90">
+  <meta name="twitter:url" content="{{ site.url }}{{ page.url }}">
+  <meta name="twitter:title" content="{{ page_title }}">
+  <meta name="twitter:description" content="{{ page_description }}">
+  <meta name="twitter:image" content="{{ site.url }}/public/img/profile_pic.png">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <link rel="me" href="https://twitter.com/anmonteiro90" type="text/html">
+  <link rel="archives" href="{{ site.url }}/archive/" title="Archive">
+  <link rel="index" href="{{ site.url }}" title="{{ site.title }} · {{ site.tagline }}">
+
+  <title>{{ page_title }}</title>
 
   <!-- CSS -->
   <link rel="stylesheet" href="{{ site.baseurl }}/public/css/poole.css">
