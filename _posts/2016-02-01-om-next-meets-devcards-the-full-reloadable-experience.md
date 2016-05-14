@@ -26,12 +26,12 @@ As mentioned in the [checklist]({% post_url 2016-01-21-writing-om-next-reloadabl
 {% endhighlight %}
 
 
--  Require the `devcards-om-next` macros in your namespace along with Devcards itself:
+-  Require the `devcards-om-next` namespace, as well as the macros you intend to use:
 
 {% highlight clojure %}
 (ns my-ns.core
-  (:require-macros [devcards.core :as devcards :refer [defcard]])
-  (:require [devcards-om-next.core :as don :refer-macros [om-next-root defcard-om-next]]
+  (:require [devcards-om-next.core :as don
+             :refer-macros [om-next-root defcard-om-next]]
             [om.next :as om :refer-macros [defui]]))
 {% endhighlight %}
 
