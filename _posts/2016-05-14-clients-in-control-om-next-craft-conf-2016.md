@@ -1,6 +1,6 @@
 ---
 layout: post
-title: '&laquo;Clients in control&raquo; — Om Next at Craft Conference 2016'
+title: '&apos;Clients in control&apos; — Om Next at Craft Conference 2016'
 tags: talks clojure clojurescript om
 ---
 
