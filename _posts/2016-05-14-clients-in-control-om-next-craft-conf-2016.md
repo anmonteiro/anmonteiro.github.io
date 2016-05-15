@@ -10,7 +10,7 @@ At the end of April, I gave a talk about Om Next at [Craft Conf](http://craft-co
 
 *"Clients in control: building demand-driven systems with Om Next"* is what I decided to call it. It touches on the motivation for the appearance of systems like Falcor, Relay and Om Next, and presents a high-level overview of the ideas and implementation behind Om Next.
 
-The talk was targeted at a general audience, so I didn't go too much into Clojure(Script) specific parts. You can watch it [here](http://www.ustream.tv/recorded/86179814).
+The talk was targeted at a general audience, so I didn't go too much into Clojure(Script) specific parts. You can watch a video of it [here](http://www.ustream.tv/recorded/86179814). The slides and code I demoed are in this [repository](https://github.com/anmonteiro/craftconf-demo).
 
 At the end of my talk, I was gifted the piece below. What a lovely gift! I really loved the gesture.
 
