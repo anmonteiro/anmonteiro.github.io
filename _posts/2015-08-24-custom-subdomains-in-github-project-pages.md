@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Custom subdomains in GitHub project pages
-categories: git asd
+categories: git
 tags: git GitHub
 ---
 
