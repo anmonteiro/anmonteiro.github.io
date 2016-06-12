@@ -53,6 +53,11 @@
   text-align: center;
 }
 
+/* Paragraph indentation */
+.content > .post p {
+  text-indent: 2em;
+}
+
 /* Twitter plug */
 .content .twitter-plug {
   margin-top: -2rem;
