@@ -109,6 +109,4 @@ Thanks for reading!
 
 <sup><sub>1</sub></sup> <sub>here, "an object of the same type" refers to any one that the union query satisfies (which might not share the same query). Simple recursion can also be specified in Om Next, which allows to strictly recurse into an object which has the exact same query. For tips on how to use that syntax, visit [my post]({% post_url 2016-01-04-om-next-query-syntax %}) on that topic</sub>
 
-<script>
-{% include  exploration-dp-2.js %}
-</script>
+<script type="text/javascript" src="/public/js/exploration-dp-2.js"></script>

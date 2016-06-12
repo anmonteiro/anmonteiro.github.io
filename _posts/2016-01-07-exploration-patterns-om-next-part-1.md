@@ -88,6 +88,4 @@ In the next post we will talk about the [Decorator](https://en.wikipedia.org/wik
 
 <sup><sub>3</sub></sup> <sub>at the time of this writing, you'll need to clone Om Next from master and install it in your local repository in order to run the example code</sub>
 
-<script>
-{% include  exploration-dp-1.js %}
-</script>
+<script type="text/javascript" src="/public/js/exploration-dp-1.js"></script>

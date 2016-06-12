@@ -195,9 +195,7 @@ In this post, I've presented 3 different alternatives to approach routing in Om 
 If you have any questions or suggestions, don't hesitate to contact me either on Twitter ([@anmonteiro90](https://twitter.com/anmonteiro90)) or by leaving a comment in the section below. As always, thanks for reading!
 
 
-<script>
-{% include om_next_routing.js %}
-</script>
+<script type="text/javascript" src="/public/js/om_next_routing.js"></script>
 
 
 
