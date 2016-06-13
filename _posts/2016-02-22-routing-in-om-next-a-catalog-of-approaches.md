@@ -13,7 +13,7 @@ Although a standard routing solution is an orthogonal concern to Om Next's desig
 
 The example we will be working with throughout this post is presented below. It resembles a normal web application that has two routes: the **Home** page and an **About** page. Feel free to play with the links in the example's sidebar, and verify that the current route is updated, as well as the page's main content.
 
-<div style="margin-bottom: 20px;">
+<div class="no-indent" style="margin-bottom: 20px;">
   <div id="dp-card-1"></div>
 </div>
 

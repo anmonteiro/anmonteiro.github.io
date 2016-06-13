@@ -58,6 +58,10 @@
   text-indent: 2em;
 }
 
+.no-indent * {
+  text-indent: 0 !important;
+}
+
 /* Twitter plug */
 .content .twitter-plug {
   margin-top: -2rem;
