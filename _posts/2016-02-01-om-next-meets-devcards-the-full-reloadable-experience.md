@@ -22,7 +22,7 @@ As mentioned in the [checklist]({% post_url 2016-01-21-writing-om-next-reloadabl
 
 {% highlight clojure %}
 ;; for Leiningen:
-[devcards-om-next "0.1.1"]
+[devcards-om-next "0.2.0"]
 {% endhighlight %}
 
 
