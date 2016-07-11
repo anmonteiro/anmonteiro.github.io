@@ -9,6 +9,12 @@ Although a standard routing solution is an orthogonal concern to Om Next's desig
 <!--more-->
 
 
+<div class="message">
+  <strong>Note:</strong> I've recently developed <a href="https://github.com/anmonteiro/compassus">Compassus</a>, a routing library that automates all the pain of integrating routing in an Om Next application. Check the <a href="{% post_url 2016-06-12-the-quest-for-a-unified-routing-solution-in-om-next %}">announcement post</a>!
+</div>
+
+
+
 ## **The end goal**
 
 The example we will be working with throughout this post is presented below. It resembles a normal web application that has two routes: the **Home** page and an **About** page. Feel free to play with the links in the example's sidebar, and verify that the current route is updated, as well as the page's main content.
