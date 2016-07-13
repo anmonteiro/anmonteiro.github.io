@@ -46,7 +46,7 @@ ul li > ul {
   - providing seamless integration with existing routing libraries such as [bidi](https://github.com/juxt/bidi) and [secretary](https://github.com/gf3/secretary)
 
 
-After working through these requirements, I settled for a solution. [Compassus](https://github.com/anmonteiro/compassus) is the product of this work, and you can find more information in its [GitHub repository](https://github.com/anmonteiro/compassus). I've also made the API docs available in [this link](https://anmonteiro.com/compassus/doc), as well as some [devcards examples](https://anmonteiro.com/compassus/devcards).
+After working through these requirements, I settled for a solution. [Compassus](https://github.com/anmonteiro/compassus) is the product of this work, and you can find more information in its [GitHub repository](https://github.com/anmonteiro/compassus). I've also made the API docs available in [this link](https://anmonteiro.com/compassus/doc/0.2.1), as well as some [devcards examples](https://anmonteiro.com/compassus/devcards).
 
 I hope it is as useful for your applications' routing needs as it has been for me. All feedback is appreciated. As always, thanks for reading!
 

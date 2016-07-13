@@ -4,7 +4,7 @@ title: Jekyll related posts revamped
 tags: jekyll
 ---
 
-[Jekyll](www.jekyllrb.com) hosted in [Github Pages](https://pages.github.com) features a simple "Related posts" variable per post page, which contains the 10 most recent posts. As one might think, these most *recent* posts might not quite correspond, at all, to any *related* posts. So I devised a way to show recent **and** related posts in this blog using solely [Liquid](https://github.com/Shopify/liquid/wiki) tags.
+[Jekyll](http://jekyllrb.com/) hosted in [Github Pages](https://pages.github.com) features a simple "Related posts" variable per post page, which contains the 10 most recent posts. As one might think, these most *recent* posts might not quite correspond, at all, to any *related* posts. So I devised a way to show recent **and** related posts in this blog using solely [Liquid](https://github.com/Shopify/liquid/wiki) tags.
 
 <!--more-->
 
