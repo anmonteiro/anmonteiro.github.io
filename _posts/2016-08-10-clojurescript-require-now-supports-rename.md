@@ -54,6 +54,8 @@ At the time of this writing, this enhancement is currently unreleased. However, 
 
 2. [build](https://github.com/mfikes/planck#building) the [Planck](http://planck-repl.org/) bootstrapped REPL — [Mike Fikes](https://twitter.com/mfikes) has promptly updated the repository to use the ClojureScript commit that includes support for `:rename`.
 
+**Note:** This feature is now part of ClojureScript releases since version 1.9.183.
+
 ### Parting thoughts
 
 While there will always exist differences between Clojure and ClojureScript, this enhancement further narrows that gap and eases code portability between the two platforms.
