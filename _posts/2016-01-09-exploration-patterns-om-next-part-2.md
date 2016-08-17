@@ -26,13 +26,13 @@ We adopt the nomenclature present in the pattern diagram, except for our concret
 
 The core object is just a representation of the square: its `width`, `height` and the `color`. Here's how it looks like:
 
-<div style="margin-bottom: 20px;">
+<div class="no-indent" style="margin-bottom: 20px;">
   <div id="dp-card-1"></div>
 </div>
 
 Now, the data in our decorators is quite similar to the Composite case, in the sense that it is recursive. However, since the Decorator pattern employs 1-ObjectRecursion, each data item in this example doesn't have a vector of children, but solely a "pointer" to the next decorator. As you can see below, we call this pointer `:next`. Notice how the data that represents the square is the end of the recursion.
 
-<div style="margin-bottom: 20px;">
+<div class="no-indent" style="margin-bottom: 20px;">
   <div id="dp-card-2"></div>
 </div>
 
@@ -91,13 +91,13 @@ The last piece of our example is a component that contains the top-level query w
 
 After we implement our Om parser and render methods, we see the final result. The card below shows the result of passing only the square data to the example we just built. Pretty boring, heh? Scroll down!
 
-<div style="margin-bottom: 20px;">
+<div class="no-indent" style="margin-bottom: 20px;">
   <div id="dp-card-3"></div>
 </div>
 
 However, if we pass the state that contains our decorators, we see that the previously boring square has been decorated with that data! One more thing: if you simply supply data that has more (or less, for that case) decorators to our example, those will be reflected in our core object. We have thus achieved runtime extensibility.
 
-<div style="margin-bottom: 20px;">
+<div class="no-indent" style="margin-bottom: 20px;">
   <div id="dp-card-4"></div>
 </div>
 

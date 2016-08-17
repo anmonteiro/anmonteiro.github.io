@@ -54,7 +54,10 @@ At the time of this writing, this enhancement is currently unreleased. However, 
 
 2. [build](https://github.com/mfikes/planck#building) the [Planck](http://planck-repl.org/) bootstrapped REPL — [Mike Fikes](https://twitter.com/mfikes) has promptly updated the repository to use the ClojureScript commit that includes support for `:rename`.
 
-**Note:** This feature is now part of ClojureScript releases since version 1.9.183.
+
+<p class="no-indent">
+  <span style="font-weight:bold">Note:</span> This feature is now part of ClojureScript releases since version 1.9.183.
+</p>
 
 ### Parting thoughts
 

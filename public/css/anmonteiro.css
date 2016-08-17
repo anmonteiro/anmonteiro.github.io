@@ -58,7 +58,7 @@
   text-indent: 2em;
 }
 
-.no-indent * {
+.no-indent, .no-indent * {
   text-indent: 0 !important;
 }
 

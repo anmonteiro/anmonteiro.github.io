@@ -25,7 +25,7 @@ In our simplified example, we want to render a square that can arbitrarily conta
 
 We start with the data below. Each square contains attributes for its width, height and color. Each item also has an `id`; this reveals helpful in normalizing the data.
 
-<div style="margin-bottom: 20px;">
+<div class="no-indent" style="margin-bottom: 20px;">
   <div id="dp-card-1"></div>
 </div>
 
@@ -71,7 +71,7 @@ We will need a root component, which we will call `CompositeApp`. This one helps
 
 Once we have properly implemented our parser and render methods, we get the following result, which is exactly what we intended. Squares that contain other squares.
 
-<div style="margin-bottom: 20px;">
+<div class="no-indent" style="margin-bottom: 20px;">
   <div id="dp-card-2"></div>
 </div>
 
