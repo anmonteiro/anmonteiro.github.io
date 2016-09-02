@@ -25,7 +25,7 @@ which works in self-hosted environments.
 With this in mind, I set out to discover what changes would be required for
 Om Next to work in bootstrapped Clojurescript environments such as [Planck](http://planck-repl.org/).
 
-I was set for a surprise. As it turns out, only a very small number of [changes]([https://github.com/omcljs/om/pull/752])
+I was set for a surprise. As it turns out, only a very small number of [changes](https://github.com/omcljs/om/pull/752)
 are required for Om Next to work in Planck. I've prepared a [simple script](https://gist.github.com/anmonteiro/4bf3982a0c301535b022709d58a1e94a)
 which you can run to try out all this goodness right now. It only requires that
 you have Planck 1.12 or higher installed.
