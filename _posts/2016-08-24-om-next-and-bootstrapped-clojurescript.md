@@ -9,6 +9,11 @@ ClojureScript environments. Read on!
 
 <!--more-->
 
+<div class="message">
+  <strong style="text-decoration:underline">Update:</strong> Starting at version
+  1.0.0-alpha42, Om Next now includes support for Bootstrap ClojureScript.
+</div>
+
 <div style="margin:20px">
   <img style="max-width:50%;margin:0 auto" src="https://cloud.githubusercontent.com/assets/661909/17913293/e86948ba-6990-11e6-8b7d-ba5586d60b12.png">
 </div>
