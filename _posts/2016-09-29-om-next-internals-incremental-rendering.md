@@ -39,17 +39,11 @@ originated at the red node.
 
 <div style="display:table; margin: 30px 0">
   <figure style="display:table-cell">
-    <img style="max-width:50%; margin: 0 auto" src="/public/img/react-render.png" alt="React rendering" />
+    <img style="max-width:50%; margin: 0 auto" src="https://cloud.githubusercontent.com/assets/661909/18786506/87c5eb28-819e-11e6-8610-af5217738dee.png" alt="React rendering" />
     <figcaption class="caption">React's update phase</figcaption>
   </figure>
-
-  <!--
-  https://cloud.githubusercontent.com/assets/661909/18786506/87c5eb28-819e-11e6-8610-af5217738dee.png
-  https://cloud.githubusercontent.com/assets/661909/18786505/87a29114-819e-11e6-8aa5-c50ea811e06f.png
-  -->
-
   <figure style="display:table-cell">
-    <img style="max-width:50%; margin: 0 auto" src="/public/img/om-render.png" alt="Om Next rendering" />
+    <img style="max-width:50%; margin: 0 auto" src="https://cloud.githubusercontent.com/assets/661909/18786505/87a29114-819e-11e6-8aa5-c50ea811e06f.png" alt="Om Next rendering" />
     <figcaption class="caption">Om Next's update phase</figcaption>
   </figure>
 </div>
