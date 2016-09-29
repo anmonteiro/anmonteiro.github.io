@@ -62,6 +62,14 @@
   text-indent: 0 !important;
 }
 
+/* Image captions */
+.post figcaption.caption {
+  font-size: 0.75rem;
+  margin-top: 20px;
+  text-align: center !important;
+}
+
+
 /* Twitter plug */
 .content .twitter-plug {
   margin-top: -2rem;
@@ -94,3 +102,19 @@
 .sidebar-item.description {
   text-align: justify;
 }*/
+
+/*
+ * Misc
+ */
+
+img.emoji {
+  display: inline !important;
+  border: none !important;
+  box-shadow: none !important;
+  height: 1em !important;
+  width: 1em !important;
+  margin: 0 .07em !important;
+  vertical-align: -0.1em !important;
+  background: none !important;
+  padding: 0 !important;
+}
