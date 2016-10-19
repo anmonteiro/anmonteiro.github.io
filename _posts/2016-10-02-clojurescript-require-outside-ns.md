@@ -11,6 +11,11 @@ on to learn more.
 
 <!--more-->
 
+<div class="message">
+  <strong style="text-decoration:underline">Update:</strong> This has been released
+  as part of ClojureScript version 1.9.293.
+</div>
+
 <div style="margin:20px">
   <img style="max-width: 70%;margin:0 auto" src="https://cloud.githubusercontent.com/assets/661909/19021756/7a918376-88c0-11e6-9449-dc8a595e3b20.jpg">
 </div>
