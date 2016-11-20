@@ -4,7 +4,7 @@ title: ClojureScript `require` now supports `:rename`
 tags: clojure clojurescript
 ---
 
-There exist a [number of differences](https://github.com/clojure/clojurescript/wiki/Differences-from-Clojure) between Clojure and ClojureScript, especially concerning [namespace declarations]((https://github.com/clojure/clojurescript/wiki/Differences-from-Clojure#namespaces)) and `require` specifications. Some of these differences have recently been addressed with the introduction of [Clojure namespace aliasing](http://blog.fikesfarm.com/posts/2016-07-03-clojurescript-clojure-namespace-aliasing.html) ([JIRA ticket](http://dev.clojure.org/jira/browse/CLJS-1692)) and [implicit macro loading](http://dev.clojure.org/jira/browse/CLJS-1507). A further upcoming enhancement introduces the possibility to `:rename` referred symbols in dependency specifications.
+There exist a [number of differences](https://github.com/clojure/clojurescript/wiki/Differences-from-Clojure) between Clojure and ClojureScript, especially concerning [namespace declarations](https://github.com/clojure/clojurescript/wiki/Differences-from-Clojure#namespaces) and `require` specifications. Some of these differences have recently been addressed with the introduction of [Clojure namespace aliasing](http://blog.fikesfarm.com/posts/2016-07-03-clojurescript-clojure-namespace-aliasing.html) ([JIRA ticket](http://dev.clojure.org/jira/browse/CLJS-1692)) and [implicit macro loading](http://dev.clojure.org/jira/browse/CLJS-1507). A further upcoming enhancement introduces the possibility to `:rename` referred symbols in dependency specifications.
 
 
 <!--more-->
