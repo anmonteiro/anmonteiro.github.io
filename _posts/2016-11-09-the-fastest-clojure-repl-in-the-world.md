@@ -1,7 +1,7 @@
 ---
 layout: post
 title: The fastest Clojure REPL in the world
-tags: clojure clojurescript
+tags: clojure clojurescript lumo
 ---
 
 One common complaint of Clojure REPLs is their [startup time](http://puredanger.github.io/tech.puredanger.com/2013/12/01/clj-problems/).

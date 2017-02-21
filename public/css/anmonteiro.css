@@ -53,15 +53,6 @@
   text-align: center;
 }
 
-/* Paragraph indentation */
-.content > .post p {
-  text-indent: 2em;
-}
-
-.no-indent, .no-indent * {
-  text-indent: 0 !important;
-}
-
 /* Image captions */
 .post figcaption.caption {
   font-size: 0.75rem;

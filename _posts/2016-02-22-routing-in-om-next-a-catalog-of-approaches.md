@@ -19,7 +19,7 @@ Although a standard routing solution is an orthogonal concern to Om Next's desig
 
 The example we will be working with throughout this post is presented below. It resembles a normal web application that has two routes: the **Home** page and an **About** page. Feel free to play with the links in the example's sidebar, and verify that the current route is updated, as well as the page's main content.
 
-<div class="no-indent" style="margin-bottom: 20px;">
+<div style="margin-bottom: 20px;">
   <div id="dp-card-1"></div>
 </div>
 
@@ -205,6 +205,6 @@ If you have any questions or suggestions, don't hesitate to contact me either on
 
 
 
---- 
+---
 
 <sup><sub>1</sub></sup> <sub>Note that this method will not be a clean solution if you want to route to arbitrary elements in a list, since the logic of adding `ref`s to every element in a list will soon become complex enough.</sub>
