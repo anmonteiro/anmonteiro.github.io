@@ -38,7 +38,7 @@ This [devcards-based](http://awkay.github.io/om-tutorial/) tutorial goes through
 
 Reading source code is my favorite way of learning how to use a certain language or framework, and these are some code resources that you definitely want to check:
 
-- Om's [source code](https://github.com/omcljs/om/blob/master/src/main/om/next.cljs) and [tests](https://github.com/omcljs/om/blob/master/src/test/om/next/tests.cljs) are always a nice way to get more in-depth knowledge on how the internals work;
+- Om's [source code](https://github.com/omcljs/om/blob/master/src/main/om/next.cljc) and [tests](https://github.com/omcljs/om/blob/master/src/test/om/next/tests.cljc) are always a nice way to get more in-depth knowledge on how the internals work;
 - Some gists have appeared [here](https://gist.github.com/anthgur/2cddf81e04ea78f372c6) and [there](https://gist.github.com/tomconnors/c1cceaae84fd059e37a3) with some example Om code. These two in particular show ways of achieving application routing with Om Next;
 - Several people have also open-sourced their example apps. You can find some [here](https://github.com/swannodette/om-next-demo), [here](https://github.com/Jannis/om-next-kanban-demo) and [here](https://github.com/advancedtelematic/parking-visualization).
 
