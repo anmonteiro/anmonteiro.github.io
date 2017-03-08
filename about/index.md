@@ -7,9 +7,12 @@ title: About
 
 I'm a **Software Engineer** with a passion for **entrepreneurship** and **open-source software**.
 
-I'm also a graduate student at [TU Dresden](https://tu-dresden.de/en), pursuing a Master's degree in [Distributed Systems](http://dse.inf.tu-dresden.de).
+During the day, I am an engineer at [Ladder](https://ladderlife.com) in California,
+helping reshape life insurance. When I'm not doing that, I help maintain the
+[ClojureScript compiler](https://github.com/clojure/clojurescript).
 
-On my free time, I like to build software, play some musical instruments (mostly the piano and the guitar) and write on [this blog]({{ site.basurl }}/).
+I've also built [Lumo](https://github.com/anmonteiro/lumo), a fast, cross-platform,
+standalone ClojureScript environment.
 
 ## Setup
 In case you're wondering, this site is:
