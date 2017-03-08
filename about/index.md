@@ -11,7 +11,7 @@ During the day, I am an engineer at [Ladder](https://ladderlife.com) in Californ
 helping reshape life insurance. When I'm not doing that, I help maintain the
 [ClojureScript compiler](https://github.com/clojure/clojurescript).
 
-I've also built [Lumo](https://github.com/anmonteiro/lumo), a fast, cross-platform,
+I also build [Lumo](https://github.com/anmonteiro/lumo), a fast, cross-platform,
 standalone ClojureScript environment.
 
 ## Setup
