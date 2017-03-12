@@ -28,7 +28,7 @@ The example we will be working with throughout this post is presented below. It 
 
 This section will demonstrate different ways of accomplishing the behavior shown in the example above, namely using queries with unions, using `set-query!` and by leveraging the power of `subquery`. For each one, we will see the components, their queries and the parsing logic that is necessary to accomplish such behavior. The render logic falls out of the scope of this writing and is only shown when strictly necessary, for the sake of brevity. The `Home` and `About` components are common to all examples and are shown below. They each declare which properties they need from the state in their queries.
 
-{% highlight clojure %}
+```clojure
 (defui Home
   static om/IQuery
   (query [this]
@@ -38,11 +38,11 @@ This section will demonstrate different ways of accomplishing the behavior shown
   static om/IQuery
   (query [this]
     [:about/title :about/content]))
-{% endhighlight %}
+```
 
 We also define helpers that map routes to their components and the factories that create instances of such components:
 
-{% highlight clojure %}
+```clojure
 (def route->component
   {:app/home Home
    :app/about About})
@@ -51,7 +51,7 @@ We also define helpers that map routes to their components and the factories tha
   (zipmap (keys route->component)
     (map om/factory (vals route->component))))
 
-{% endhighlight %}
+```
 
 Throughout these sections, we will use the same `app-state` and the same way of representing routes. The state is shown below. We keep the current route, which in our case is the **Home** route, and the data we present in this and the **About** route.
 
@@ -66,15 +66,15 @@ Our routes are represented by Om Next `idents`. Since we don't have any route th
 
 Our first example takes advantage of the expressiveness that union queries provide to declare hetereogenous user interfaces. Our `Root` component's query needs the current route, expressed by `:app/route` in its query, and the queries for all the components for which there is a route. Our simplistic case only has two routes, so the generated query for `Root` will be:
 
-{% highlight clojure %}
+```clojure
 [:app/route
 {:route/data {:app/home [:home/title :home/content]
               :app/about [:about/title :about/content]}}]
-{% endhighlight %}
+```
 
 The `Root` component chooses which sub-component to render based on the current route found in its props. A rather simplistic `render` method for our root component is included in the component definition below:
 
-{% highlight clojure %}
+```clojure
 (defui Root
   static om/IQuery
   (query [this]
@@ -85,11 +85,11 @@ The `Root` component chooses which sub-component to render based on the current 
   (render [this]
     (let [{:keys [app/route route/data]} (om/props this)]
       ((route->factory (first route)) data))))
-{% endhighlight %}
+```
 
 The parser code has two responsibilites: the `read` function must return only the data for the current route, and the `mutate` function needs to know how to change the app's route. An example of how this could be achieved is presented in the snippet below.
 
-{% highlight clojure %}
+```clojure
 (defmulti read om/dispatch)
 (defmulti mutate om/dispatch)
 
@@ -113,7 +113,7 @@ The parser code has two responsibilites: the `read` function must return only th
   [{:keys [state]} _ {:keys [route]}]
   {:value {:keys [:app/route]}
    :action #(swap! state assoc :app/route route)})
-{% endhighlight %}
+```
 
 Nothing else is needed. Routing will work once you plumb everything together with the help of the reconciler.
 
@@ -124,7 +124,7 @@ In the previous example, we needed to include every subcomponent's query in the 
 
 A simplistic `Root` component for this case looks like the one below. We have the current route's query in the `:route/data` parameter, which is initially empty. Before the component first mounts, we swap in the query for the initial route.
 
-{% highlight clojure %}
+```clojure
 (defui Root
   static om/IQueryParams
   (params [this]
@@ -141,11 +141,11 @@ A simplistic `Root` component for this case looks like the one below. We have th
     (let [{:keys [app/route route/data]} (om/props this)
           active-component (get route->factory (first route))]
       (active-component data))))
-{% endhighlight %}
+```
 
 Because the root component's query is now changed on demand, the only modification that we need to introduce in our parser code is a call to `set-query!` in the `change/route!` mutation, so that we change the root query to include the new route's needed information. The complete parser code is presented below.
 
-{% highlight clojure %}
+```clojure
 (defmulti read om/dispatch)
 (defmulti mutate om/dispatch)
 
@@ -167,7 +167,7 @@ Because the root component's query is now changed on demand, the only modificati
              (swap! state assoc :app/route route)
              (om/set-query! component
                {:params {:route/data (om/get-query (route->component (first route)))}}))})
-{% endhighlight %}
+```
 
 
 ### **Routing with `subquery`**
@@ -176,7 +176,7 @@ Because the root component's query is now changed on demand, the only modificati
 
 Let's see an example. This approach pushes all the routing logic into the `query` function of the `Root` component. Our sub-components will be rendered with a `ref` which is exactly the keyword by which their route is identified. We use this knowledge in the `query` function to plug in the correct query at runtime.
 
-{% highlight clojure %}
+```clojure
 (defui Root
   static om/IQuery
   (query [this]
@@ -189,7 +189,7 @@ Let's see an example. This approach pushes all the routing logic into the `query
   (render [this]
     (let [{:keys [app/route route/data]} (om/props this)]
       ((route->factory (first route)) (assoc data :ref (first route))))))
-{% endhighlight %}
+```
 
 In this case, the parser code is exactly the same as in the example of routing using union queries, and is not included again.
 

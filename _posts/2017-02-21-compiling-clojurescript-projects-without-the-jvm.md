@@ -50,7 +50,7 @@ the JVM, today. Also, let's use advanced optimizations right away so we can see 
 JavaScript version of the Google Closure Compiler in action. This is what our `build.cljs`
 file will look like:
 
-{% highlight clojure %}
+```clojure
 (require '[lumo.build.api :as b])
 
 (b/build "src"
@@ -58,7 +58,7 @@ file will look like:
    :output-to "main.js"
    :optimizations :advanced
    :target :nodejs})
-{% endhighlight %}
+```
 
 Let's now run the compilation script with Lumo. Don't forget to add the `src` folder
 to the classpath so that Lumo knows where to find the project. This can be done with

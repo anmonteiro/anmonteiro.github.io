@@ -18,34 +18,34 @@ Starting with the next version of Clojurescript, we'll be [able to use the `:ren
 
 -  In `require` specifications, we can `:rename` referred symbols:
 
-{% highlight clojure %}
+```clojure
 cljs.user=> (require '[clojure.set :refer [intersection]
        #_=>                        :rename {intersection foo}])
 nil
 cljs.user=> (foo #{1 2} #{2 3})
 #{2}
-{% endhighlight %}
+```
 
 -  Such is the case with `:use`. It is possible to `:rename` symbols referred with `:only`:
 
-{% highlight clojure %}
+```clojure
 cljs.user=> (ns foo.core
        #_=>   (:use [clojure.string :only [lower-case]
        #_=>                         :rename {lower-case lc}]))
 nil
 foo.core=> (lc "FOO")
 "foo"
-{% endhighlight %}
+```
 
 - In `:refer-clojure`, `:rename` can be used with or without `:excludes`:
 
-{% highlight clojure %}
+```clojure
 cljs.user=> (ns foo.core
       #_ =>   (:refer-clojure :rename {map core-map}))
 nil
 foo.core=> (core-map inc [1 2 3])
 (2 3 4)
-{% endhighlight %}
+```
 
 
 At the time of this writing, this enhancement is currently unreleased. However, you can try it out in two ways:

@@ -64,7 +64,7 @@ If the above sounded too dense, here's a practical example:
 
 - Say we have an application that shows 2 tabs. We might have the components below:
 
-{% highlight clojure %}
+```clojure
 (defui TabInfo
   static om/IQuery
   (query [this]
@@ -80,13 +80,13 @@ If the above sounded too dense, here's a practical example:
   (query [this]
     [{:tab1 (om/get-query Tab)}
      {:tab2 (om/get-query Tab)}]))
-{% endhighlight %}
+```
 
 - Now let's imagine that the `TabInfo` component in tab #2 has performed a transaction
 that adds more items to its `:info/items` list. Check out the differences below
 between the application's root query and the `full-query` of the transacting component:
 
-{% highlight clojure %}
+```clojure
 ;; Application's root query
 [{:tab1 [:tab/title
          {:tab/info [:info/id :info/name :info/items]}]}
@@ -95,7 +95,7 @@ between the application's root query and the `full-query` of the transacting com
 
 ;; `om.next/full-query` of tab #2's `TabInfo`
 [{:tab2 [{:tab/info [:info/id :info/name :info/items]}]}]
-{% endhighlight %}
+```
 
 As you can see, the `full-query` is narrowly focused at the specific data requirements
 that `TabInfo` declares. Two beneficial consequences follow: for one thing, it allows

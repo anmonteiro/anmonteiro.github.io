@@ -20,24 +20,24 @@ As mentioned in the [checklist]({% post_url 2016-01-21-writing-om-next-reloadabl
 
 -  Start by adding the `devcards-om-next` dependency information to your project:
 
-{% highlight clojure %}
+```clojure
 ;; for Leiningen:
 [devcards-om-next "0.3.0"]
-{% endhighlight %}
+```
 
 
 -  Require the `devcards-om-next` namespace, as well as the macros you intend to use:
 
-{% highlight clojure %}
+```clojure
 (ns my-ns.core
   (:require [devcards-om-next.core :as don
              :refer-macros [om-next-root defcard-om-next]]
             [om.next :as om :refer-macros [defui]]))
-{% endhighlight %}
+```
 
 -  Write your cards in the normal reloadable manner. `om-next-root` is the simplest of the two. `defcard-om-next` is a shortcut for `defcard` plus `om-next-root`. Both take an Om Next component and a reconciler, but they can also take a state map or atom instead. Below is a small example. I encourage you to run it with [Figwheel](https://github.com/bhauman/lein-figwheel), increment the counter, modify e.g. the button label and watch your changes being pushed to the browser as the component's local state remains unchanged <sup><sub>1</sub></sup>. Pretty cool!
 
-{% highlight clojure %}
+```clojure
 ;; use ^:once meta in `defui`
 (defui ^:once Counter
   Object
@@ -68,7 +68,7 @@ As mentioned in the [checklist]({% post_url 2016-01-21-writing-om-next-reloadabl
   "`defcard-om-next` example with a Component class and a reconciler"
   Counter
   counter-reconciler)
-{% endhighlight %}
+```
 
 I hope these new helpers are useful in your journey writing reloadable Om Next cards. Thanks for reading!
 

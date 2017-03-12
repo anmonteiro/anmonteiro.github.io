@@ -61,12 +61,12 @@ this new addition.
 
 Create a project with the following structure:
 
-{% highlight shell %}
+```shell
 project
 ├─ src
 │  └─ foo.cljs
 └─ cljs.jar
-{% endhighlight %}
+```
 
 In `foo.cljs`, place the contents below. As an aside, note that we're taking advantage
 of [Clojure namespace aliasing](http://blog.fikesfarm.com/posts/2016-07-03-clojurescript-clojure-namespace-aliasing.html)
@@ -74,7 +74,7 @@ of [Clojure namespace aliasing](http://blog.fikesfarm.com/posts/2016-07-03-cloju
 [implicit macro loading](http://dev.clojure.org/jira/browse/CLJS-1507). This too —
 as one might expect — works outside the namespace declaration.
 
-{% highlight clojure %}
+```clojure
 ;; src/foo.cljs
 (require '[clojure.test :refer [deftest is run-tests]])
 
@@ -82,18 +82,18 @@ as one might expect — works outside the namespace declaration.
   (is false))
 
 (run-tests)
-{% endhighlight %}
+```
 
 With the `cljs.jar` uberjar in place, running the following command will land you
 directly in a ClojureScript Node.js REPL (*note*: requires a Node.js installation).
 
-{% highlight shell %}
+```shell
 $ java -cp src:cljs.jar clojure.main -e "(require 'cljs.repl) (require 'cljs.repl.node) (cljs.repl/repl (cljs.repl.node/repl-env))"
-{% endhighlight %}
+```
 
 Then you can load the file into the REPL and see it execute!
 
-{% highlight clojure %}
+```clojure
 ClojureScript Node.js REPL server listening on 53518
 To quit, type: :cljs/quit
 
@@ -109,7 +109,7 @@ Ran 1 tests containing 1 assertions.
 1 failures, 0 errors.
 nil
 cljs.user=>
-{% endhighlight %}
+```
 
 I've also captured all the above in a [gist](https://gist.github.com/anmonteiro/478fc609c297cfd1217ebb9890ceba08)
 that you can refer back to later.
@@ -128,7 +128,7 @@ Thanks for reading!
 ---
 
 <div id="fn:1">
-  <sup><sub>1</sub></sup> <sub>If a <code class="highlighter-rouge">ns</code> form
+  <sup><sub>1</sub></sup> <sub>If a <code>ns</code> form
   is not present, a generated namespace will be provided in the form of
   <code class="highlighter-rouge">cljs.user.file_nameXXXX</code>, where
   <code class="highlighter-rouge">XXXX</code> are the first characters of the filenames's
