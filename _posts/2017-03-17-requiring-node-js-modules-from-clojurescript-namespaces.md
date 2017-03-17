@@ -60,6 +60,8 @@ and our `src/example/core.cljs` file,
   (:require left-pad))
 
 (enable-console-print!)
+
+;; pad the number 42 with five zeros
 (println (left-pad 42 5 0))
 ```
 
@@ -83,16 +85,51 @@ this resolution is also part of a
 in the ClojureScript compiler.
 
 If a module, e.g. the widely used `react` package, exports an object, we would
-be able to refer to functions in that object as if they were Vars in a Clojure(Script) namespace
-(e.g. `react/createElement`).
+be able to refer to functions in that object as if they were Vars in a Clojure(Script) namespace.
+Here's an example:
 
-## Packaged ClojureScript libraries benefit too
+```clojure
+(ns example.core
+  (:require react))
+
+;; react/DOM.div is equivalent to (react/createElement "div"), and that is
+;; made clear in the h1 element.
+(def title
+  (react/DOM.div nil
+    (react/createElement "h1" nil "Page title")))
+```
+
+## But there's more
+
+### Packaged ClojureScript libraries benefit too
 
 ClojureScript libraries that
 [package foreign dependencies](https://clojurescript.org/reference/packaging-foreign-deps)
-can also benefit from these enhancements. A currently [pending ticket](http://dev.clojure.org/jira/browse/CLJS-1973)
+can also benefit from these enhancements. Ticket [CLJS-1973](http://dev.clojure.org/jira/browse/CLJS-1973)
 adds support for the `:npm-deps` option in `deps.cljs` files, allowing library
 authors to develop and distribute libraries that directly depend on Node.js modules.
+
+### This does **not** obviate the need for externs
+
+Even though the Google Closure Compiler can now consume Node.js modules, externs
+are still very much necessary. This is a consequence of the fact that the Google
+Closure Compiler doesn't support much of the dynamic programming employed in writing
+some, if not most Node.js packages.
+
+Fortunately, the ClojureScript compiler has
+recently introduced [externs inference](https://clojurescript.org/guides/externs)
+functionality, which makes it much easier to generate externs from JavaScript interop.
+Additionally, ClojureScript will agressively index every externs file in the classpath,
+so you can still add [CLJSJS packages](http://cljsjs.github.io/) to your project
+and benefit from their externs, even though you don't require the namespaces they
+export.
+
+### Node.js module consumption is not only for Node.js apps
+
+Consuming Node.js modules from NPM doesn't solely benefit ClojureScript projects
+that target Node.js. NPM is currently also the _de facto_ way to consume JavaScript
+packages that target the browser. This means that ClojureScript browser-basde apps
+can also take advantage of this functionality.
 
 ## Final remarks
 
@@ -104,15 +141,15 @@ to maintain codebases that share both ClojureScript and JavaScript code, as well
 as make ClojureScript more appealing to JavaScript developers that rely on NPM
 published packages every day.
 
+Please note that Node.js module consumption is currently in alpha status. All
+feedback is appreciated, and if you find an issue please report in the
+[ClojureScript JIRA](http://dev.clojure.org/jira/browse/CLJS).
+
 Tweet [@anmonteiro90](https://twitter.com/anmonteiro90) with any questions or
 suggestions. Thanks for reading!
 
+---
 
-TODOs:
-
-- this is obviously an alpha feature
-- left-pad code comment saying what args are
-- react/createElement example (modules as namespaces)
-- speak about how externs are still necessary
-- refer that Node.js is only necessary for dev, to obtain the modules (which can
-be used in browser-based apps).
+<br>
+*<small>Thanks to <a href="https://twitter.com/ShaunMahood">Shaun Mahood</a>
+for reading a draft of this post.</small>*
