@@ -128,8 +128,16 @@ export.
 
 Consuming Node.js modules from NPM doesn't solely benefit ClojureScript projects
 that target Node.js. NPM is currently also the _de facto_ way to consume JavaScript
-packages that target the browser. This means that ClojureScript browser-basde apps
+packages that target the browser. This means that ClojureScript browser-based apps
 can also take advantage of this functionality.
+
+### Dead-code elimination on Node.js modules
+
+To me, the greatest benefit of the new module support is dead-code elimination on
+these (not so) foreign libraries. Previously, foreign libraries included in a ClojureScript
+project would just get appended after Google Closure compilation. Because the Closure
+Compiler can now consume Node.js modules, we get elimination of unused code for
+free in our optimized builds!
 
 ## Final remarks
 
