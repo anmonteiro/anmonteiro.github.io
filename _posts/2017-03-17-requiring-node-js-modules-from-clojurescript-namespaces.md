@@ -10,6 +10,11 @@ from any ClojureScript namespace. Read on!
 
 <!--more-->
 
+<div class="message">
+  <strong style="text-decoration:underline">Update:</strong> This has been released
+  as part of ClojureScript version 1.9.518.
+</div>
+
 <div style="margin:30px">
   <img style="max-width: 70%;margin:0 auto" src="https://cloud.githubusercontent.com/assets/661909/23828334/9eedc8b0-0683-11e7-89bb-45afc0da79fd.jpg">
 </div>
