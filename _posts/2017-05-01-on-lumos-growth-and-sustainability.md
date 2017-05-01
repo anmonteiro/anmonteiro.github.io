@@ -1,6 +1,6 @@
 ---
 layout: post
-title: On Lumo's growth and sustainability
+title: On Lumo's Growth and Sustainability
 tags: clojure clojurescript lumo
 ---
 
