@@ -12,7 +12,8 @@ from any ClojureScript namespace. Read on!
 
 <div class="message">
   <strong style="text-decoration:underline">Update:</strong> This has been released
-  as part of ClojureScript version 1.9.518.
+  as part of ClojureScript version 1.9.518. ClojureScript 1.9.854 ships with even
+  <a href="https://clojurescript.org/news/2017-07-12-clojurescript-is-not-an-island-integrating-node-modules">better support</a> for this feature.
 </div>
 
 <div style="margin:30px">
@@ -80,6 +81,7 @@ the following script would successfully compile this project:
   {:optimizations :none
    :main 'example.core
    :npm-deps {:left-pad "1.1.3"} ;; NEW
+   :install-deps true ;; NEW
    :output-to "main.js"})
 ```
 
