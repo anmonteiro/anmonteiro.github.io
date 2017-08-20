@@ -42,7 +42,7 @@
  */
 
 /* Justify content */
-.post :not(.post-title):not(.post-date),
+.post :not(.post-title):not(.post-date):not(h1):not(h2):not(h3):not(h4),
 .page :not(.page-title) {
   text-align: justify;
 }
