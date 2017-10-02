@@ -34,7 +34,7 @@ build API is, with one exception<sup id="fnref:1"><sub><a href="#fn:1">1</a></su
 at feature parity with the ClojureScript JVM compiler.
 
 Most notably, it also features the ability to process
-[JavaScript modules]((https://clojurescript.org/news/2017-07-12-clojurescript-is-not-an-island-integrating-node-modules)),
+[JavaScript modules](https://clojurescript.org/news/2017-07-12-clojurescript-is-not-an-island-integrating-node-modules),
 including those from NPM (in a `node_modules` installation).
 
 I encourage you to update Lumo to the newly released 1.8.0-beta<sup id="fnref:2"><sub><a href="#fn:2">2</a></sub></sup>
