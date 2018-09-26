@@ -67,6 +67,6 @@ indeed working, go ahead and disable JavaScript! Meanwhile, server-side renderin
 is now part of the `1.0.0-alpha45` release.
 
 Hit me up with any questions you might have in the comments below or on Twitter,
-[@anmonteiro90](https://twitter.com/anmonteiro90).
+[@_anmonteiro](https://twitter.com/_anmonteiro).
 
 Thanks for reading!

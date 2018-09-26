@@ -105,7 +105,7 @@ This feature of Lumo should be considered pre-alpha, and we will continue to imp
 it over the coming releases. I decided to release it nevertheless, with the objective
 of gathering initial feedback and hopefully attracting a few new contributors to
 Lumo. Please report [issues](https://github.com/anmonteiro/lumo/issues), and
-if you want to help, do get in touch (e.g. on [Twitter](https://twitter.com/anmonteiro90))!
+if you want to help, do get in touch (e.g. on [Twitter](https://twitter.com/_anmonteiro))!
 
 As a final remark, no JVMs were spawned during the process of writing this blog post.
 

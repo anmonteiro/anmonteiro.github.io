@@ -198,7 +198,7 @@ In this case, the parser code is exactly the same as in the example of routing u
 
 In this post, I've presented 3 different alternatives to approach routing in Om Next. I hope it helps you decide which one is the most useful for your use case. You can find the complete source code for the examples in this post [here](https://github.com/anmonteiro/anmonteiro.github.io/tree/master/assets/cljs/om_next_routing).
 
-If you have any questions or suggestions, don't hesitate to contact me either on Twitter ([@anmonteiro90](https://twitter.com/anmonteiro90)) or by leaving a comment in the section below. As always, thanks for reading!
+If you have any questions or suggestions, don't hesitate to contact me either on Twitter ([@_anmonteiro](https://twitter.com/_anmonteiro)) or by leaving a comment in the section below. As always, thanks for reading!
 
 
 <script type="text/javascript" src="/public/js/om_next_routing.js"></script>

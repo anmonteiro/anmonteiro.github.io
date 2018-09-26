@@ -160,7 +160,7 @@ Please note that Node.js module consumption is currently in alpha status. All
 feedback is appreciated, and if you find an issue please report in the
 [ClojureScript JIRA](http://dev.clojure.org/jira/browse/CLJS).
 
-Tweet [@anmonteiro90](https://twitter.com/anmonteiro90) with any questions or
+Tweet [@_anmonteiro](https://twitter.com/_anmonteiro) with any questions or
 suggestions. Thanks for reading!
 
 ---

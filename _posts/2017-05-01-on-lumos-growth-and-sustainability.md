@@ -45,7 +45,7 @@ project's direction and would love to have this done when launching a website.
 
 ### Sort out CI issues
 
-Lumo has been having some [CI issues](https://twitter.com/anmonteiro90/status/852623330708410369).
+Lumo has been having some [CI issues](https://twitter.com/_anmonteiro/status/852623330708410369).
 While this has been solved short term, I'm fairly confident they will start showing
 up again as more features are added, and that we will need to host our own continuous
 integration service at some point in the future.

@@ -146,7 +146,7 @@ I'm excited to keep tinkering with Reason and eventually build something more se
 In the meantime, I highly suggest you give it a try.
 
 The code for ReKeys is free and open-source on [GitHub](https://github.com/anmonteiro/rekeys).
-Please tweet [@anmonteiro90](https://twitter.com/anmonteiro90) with any questions/feedback
+Please tweet [@_anmonteiro](https://twitter.com/_anmonteiro) with any questions/feedback
 about the ReKeys code and/or this blog post!
 
 Happy hacking!

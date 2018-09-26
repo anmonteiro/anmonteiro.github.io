@@ -22,7 +22,7 @@ At the end of my talk, I was gifted the piece below. What a lovely gift! I reall
   <blockquote class="twitter-tweet" data-lang="en">
     <p lang="en" dir="ltr">How cool is this? Thanks <a href="https://twitter.com/CraftConf">@CraftConf</a> for the amazing gift! <a href="https://twitter.com/hashtag/craftconf?src=hash">#craftconf</a> <a href="https://t.co/KTOhzmcU5i">pic.twitter.com/KTOhzmcU5i</a>
     </p>
-    &mdash; António N. Monteiro (@anmonteiro90) <a href="https://twitter.com/anmonteiro90/status/726009153525796864">April 29, 2016</a>
+    &mdash; António N. Monteiro (@_anmonteiro) <a href="https://twitter.com/_anmonteiro/status/726009153525796864">April 29, 2016</a>
   </blockquote>
   <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 </div>

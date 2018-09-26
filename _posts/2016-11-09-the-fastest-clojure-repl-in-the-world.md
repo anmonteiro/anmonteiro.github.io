@@ -82,7 +82,7 @@ Lumo is free and [open source](https://github.com/anmonteiro/lumo). I think it c
 serve numerous purposes, many of which I'm unable to predict. I also think that's
 a good thing. If you want to try it out, there are standalone binaries for Mac, Windows
 and Linux [here](https://github.com/anmonteiro/lumo/releases/latest). Be sure to
-let me know what you think! I'm [@anmonteiro90](https://twitter.com/anmonteiro90)
+let me know what you think! I'm [@_anmonteiro](https://twitter.com/_anmonteiro)
 on Twitter.
 
 I'm curious to learn how you will use Lumo. Thanks for reading!
