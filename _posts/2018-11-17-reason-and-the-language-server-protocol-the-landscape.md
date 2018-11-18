@@ -120,7 +120,7 @@ Happy hacking!
 
 <div id="fn:2">
   <sup><sub>2</sub></sup> <sub>  Alternatively, you can install the second
-  package shown in the picture, which will install `ocaml-graphql-server`. That
+  package shown in the picture, which will install `ocaml-language-server`. That
   won't, however, be covered in this post.
   <a href="#fnref:2">
     <img draggable="false" class="emoji" alt="↩" src="/public/img/top.svg">
