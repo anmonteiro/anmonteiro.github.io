@@ -1,0 +1,33 @@
+{
+  "name": "anmonteiro.com",
+  "description": "Website for anmonteiro.com",
+  "license": "MIT",
+  "scripts": {
+    "develop": "gatsby develop",
+    "start": "npm run develop",
+    "build": "gatsby build",
+    "serve": "gatsby serve",
+    "deploy": "gatsby build && gh-pages -d public -b master"
+  },
+  "dependencies": {
+    "classnames": "^2.2.6",
+    "gatsby": "^2.0.67",
+    "gatsby-plugin-catch-links": "^2.0.9",
+    "gatsby-plugin-feed": "^2.1.0",
+    "gatsby-plugin-google-fonts": "0.0.4",
+    "gatsby-plugin-react-helmet": "^3.0.4",
+    "gatsby-plugin-sharp": "^2.0.15",
+    "gatsby-plugin-sitemap": "^2.0.12",
+    "gatsby-remark-images": "^3.0.1",
+    "gatsby-remark-prismjs": "^3.1.4",
+    "gatsby-remark-static-images": "^1.0.0",
+    "gatsby-source-filesystem": "^2.0.12",
+    "gatsby-transformer-remark": "^2.1.15",
+    "gh-pages": "^2.0.1",
+    "prettier": "^1.17.0",
+    "prismjs": "^1.15.0",
+    "react": "^16.7.0-alpha.2",
+    "react-dom": "^16.7.0-alpha.2",
+    "react-helmet": "^5.2.0"
+  }
+}

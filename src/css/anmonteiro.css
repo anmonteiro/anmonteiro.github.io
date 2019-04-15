@@ -1,0 +1,111 @@
+/*
+ * Masthead
+ */
+
+.masthead-title {
+  float: left;
+}
+
+@media (max-width: 48rem) {
+  .masthead-title {
+    margin-left: 4rem;
+  }
+
+  .masthead-title small {
+    display: inline;
+  }
+}
+
+.masthead-feed {
+  float: right;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+/*
+ * Use clearfix from Twitter Bootstrap
+ * https://github.com/twbs/bootstrap/blob/3a2d6e40503019823bf197f278681e830bc14f31/less/mixins/clearfix.less
+ */
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  content: " ";
+}
+
+.clearfix:after {
+  clear: both;
+}
+
+
+/*
+ * Pages & Posts
+ */
+
+/* Justify content */
+.post :not(.post-title):not(.post-date):not(h1):not(h2):not(h3):not(h4),
+.page :not(.page-title) {
+  text-align: justify;
+}
+
+.post div.contact-showcase,
+.page div.contact-showcase{
+  font-size: 200%;
+  text-align: center;
+}
+
+/* Image captions */
+.post figcaption.caption {
+  font-size: 0.75rem;
+  margin-top: 20px;
+  text-align: center !important;
+}
+
+
+/* Twitter plug */
+.content .twitter-plug {
+  margin-top: -2rem;
+  margin-bottom: 1rem;
+}
+
+
+/*
+ * About page
+ */
+
+.contact-showcase a {
+  margin: 0 0.5em;
+}
+
+
+/*
+ * Archive page
+ */
+.archive-year {
+  font-family: "PT Sans", Helvetica, Arial, sans-serif;
+}
+
+.archive-year .item-date {
+  color: #808080;
+}
+
+
+/*
+.sidebar-item.description {
+  text-align: justify;
+}*/
+
+/*
+ * Misc
+ */
+
+img.emoji {
+  display: inline !important;
+  border: none !important;
+  box-shadow: none !important;
+  height: 1em !important;
+  width: 1em !important;
+  margin: 0 .07em !important;
+  vertical-align: -0.1em !important;
+  background: none !important;
+  padding: 0 !important;
+}

@@ -1,0 +1,2 @@
+(require '[clojure.inspector :as i])
+(i/inspect-tree {:a {:b {:c {:d {:e 42}}}}})
