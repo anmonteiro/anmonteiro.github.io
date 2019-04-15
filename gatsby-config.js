@@ -2,6 +2,7 @@ module.exports = {
   siteMetadata: {
     title: 'anmonteiro',
     url: 'https://anmonteiro.com',
+    siteUrl: 'https://anmonteiro.com',
     tagline: 'Code ramblings',
     description: `
     I'm a Software Engineer with a passion for entrepreneurship and open-source
@@ -95,7 +96,7 @@ module.exports = {
             }
           `,
             output: '/atom.xml',
-            title: 'Gatsby RSS Feed'
+            title: 'anmonteiro.com RSS Feed'
           }
         ]
       }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[anmonteiro]]></title><description><![CDATA[
     I'm a Software Engineer with a passion for entrepreneurship and open-source
     software. This is where I write about software engineering, programming and
-    lifestyle.]]></description><link>http://github.com/dylang/node-rss</link><generator>RSS for Node</generator><lastBuildDate>Mon, 15 Apr 2019 20:51:07 GMT</lastBuildDate><item><title><![CDATA[Reason and the Language Server Protocol: The Landscape]]></title><description><![CDATA[
+    lifestyle.]]></description><link>http://github.com/dylang/node-rss</link><generator>RSS for Node</generator><lastBuildDate>Mon, 15 Apr 2019 21:08:00 GMT</lastBuildDate><item><title><![CDATA[Reason and the Language Server Protocol: The Landscape]]></title><description><![CDATA[
 The state of editor tooling for programming languages has seen great change in
 recent memory thanks to Microsoft's specification of a [Language Server
 Protocol]( https://microsoft.github.io/language-server-protocol/overview) (LSP).
@@ -123,7 +123,7 @@ questions or feedback about this post.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&quot;fn:2&quot;&gt;
   &lt;sup&gt;&lt;sub&gt;2&lt;/sub&gt;&lt;/sup&gt; &lt;sub&gt;  Alternatively, you can install the second
-  package shown in the picture, which will install `ocaml-graphql-server`. That
+  package shown in the picture, which will install `ocaml-language-server`. That
   won&amp;apos;t, however, be covered in this post.
   &lt;a href=&quot;#fnref:2&quot;&gt;
     &lt;img draggable=&quot;false&quot; class=&quot;emoji&quot; alt=&quot;&amp;#x21A9;&quot; src=&quot;/img/top.svg&quot;&gt;
