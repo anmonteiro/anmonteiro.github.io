@@ -66,31 +66,31 @@ export default ({ children }) => {
         const { tagline, ...siteMetadata } = site.siteMetadata;
 
         return (
-          <div className='theme-base-0f'>
+          <div className="theme-base-0f">
             <Sidebar siteMetadata={siteMetadata} pagesInfo={pages.edges} />
             {/* Wrap is the content to shift when toggling the sidebar. We wrap the
               content to avoid any CSS collisions with our real content. */}
-            <div className='wrap'>
-              <div className='masthead'>
-                <div className='container'>
-                  <h3 className='masthead-title'>
+            <div className="wrap">
+              <div className="masthead">
+                <div className="container">
+                  <h3 className="masthead-title">
                     <Link to={''} title={'Home'}>
                       {siteMetadata.title}
                     </Link>
                     <small> {tagline}</small>
                   </h3>
-                  <div className='masthead-feed'>
-                    <Link to={'/atom.xml'}>
-                      <span className='icon-rss' />{' '}
-                    </Link>
+                  <div className="masthead-feed">
+                    <a href={'/atom.xml'}>
+                      <span className="icon-rss" />{' '}
+                    </a>
                   </div>
-                  <div className='clearfix' />
+                  <div className="clearfix" />
                 </div>
               </div>
 
-              <div className='content container'>{children}</div>
+              <div className="content container">{children}</div>
             </div>
-            <label htmlFor='sidebar-checkbox' className='sidebar-toggle' />
+            <label htmlFor="sidebar-checkbox" className="sidebar-toggle" />
           </div>
         );
       }}
