@@ -7,25 +7,22 @@ import { useScriptTag } from '../utils/dom';
 
 function TwitterPlug({ tags }) {
   useScriptTag(
-    `!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');`,
-  );
-  useScriptTag(
-    `!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');`,
+    `!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');`
   );
 
   return (
     <div style={{ marginTop: '2rem', marginBottom: '1rem' }}>
       <a
         href={`https://twitter.com/share?hashtags=${tags.join(',')}`}
-        className='twitter-share-button'
-        data-via='_anmonteiro'
+        className="twitter-share-button"
+        data-via="_anmonteiro"
       >
         Tweet
       </a>
       <a
-        href='https://twitter.com/_anmonteiro'
-        className='twitter-follow-button'
-        data-show-count='false'
+        href="https://twitter.com/_anmonteiro"
+        className="twitter-follow-button"
+        data-show-count="false"
       >
         Follow @_anmonteiro
       </a>
@@ -51,10 +48,10 @@ function Disqus({ url, slug }) {
   })();
 `);
   return (
-    <div id='disqus_thread'>
+    <div id="disqus_thread">
       <noscript>
         Please enable JavaScript to view the{' '}
-        <a href='https://disqus.com/?ref_noscript' rel='nofollow'>
+        <a href="https://disqus.com/?ref_noscript" rel="nofollow">
           comments powered by Disqus.
         </a>
       </noscript>
@@ -101,9 +98,9 @@ export default ({ data }) => {
   return (
     <Layout>
       <SEO pageData={post} />
-      <div className='post'>
-        <h1 className='post-title'>{post.fields.title}</h1>
-        <span className='post-date'>{post.fields.date}</span>
+      <div className="post">
+        <h1 className="post-title">{post.fields.title}</h1>
+        <span className="post-date">{post.fields.date}</span>
         <div dangerouslySetInnerHTML={{ __html: post.html }} />
         <TwitterPlug tags={post.fields.tags} />
         <Disqus {...post.fields} />
@@ -141,9 +138,9 @@ function RelatedPosts({ allPosts, currentPost }) {
   }
 
   return (
-    <div className='related'>
+    <div className="related">
       <h2>Related Posts</h2>
-      <ul className='related-posts'>
+      <ul className="related-posts">
         {relatedPosts.map((post, idx) => {
           const { title, slug, date } = post.fields;
           return (
