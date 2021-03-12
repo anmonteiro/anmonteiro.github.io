@@ -1,0 +1,2 @@
+(self.webpackChunkanmonteiro_com=self.webpackChunkanmonteiro_com||[]).push([[565],{4755:function(e,t,a){"use strict";a.r(t);var n=a(7294),l=a.n(n),r=a(6179),m=a(1738);t.default=function(e){var t=e.data.markdownRemark;return l().createElement(m.Z,null,l().createElement(r.Z,{pageData:t}),l().createElement("div",{className:"page"},l().createElement("h1",{className:"page-title"},t.fields.title),l().createElement("div",{dangerouslySetInnerHTML:{__html:t.html}})))}}}]);
+//# sourceMappingURL=component---src-templates-page-js-72f9f0277e668b7f4a84.js.map

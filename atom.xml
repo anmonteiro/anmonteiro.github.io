@@ -1,7 +1,134 @@
 <?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[anmonteiro]]></title><description><![CDATA[
     I'm a Software Engineer with a passion for entrepreneurship and open-source
     software. This is where I write about software engineering, programming and
-    lifestyle.]]></description><link>http://github.com/dylang/node-rss</link><generator>RSS for Node</generator><lastBuildDate>Thu, 18 Apr 2019 10:02:40 GMT</lastBuildDate><item><title><![CDATA[Reason and the Language Server Protocol: The Landscape]]></title><description><![CDATA[
+    lifestyle.]]></description><link>http://github.com/dylang/node-rss</link><generator>RSS for Node</generator><lastBuildDate>Fri, 12 Mar 2021 23:15:51 GMT</lastBuildDate><item><title><![CDATA[On OCaml and the JS platform]]></title><description><![CDATA[
+[ReScript](https://rescript-lang.org/), née
+[BuckleScript](https://bucklescript.netlify.app/), is a state-of-the-art
+compiler that used to target OCaml (and Reason), but is fast moving away from
+its parent language. OCaml compatibility is high on my list of desirable
+features, and I've been disillusioned with the direction the project has veered
+into. So I took matters into my own hands. Read on!
+
+]]></description><link>https://anmonteiro.com/2021/03/on-ocaml-and-the-js-platform/</link><guid isPermaLink="false">https://anmonteiro.com/2021/03/on-ocaml-and-the-js-platform/</guid><pubDate>Fri, 12 Mar 2021 08:00:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;a href=&quot;https://rescript-lang.org/&quot;&gt;ReScript&lt;/a&gt;, née
+&lt;a href=&quot;https://bucklescript.netlify.app/&quot;&gt;BuckleScript&lt;/a&gt;, is a state-of-the-art
+compiler that used to target OCaml (and Reason), but is fast moving away from
+its parent language. OCaml compatibility is high on my list of desirable
+features, and I&apos;ve been disillusioned with the direction the project has veered
+into. So I took matters into my own hands. Read on!&lt;/p&gt;
+&lt;!--more--&gt;
+&lt;h2&gt;What ReScript looks like today&lt;/h2&gt;
+&lt;p&gt;The BuckleScript project started out as an OCaml to JavaScript compiler. Last
+year, after a surprising announcement and discussions that I&apos;ll choose not to
+rehash in this space, ReScript &lt;a href=&quot;https://rescript-lang.org/blog/bucklescript-is-rebranding&quot;&gt;has made it
+clear&lt;/a&gt; that they&apos;ll
+be pursuing a new direction for the project, which includes:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Not supporting newer versions of Reason&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Dropping support for OCaml features that are not deemed necessary for the
+success of ReScript&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;An example is the &lt;a href=&quot;https://github.com/rescript-lang/rescript-compiler/pull/4967&quot;&gt;recent
+move&lt;/a&gt; to
+really break away from OCaml by removing support for the OCaml object
+system (it&apos;s even
+&lt;a href=&quot;https://github.com/rescript-lang/ocaml/commit/803c6e676d2be50b10e39a49e763cb8f1396c0e7&quot;&gt;removed&lt;/a&gt;
+from the OCaml compiler in ReScript &quot;mode&quot; )&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/rescript-lang/rescript-compiler/pull/4701&quot;&gt;Dropping support for custom
+PPXes&lt;/a&gt; such as
+&lt;code class=&quot;language-text&quot;&gt;ppx_deriving&lt;/code&gt; (the &lt;code class=&quot;language-text&quot;&gt;deriving&lt;/code&gt; attribute is now exclusively interpreted as
+&lt;code class=&quot;language-text&quot;&gt;bs.deriving&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;Focusing almost excusively on the &quot;ReScript syntax&quot;, which lacks many common
+features present in OCaml (e.g. custom infix operators, weird syntax for
+lists, and others)&lt;/li&gt;
+&lt;li&gt;not staying up-to-date with the OCaml release cycle
+(&lt;a href=&quot;https://github.com/rescript-lang/rescript-compiler/wiki&quot;&gt;source&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;So, what have I been up to?&lt;/h2&gt;
+&lt;p&gt;I mentioned above that the direction of ReScript doesn&apos;t align with my personal
+use cases. Specifically, I&apos;m interested in as much compatibility as possible
+with the OCaml ecosystem (after all, BuckleScript stands on the shoulders of
+giants), and the possibility of sharing code with native OCaml projects — this
+is extremely useful for sharing types and common business logic, and I use it
+in all my projects.&lt;/p&gt;
+&lt;h3&gt;BuckleScript on OCaml 4.12&lt;/h3&gt;
+&lt;p&gt;I&apos;ve been maintaining my own fork of BuckleScript since the summer 2020. A few
+days ago, I started exploring bumping the OCaml version. And you know what?
+Turns out updating the compiler version isn&apos;t hard at all (it only took 3
+days!).&lt;/p&gt;
+&lt;p&gt;The end result is a state of the art compiler for the JavaScript platform
+(preserving all features of BuckleScript), that diverges from upstream in the
+following ways:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;uses Dune as the build tool instead of (a very custom, patched, outdated version of)
+&lt;a href=&quot;https://ninja-build.org/&quot;&gt;ninja&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Dune is used to build both the compiler and to build JS projects&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;most tooling in the OCaml ecosystem just works (PPXes too!)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;this is especially important as &lt;a href=&quot;https://github.com/ocaml/ocaml-lsp&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;ocaml-lsp&lt;/code&gt;&lt;/a&gt;
+is dropping support for OCaml 4.06 soon.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Reason is bundled as a library inside the compiler, instead of shelling out
+to &lt;code class=&quot;language-text&quot;&gt;refmt&lt;/code&gt;, which always made reason slower than it had to be in BuckleScript
+&lt;sup id=&quot;fnref:1&quot;&gt;&lt;sub&gt;&lt;a href=&quot;#fn:1&quot;&gt;1&lt;/a&gt;&lt;/sub&gt;&lt;/sup&gt;.&lt;/li&gt;
+&lt;li&gt;we get all the cool enhancements made to OCaml in recent history &lt;em&gt;for free&lt;/em&gt;,
+including &lt;code class=&quot;language-text&quot;&gt;letop&lt;/code&gt; bindings and many new and improved standard library
+modules.&lt;/li&gt;
+&lt;li&gt;supports monorepos trivially, without the need for features like &quot;pinned
+dependencies&quot; &lt;sup id=&quot;fnref:2&quot;&gt;&lt;sub&gt;&lt;a href=&quot;#fn:1&quot;&gt;2&lt;/a&gt;&lt;/sub&gt;&lt;/sup&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Looking onwards&lt;/h2&gt;
+&lt;p&gt;What does the future look like? I&apos;m not sure. I built something that is useful to me,
+and I&apos;m planning on maintaining it for my own use cases. If more folks are interested,
+there are some really interesting things that this could unlock:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;deeper dune integration (perhaps in Dune itself, if this project ends up
+being adopted)&lt;/li&gt;
+&lt;li&gt;move away from an ad-hoc &lt;code class=&quot;language-text&quot;&gt;bsconfig.json&lt;/code&gt; way of specifying configuration,
+towards something more established in the OCaml community&lt;/li&gt;
+&lt;li&gt;support for consuming OPAM packages directly (this is possible with some
+heavy lifting in userspace today)&lt;/li&gt;
+&lt;li&gt;eventually release and distribute to OPAM as well&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Feedback&lt;/h2&gt;
+&lt;p&gt;If any of this sounds useful to you, I&apos;d love for you to reach out to me. I
+think there&apos;s a opportunity here to make something really great that has the
+best of both worlds: our favorite OCaml on the world&apos;s most popular platform.&lt;/p&gt;
+&lt;p&gt;The project lives
+&lt;a href=&quot;https://github.com/anmonteiro/bucklescript/tree/fork-4.12.0+BS&quot;&gt;here&lt;/a&gt;. At the
+time of this writing, you need &lt;a href=&quot;https://nixos.org/&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;nix&lt;/code&gt;&lt;/a&gt; to get the correct
+packages in order to build the project. This limitation can be lifted as soon
+as folks are interested in trying out the project.&lt;/p&gt;
+&lt;p&gt;Please send me a message on Twitter
+&lt;a href=&quot;https://twitter.com/_anmonteiro&quot;&gt;@_anmonteiro&lt;/a&gt;, or otherwise catch me on the
+OCaml / Reason Discord servers.&lt;/p&gt;
+&lt;p&gt;Thanks for reading and happy hacking!&lt;/p&gt;
+&lt;hr&gt;
+&lt;div id=&quot;fn:1&quot;&gt;
+  &lt;sup&gt;&lt;sub&gt;1&lt;/sub&gt;&lt;/sup&gt; &lt;sub&gt;I&amp;apos;m going to avoid talking specifically about
+  the Reason project in this post. However, rest assured that it&amp;apos;ll keep being
+  maintained going forward, as I&amp;apos;m one of the maintainers.
+  &lt;a href=&quot;#fnref:1&quot;&gt;
+    &lt;img draggable=&quot;false&quot; class=&quot;emoji&quot; alt=&quot;&amp;#x21A9;&quot; src=&quot;/img/top.svg&quot;&gt;
+  &lt;/a&gt;&lt;/sub&gt;
+&lt;/div&gt;
+&lt;div id=&quot;fn:2&quot;&gt;
+  &lt;sup&gt;&lt;sub&gt;2&lt;/sub&gt;&lt;/sup&gt; &lt;sub&gt;which, in my opinion, was never needed in the
+  first place, and could trivially have been implemented by checking mtime of
+  the dependent files (which is also how I implemented monorepos last summer in
+  BuckleScript)
+  &lt;a href=&quot;#fnref:2&quot;&gt;
+    &lt;img draggable=&quot;false&quot; class=&quot;emoji&quot; alt=&quot;&amp;#x21A9;&quot; src=&quot;/img/top.svg&quot;&gt;
+  &lt;/a&gt;&lt;/sub&gt;
+&lt;/div&gt;</content:encoded></item><item><title><![CDATA[Reason and the Language Server Protocol: The Landscape]]></title><description><![CDATA[
 The state of editor tooling for programming languages has seen great change in
 recent memory thanks to Microsoft's specification of a [Language Server
 Protocol]( https://microsoft.github.io/language-server-protocol/overview) (LSP).
@@ -11,7 +138,7 @@ running, others take a little more tweaking. In a series of posts, I will detail
 the state of LSP editor tooling in Reason / OCaml, as well as how to get set up
 quickly in a variety of editors.
 
-]]></description><link>https://anmonteiro.com/2018/11/reason-and-the-language-server-protocol-the-landscape/</link><guid isPermaLink="false">https://anmonteiro.com/2018/11/reason-and-the-language-server-protocol-the-landscape/</guid><pubDate>Sat, 17 Nov 2018 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;The state of editor tooling for programming languages has seen great change in
+]]></description><link>https://anmonteiro.com/2018/11/reason-and-the-language-server-protocol-the-landscape/</link><guid isPermaLink="false">https://anmonteiro.com/2018/11/reason-and-the-language-server-protocol-the-landscape/</guid><pubDate>Sat, 17 Nov 2018 08:00:00 GMT</pubDate><content:encoded>&lt;p&gt;The state of editor tooling for programming languages has seen great change in
 recent memory thanks to Microsoft&apos;s specification of a &lt;a href=&quot;https://microsoft.github.io/language-server-protocol/overview&quot;&gt;Language Server
 Protocol&lt;/a&gt; (LSP).&lt;/p&gt;
 &lt;p&gt;While some editors bundle LSP out of the box, making it a breeze to get up and
@@ -135,7 +262,7 @@ entirely without the JVM since the beginning of 2017. Starting with the newly re
 version, the Lumo build API has been greatly enhanced and much more stable! Read
 on for a rundown of the state of ClojureScript compilation in Lumo.
 
-]]></description><link>https://anmonteiro.com/2017/09/the-state-of-clojurescript-compilation-in-lumo/</link><guid isPermaLink="false">https://anmonteiro.com/2017/09/the-state-of-clojurescript-compilation-in-lumo/</guid><pubDate>Mon, 18 Sep 2017 23:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Lumo has shipped with experimental support for
+]]></description><link>https://anmonteiro.com/2017/09/the-state-of-clojurescript-compilation-in-lumo/</link><guid isPermaLink="false">https://anmonteiro.com/2017/09/the-state-of-clojurescript-compilation-in-lumo/</guid><pubDate>Tue, 19 Sep 2017 07:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Lumo has shipped with experimental support for
 &lt;a href=&quot;2017/02/compiling-clojurescript-projects-without-the-jvm&quot;&gt;compiling ClojureScript projects&lt;/a&gt;
 entirely without the JVM since the beginning of 2017. Starting with the newly released
 version, the Lumo build API has been greatly enhanced and much more stable! Read
@@ -196,7 +323,7 @@ _I used [Reason](https://reasonml.github.io/) and [React](https://reasonml.githu
 to build a simple example app: [ReKeys](https://anmonteiro.com/rekeys/). Here's
 what I learned._
 
-]]></description><link>https://anmonteiro.com/2017/08/shipping-a-very-simplistic-reasonreact-app/</link><guid isPermaLink="false">https://anmonteiro.com/2017/08/shipping-a-very-simplistic-reasonreact-app/</guid><pubDate>Sat, 19 Aug 2017 23:00:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;em&gt;I used &lt;a href=&quot;https://reasonml.github.io/&quot;&gt;Reason&lt;/a&gt; and &lt;a href=&quot;https://reasonml.github.io/reason-react/&quot;&gt;React&lt;/a&gt;
+]]></description><link>https://anmonteiro.com/2017/08/shipping-a-very-simplistic-reasonreact-app/</link><guid isPermaLink="false">https://anmonteiro.com/2017/08/shipping-a-very-simplistic-reasonreact-app/</guid><pubDate>Sun, 20 Aug 2017 07:00:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;em&gt;I used &lt;a href=&quot;https://reasonml.github.io/&quot;&gt;Reason&lt;/a&gt; and &lt;a href=&quot;https://reasonml.github.io/reason-react/&quot;&gt;React&lt;/a&gt;
 to build a simple example app: &lt;a href=&quot;https://anmonteiro.com/rekeys/&quot;&gt;ReKeys&lt;/a&gt;. Here&apos;s
 what I learned.&lt;/em&gt;&lt;/p&gt;
 &lt;!--more--&gt;
@@ -308,7 +435,7 @@ This post reflects on Lumo's growth almost 6 months after its announcement,
 shares the project's goals and communicates what you can do to help Lumo grow
 into and even more full-featured ClojureScript environment. Read on!
 
-]]></description><link>https://anmonteiro.com/2017/05/on-lumos-growth-and-sustainability/</link><guid isPermaLink="false">https://anmonteiro.com/2017/05/on-lumos-growth-and-sustainability/</guid><pubDate>Sun, 30 Apr 2017 23:00:00 GMT</pubDate><content:encoded>&lt;p&gt;This post reflects on Lumo&apos;s growth almost 6 months after its announcement,
+]]></description><link>https://anmonteiro.com/2017/05/on-lumos-growth-and-sustainability/</link><guid isPermaLink="false">https://anmonteiro.com/2017/05/on-lumos-growth-and-sustainability/</guid><pubDate>Mon, 01 May 2017 07:00:00 GMT</pubDate><content:encoded>&lt;p&gt;This post reflects on Lumo&apos;s growth almost 6 months after its announcement,
 shares the project&apos;s goals and communicates what you can do to help Lumo grow
 into and even more full-featured ClojureScript environment. Read on!&lt;/p&gt;
 &lt;!--more--&gt;
@@ -389,7 +516,7 @@ Node.js module support has been greatly enhanced in the upcoming release of the
 ClojureScript compiler. This post explains how to seamlessly require Node.js packages
 from any ClojureScript namespace. Read on!
 
-]]></description><link>https://anmonteiro.com/2017/03/requiring-node-js-modules-from-clojurescript-namespaces/</link><guid isPermaLink="false">https://anmonteiro.com/2017/03/requiring-node-js-modules-from-clojurescript-namespaces/</guid><pubDate>Fri, 17 Mar 2017 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Node.js module support has been greatly enhanced in the upcoming release of the
+]]></description><link>https://anmonteiro.com/2017/03/requiring-node-js-modules-from-clojurescript-namespaces/</link><guid isPermaLink="false">https://anmonteiro.com/2017/03/requiring-node-js-modules-from-clojurescript-namespaces/</guid><pubDate>Fri, 17 Mar 2017 07:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Node.js module support has been greatly enhanced in the upcoming release of the
 ClojureScript compiler. This post explains how to seamlessly require Node.js packages
 from any ClojureScript namespace. Read on!&lt;/p&gt;
 &lt;!--more--&gt;
@@ -518,7 +645,7 @@ While projects like [Planck](https://github.com/mfikes/planck) and
 run arbitrary ClojureScript forms at the REPL or run ClojureScript scripts, none have
 actually supported flat out compiling an entire ClojureScript project. Until now.
 
-]]></description><link>https://anmonteiro.com/2017/02/compiling-clojurescript-projects-without-the-jvm/</link><guid isPermaLink="false">https://anmonteiro.com/2017/02/compiling-clojurescript-projects-without-the-jvm/</guid><pubDate>Tue, 21 Feb 2017 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;I have dreamed about being able to compile a ClojureScript project without installing
+]]></description><link>https://anmonteiro.com/2017/02/compiling-clojurescript-projects-without-the-jvm/</link><guid isPermaLink="false">https://anmonteiro.com/2017/02/compiling-clojurescript-projects-without-the-jvm/</guid><pubDate>Tue, 21 Feb 2017 08:00:00 GMT</pubDate><content:encoded>&lt;p&gt;I have dreamed about being able to compile a ClojureScript project without installing
 Java ever since coming to know that &lt;a href=&quot;http://swannodette.github.io/2015/07/29/clojurescript-17&quot;&gt;ClojureScript can compile itself&lt;/a&gt;.
 While projects like &lt;a href=&quot;https://github.com/mfikes/planck&quot;&gt;Planck&lt;/a&gt; and
 &lt;a href=&quot;2016/11/the-fastest-clojure-repl-in-the-world&quot;&gt;Lumo&lt;/a&gt; can either
@@ -614,7 +741,7 @@ still takes the bare Clojure JAR about 1 second to start on new hardware. [Planc
 JavaScript VMs — managed to improve the time that it takes to bootstrap a Clojure(Script)
 REPL. A new kid on the block promises to perform even faster. Read on!
 
-]]></description><link>https://anmonteiro.com/2016/11/the-fastest-clojure-repl-in-the-world/</link><guid isPermaLink="false">https://anmonteiro.com/2016/11/the-fastest-clojure-repl-in-the-world/</guid><pubDate>Wed, 09 Nov 2016 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;One common complaint of Clojure REPLs is their &lt;a href=&quot;http://puredanger.github.io/tech.puredanger.com/2013/12/01/clj-problems/&quot;&gt;startup time&lt;/a&gt;.
+]]></description><link>https://anmonteiro.com/2016/11/the-fastest-clojure-repl-in-the-world/</link><guid isPermaLink="false">https://anmonteiro.com/2016/11/the-fastest-clojure-repl-in-the-world/</guid><pubDate>Wed, 09 Nov 2016 08:00:00 GMT</pubDate><content:encoded>&lt;p&gt;One common complaint of Clojure REPLs is their &lt;a href=&quot;http://puredanger.github.io/tech.puredanger.com/2013/12/01/clj-problems/&quot;&gt;startup time&lt;/a&gt;.
 Although that complaint is often somewhat unfounded (and related to tooling), it
 still takes the bare Clojure JAR about 1 second to start on new hardware. &lt;a href=&quot;http://planck-repl.org&quot;&gt;Planck&lt;/a&gt;
 — through bootstrapped ClojureScript, and owing to the small latency exhibited by
@@ -690,7 +817,7 @@ outside of the `ns` form. Owing to ClojureScript's compilation model, however, t
 exist subtle differences with respect to the behavior that Clojure provides. Read
 on to learn more.
 
-]]></description><link>https://anmonteiro.com/2016/10/clojurescript-require-outside-ns/</link><guid isPermaLink="false">https://anmonteiro.com/2016/10/clojurescript-require-outside-ns/</guid><pubDate>Sat, 01 Oct 2016 23:00:00 GMT</pubDate><content:encoded>&lt;p&gt;The next version of the ClojureScript compiler adds support for using &lt;code class=&quot;language-text&quot;&gt;require&lt;/code&gt;
+]]></description><link>https://anmonteiro.com/2016/10/clojurescript-require-outside-ns/</link><guid isPermaLink="false">https://anmonteiro.com/2016/10/clojurescript-require-outside-ns/</guid><pubDate>Sun, 02 Oct 2016 07:00:00 GMT</pubDate><content:encoded>&lt;p&gt;The next version of the ClojureScript compiler adds support for using &lt;code class=&quot;language-text&quot;&gt;require&lt;/code&gt;
 outside of the &lt;code class=&quot;language-text&quot;&gt;ns&lt;/code&gt; form. Owing to ClojureScript&apos;s compilation model, however, there
 exist subtle differences with respect to the behavior that Clojure provides. Read
 on to learn more.&lt;/p&gt;
@@ -799,7 +926,7 @@ all about, what it does for your Om Next applications and how you can take advan
 of its properties.
 
 
-]]></description><link>https://anmonteiro.com/2016/09/om-next-internals-incremental-rendering/</link><guid isPermaLink="false">https://anmonteiro.com/2016/09/om-next-internals-incremental-rendering/</guid><pubDate>Wed, 28 Sep 2016 23:00:00 GMT</pubDate><content:encoded>&lt;p&gt;The phrase &quot;incremental rendering&quot; is frequently thrown around in the context of
+]]></description><link>https://anmonteiro.com/2016/09/om-next-internals-incremental-rendering/</link><guid isPermaLink="false">https://anmonteiro.com/2016/09/om-next-internals-incremental-rendering/</guid><pubDate>Thu, 29 Sep 2016 07:00:00 GMT</pubDate><content:encoded>&lt;p&gt;The phrase &quot;incremental rendering&quot; is frequently thrown around in the context of
 Om Next&apos;s design. This post is an attempt to clarify what the concept of incremental rendering is
 all about, what it does for your Om Next applications and how you can take advantage
 of its properties.&lt;/p&gt;
@@ -904,7 +1031,7 @@ Just recently, Om Next added support for server-side rendering. This is a very e
 addition, which greatly improves Om's fullstack story, making it possible to add
 considerable performance improvements to your app's initial render.
 
-]]></description><link>https://anmonteiro.com/2016/09/om-next-server-side-rendering/</link><guid isPermaLink="false">https://anmonteiro.com/2016/09/om-next-server-side-rendering/</guid><pubDate>Wed, 14 Sep 2016 23:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Just recently, Om Next added support for server-side rendering. This is a very exciting
+]]></description><link>https://anmonteiro.com/2016/09/om-next-server-side-rendering/</link><guid isPermaLink="false">https://anmonteiro.com/2016/09/om-next-server-side-rendering/</guid><pubDate>Thu, 15 Sep 2016 07:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Just recently, Om Next added support for server-side rendering. This is a very exciting
 addition, which greatly improves Om&apos;s fullstack story, making it possible to add
 considerable performance improvements to your app&apos;s initial render.&lt;/p&gt;
 &lt;!--more--&gt;
@@ -961,7 +1088,7 @@ is now part of the &lt;code class=&quot;language-text&quot;&gt;1.0.0-alpha45&lt;
 On the 6th of September, I had the pleasure to speak at [Full Stack Fest 2016](https://2016.fullstackfest.com/)
 in Barcelona. The talk has been recorded and you can find a link to the video below.
 
-]]></description><link>https://anmonteiro.com/2016/09/om-next-at-full-stack-fest-2016/</link><guid isPermaLink="false">https://anmonteiro.com/2016/09/om-next-at-full-stack-fest-2016/</guid><pubDate>Tue, 13 Sep 2016 23:00:00 GMT</pubDate><content:encoded>&lt;p&gt;On the 6th of September, I had the pleasure to speak at &lt;a href=&quot;https://2016.fullstackfest.com/&quot;&gt;Full Stack Fest 2016&lt;/a&gt;
+]]></description><link>https://anmonteiro.com/2016/09/om-next-at-full-stack-fest-2016/</link><guid isPermaLink="false">https://anmonteiro.com/2016/09/om-next-at-full-stack-fest-2016/</guid><pubDate>Wed, 14 Sep 2016 07:00:00 GMT</pubDate><content:encoded>&lt;p&gt;On the 6th of September, I had the pleasure to speak at &lt;a href=&quot;https://2016.fullstackfest.com/&quot;&gt;Full Stack Fest 2016&lt;/a&gt;
 in Barcelona. The talk has been recorded and you can find a link to the video below.&lt;/p&gt;
 &lt;!--more--&gt;
 &lt;p&gt;This talk was a slightly different version of the one I gave
@@ -981,7 +1108,7 @@ I couldn&apos;t go too much into Clojure-y specifics.&lt;/p&gt;
 A small number of changes to Om Next makes it possible to use it from self-hosted
 ClojureScript environments. Read on!
 
-]]></description><link>https://anmonteiro.com/2016/08/om-next-and-bootstrapped-clojurescript/</link><guid isPermaLink="false">https://anmonteiro.com/2016/08/om-next-and-bootstrapped-clojurescript/</guid><pubDate>Tue, 23 Aug 2016 23:00:00 GMT</pubDate><content:encoded>&lt;p&gt;A small number of changes to Om Next makes it possible to use it from self-hosted
+]]></description><link>https://anmonteiro.com/2016/08/om-next-and-bootstrapped-clojurescript/</link><guid isPermaLink="false">https://anmonteiro.com/2016/08/om-next-and-bootstrapped-clojurescript/</guid><pubDate>Wed, 24 Aug 2016 07:00:00 GMT</pubDate><content:encoded>&lt;p&gt;A small number of changes to Om Next makes it possible to use it from self-hosted
 ClojureScript environments. Read on!&lt;/p&gt;
 &lt;!--more--&gt;
 &lt;div class=&quot;message&quot;&gt;
@@ -1016,7 +1143,7 @@ being used in an unforeseen number of cases in the foreseeable future.&lt;/p&gt;
 There exist a [number of differences](https://github.com/clojure/clojurescript/wiki/Differences-from-Clojure) between Clojure and ClojureScript, especially concerning [namespace declarations](https://github.com/clojure/clojurescript/wiki/Differences-from-Clojure#namespaces) and `require` specifications. Some of these differences have recently been addressed with the introduction of [Clojure namespace aliasing](http://blog.fikesfarm.com/posts/2016-07-03-clojurescript-clojure-namespace-aliasing.html) ([JIRA ticket](http://dev.clojure.org/jira/browse/CLJS-1692)) and [implicit macro loading](http://dev.clojure.org/jira/browse/CLJS-1507). A further upcoming enhancement introduces the possibility to `:rename` referred symbols in dependency specifications.
 
 
-]]></description><link>https://anmonteiro.com/2016/08/clojurescript-require-now-supports-rename/</link><guid isPermaLink="false">https://anmonteiro.com/2016/08/clojurescript-require-now-supports-rename/</guid><pubDate>Tue, 09 Aug 2016 23:00:00 GMT</pubDate><content:encoded>&lt;p&gt;There exist a &lt;a href=&quot;https://github.com/clojure/clojurescript/wiki/Differences-from-Clojure&quot;&gt;number of differences&lt;/a&gt; between Clojure and ClojureScript, especially concerning &lt;a href=&quot;https://github.com/clojure/clojurescript/wiki/Differences-from-Clojure#namespaces&quot;&gt;namespace declarations&lt;/a&gt; and &lt;code class=&quot;language-text&quot;&gt;require&lt;/code&gt; specifications. Some of these differences have recently been addressed with the introduction of &lt;a href=&quot;http://blog.fikesfarm.com/posts/2016-07-03-clojurescript-clojure-namespace-aliasing.html&quot;&gt;Clojure namespace aliasing&lt;/a&gt; (&lt;a href=&quot;http://dev.clojure.org/jira/browse/CLJS-1692&quot;&gt;JIRA ticket&lt;/a&gt;) and &lt;a href=&quot;http://dev.clojure.org/jira/browse/CLJS-1507&quot;&gt;implicit macro loading&lt;/a&gt;. A further upcoming enhancement introduces the possibility to &lt;code class=&quot;language-text&quot;&gt;:rename&lt;/code&gt; referred symbols in dependency specifications.&lt;/p&gt;
+]]></description><link>https://anmonteiro.com/2016/08/clojurescript-require-now-supports-rename/</link><guid isPermaLink="false">https://anmonteiro.com/2016/08/clojurescript-require-now-supports-rename/</guid><pubDate>Wed, 10 Aug 2016 07:00:00 GMT</pubDate><content:encoded>&lt;p&gt;There exist a &lt;a href=&quot;https://github.com/clojure/clojurescript/wiki/Differences-from-Clojure&quot;&gt;number of differences&lt;/a&gt; between Clojure and ClojureScript, especially concerning &lt;a href=&quot;https://github.com/clojure/clojurescript/wiki/Differences-from-Clojure#namespaces&quot;&gt;namespace declarations&lt;/a&gt; and &lt;code class=&quot;language-text&quot;&gt;require&lt;/code&gt; specifications. Some of these differences have recently been addressed with the introduction of &lt;a href=&quot;http://blog.fikesfarm.com/posts/2016-07-03-clojurescript-clojure-namespace-aliasing.html&quot;&gt;Clojure namespace aliasing&lt;/a&gt; (&lt;a href=&quot;http://dev.clojure.org/jira/browse/CLJS-1692&quot;&gt;JIRA ticket&lt;/a&gt;) and &lt;a href=&quot;http://dev.clojure.org/jira/browse/CLJS-1507&quot;&gt;implicit macro loading&lt;/a&gt;. A further upcoming enhancement introduces the possibility to &lt;code class=&quot;language-text&quot;&gt;:rename&lt;/code&gt; referred symbols in dependency specifications.&lt;/p&gt;
 &lt;!--more--&gt;
 &lt;div style=&quot;margin:20px&quot;&gt;
   &lt;img style=&quot;margin:0 auto&quot; src=&quot;https://cloud.githubusercontent.com/assets/661909/17553842/d9429ecc-5eff-11e6-97b2-08fe95d4fef5.jpg&quot;&gt;
@@ -1064,7 +1191,7 @@ foo.core=&lt;span class=&quot;token keyword&quot;&gt;&gt;&lt;/span&gt; &lt;span 
 &lt;p&gt;Thanks for reading!&lt;/p&gt;</content:encoded></item><item><title><![CDATA[The quest for a unified routing solution in Om Next]]></title><description><![CDATA[
 There are several different options to implement routing in an Om Next application. However, any  one of those approaches is not straightforward to accomplish, and often requires more time than one would like to get right. Until now.
 
-]]></description><link>https://anmonteiro.com/2016/06/the-quest-for-a-unified-routing-solution-in-om-next/</link><guid isPermaLink="false">https://anmonteiro.com/2016/06/the-quest-for-a-unified-routing-solution-in-om-next/</guid><pubDate>Sat, 11 Jun 2016 23:00:00 GMT</pubDate><content:encoded>&lt;p&gt;There are several different options to implement routing in an Om Next application. However, any  one of those approaches is not straightforward to accomplish, and often requires more time than one would like to get right. Until now.&lt;/p&gt;
+]]></description><link>https://anmonteiro.com/2016/06/the-quest-for-a-unified-routing-solution-in-om-next/</link><guid isPermaLink="false">https://anmonteiro.com/2016/06/the-quest-for-a-unified-routing-solution-in-om-next/</guid><pubDate>Sun, 12 Jun 2016 07:00:00 GMT</pubDate><content:encoded>&lt;p&gt;There are several different options to implement routing in an Om Next application. However, any  one of those approaches is not straightforward to accomplish, and often requires more time than one would like to get right. Until now.&lt;/p&gt;
 &lt;!--more--&gt;
 &lt;div class=&quot;message&quot;&gt;
   &lt;strong&gt;TL;DR&lt;/strong&gt;: I&apos;ve developed &lt;a href=&quot;https://github.com/anmonteiro/compassus&quot;&gt;Compassus&lt;/a&gt;, a routing library for Om Next.
@@ -1111,7 +1238,7 @@ ul li &gt; ul {
 &lt;p&gt;&lt;em&gt;&lt;small&gt;Thanks to Tony Kay for reading a draft of this post.&lt;/small&gt;&lt;/em&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[&apos;Clients in control&apos; — Om Next at Craft Conference 2016]]></title><description><![CDATA[
 At the end of April, I gave a talk about Om Next at [Craft Conf](http://craft-conf.com/) in Budapest. The talk was recorded and the link is below.
 
-]]></description><link>https://anmonteiro.com/2016/05/clients-in-control-om-next-craft-conf-2016/</link><guid isPermaLink="false">https://anmonteiro.com/2016/05/clients-in-control-om-next-craft-conf-2016/</guid><pubDate>Fri, 13 May 2016 23:00:00 GMT</pubDate><content:encoded>&lt;p&gt;At the end of April, I gave a talk about Om Next at &lt;a href=&quot;http://craft-conf.com/&quot;&gt;Craft Conf&lt;/a&gt; in Budapest. The talk was recorded and the link is below.&lt;/p&gt;
+]]></description><link>https://anmonteiro.com/2016/05/clients-in-control-om-next-craft-conf-2016/</link><guid isPermaLink="false">https://anmonteiro.com/2016/05/clients-in-control-om-next-craft-conf-2016/</guid><pubDate>Sat, 14 May 2016 07:00:00 GMT</pubDate><content:encoded>&lt;p&gt;At the end of April, I gave a talk about Om Next at &lt;a href=&quot;http://craft-conf.com/&quot;&gt;Craft Conf&lt;/a&gt; in Budapest. The talk was recorded and the link is below.&lt;/p&gt;
 &lt;!--more--&gt;
 &lt;p&gt;&lt;em&gt;&quot;Clients in control: building demand-driven systems with Om Next&quot;&lt;/em&gt; is what I decided to call it. It touches on the motivation for the appearance of systems like Falcor, Relay and Om Next, and presents a high-level overview of the ideas and implementation behind Om Next.&lt;/p&gt;
 &lt;p&gt;The talk was targeted at a general audience, so I didn&apos;t go too much into Clojure(Script) specific parts. You can watch a video of it below. The slides and code I demoed are in this &lt;a href=&quot;https://github.com/anmonteiro/craftconf-demo&quot;&gt;repository&lt;/a&gt;.&lt;/p&gt;
@@ -1129,7 +1256,7 @@ At the end of April, I gave a talk about Om Next at [Craft Conf](http://craft-co
 &lt;/div&gt;</content:encoded></item><item><title><![CDATA[Routing in Om Next — a Catalog of Approaches]]></title><description><![CDATA[
 Although a standard routing solution is an orthogonal concern to Om Next's design and, at the time of this writing, there is still [ongoing development](https://github.com/omcljs/om/wiki/Routing-Support) with the objective of introducing simpler routing hooks, there are already several ways in which one can add proper route navigation to an Om Next app. This post aims to decrease the general community confusion around this topic by introducing a variety of different approaches that can be used to integrate routing in an Om Next app.
 
-]]></description><link>https://anmonteiro.com/2016/02/routing-in-om-next-a-catalog-of-approaches/</link><guid isPermaLink="false">https://anmonteiro.com/2016/02/routing-in-om-next-a-catalog-of-approaches/</guid><pubDate>Mon, 22 Feb 2016 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Although a standard routing solution is an orthogonal concern to Om Next&apos;s design and, at the time of this writing, there is still &lt;a href=&quot;https://github.com/omcljs/om/wiki/Routing-Support&quot;&gt;ongoing development&lt;/a&gt; with the objective of introducing simpler routing hooks, there are already several ways in which one can add proper route navigation to an Om Next app. This post aims to decrease the general community confusion around this topic by introducing a variety of different approaches that can be used to integrate routing in an Om Next app.&lt;/p&gt;
+]]></description><link>https://anmonteiro.com/2016/02/routing-in-om-next-a-catalog-of-approaches/</link><guid isPermaLink="false">https://anmonteiro.com/2016/02/routing-in-om-next-a-catalog-of-approaches/</guid><pubDate>Mon, 22 Feb 2016 08:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Although a standard routing solution is an orthogonal concern to Om Next&apos;s design and, at the time of this writing, there is still &lt;a href=&quot;https://github.com/omcljs/om/wiki/Routing-Support&quot;&gt;ongoing development&lt;/a&gt; with the objective of introducing simpler routing hooks, there are already several ways in which one can add proper route navigation to an Om Next app. This post aims to decrease the general community confusion around this topic by introducing a variety of different approaches that can be used to integrate routing in an Om Next app.&lt;/p&gt;
 &lt;!--more--&gt;
 &lt;div class=&quot;message&quot;&gt;
   &lt;strong&gt;Note:&lt;/strong&gt; I&apos;ve recently developed &lt;a href=&quot;https://github.com/anmonteiro/compassus&quot;&gt;Compassus&lt;/a&gt;, a routing library that automates all the pain of integrating routing in an Om Next application. Check the &lt;a href=&quot;2016/06/the-quest-for-a-unified-routing-solution-in-om-next&quot;&gt;announcement post&lt;/a&gt;!
@@ -1269,7 +1396,7 @@ Although a standard routing solution is an orthogonal concern to Om Next's desig
 &lt;p&gt;&lt;sup&gt;&lt;sub&gt;1&lt;/sub&gt;&lt;/sup&gt; &lt;sub&gt;Note that this method will not be a clean solution if you want to route to arbitrary elements in a list, since the logic of adding &lt;code class=&quot;language-text&quot;&gt;ref&lt;/code&gt;s to every element in a list will soon become complex enough.&lt;/sub&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Om Next meets Devcards — the full reloadable experience]]></title><description><![CDATA[
 In a recent post, I've put together a checklist covering the steps involved in [writing reloadable Om Next code](2016/01/writing-om-next-reloadable-code-a-checklist). If you are trying to use them in your devcards, however, you might find that current [Devcards helpers for Om Next](https://github.com/bhauman/devcards/pull/85) are still lacking full support for a pleasant, out-of-the-box reloadable experience, even when sticking to every recommendation in that list. Enter [\`devcards-om-next\`](https://github.com/anmonteiro/devcards-om-next).
 
-]]></description><link>https://anmonteiro.com/2016/02/om-next-meets-devcards-the-full-reloadable-experience/</link><guid isPermaLink="false">https://anmonteiro.com/2016/02/om-next-meets-devcards-the-full-reloadable-experience/</guid><pubDate>Mon, 01 Feb 2016 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;In a recent post, I&apos;ve put together a checklist covering the steps involved in &lt;a href=&quot;2016/01/writing-om-next-reloadable-code-a-checklist&quot;&gt;writing reloadable Om Next code&lt;/a&gt;. If you are trying to use them in your devcards, however, you might find that current &lt;a href=&quot;https://github.com/bhauman/devcards/pull/85&quot;&gt;Devcards helpers for Om Next&lt;/a&gt; are still lacking full support for a pleasant, out-of-the-box reloadable experience, even when sticking to every recommendation in that list. Enter &lt;a href=&quot;https://github.com/anmonteiro/devcards-om-next&quot;&gt;`devcards-om-next`&lt;/a&gt;.&lt;/p&gt;
+]]></description><link>https://anmonteiro.com/2016/02/om-next-meets-devcards-the-full-reloadable-experience/</link><guid isPermaLink="false">https://anmonteiro.com/2016/02/om-next-meets-devcards-the-full-reloadable-experience/</guid><pubDate>Mon, 01 Feb 2016 08:00:00 GMT</pubDate><content:encoded>&lt;p&gt;In a recent post, I&apos;ve put together a checklist covering the steps involved in &lt;a href=&quot;2016/01/writing-om-next-reloadable-code-a-checklist&quot;&gt;writing reloadable Om Next code&lt;/a&gt;. If you are trying to use them in your devcards, however, you might find that current &lt;a href=&quot;https://github.com/bhauman/devcards/pull/85&quot;&gt;Devcards helpers for Om Next&lt;/a&gt; are still lacking full support for a pleasant, out-of-the-box reloadable experience, even when sticking to every recommendation in that list. Enter &lt;a href=&quot;https://github.com/anmonteiro/devcards-om-next&quot;&gt;`devcards-om-next`&lt;/a&gt;.&lt;/p&gt;
 &lt;!--more--&gt;
 &lt;h2&gt;The state of Om Next helpers for Devcards&lt;/h2&gt;
 &lt;p&gt;As mentioned in the &lt;a href=&quot;2016/01/writing-om-next-reloadable-code-a-checklist&quot;&gt;checklist&lt;/a&gt;, Om Next&apos;s own &lt;code class=&quot;language-text&quot;&gt;add-root!&lt;/code&gt; will unmount any components currently mounted on the target DOM node before actually mounting the component in question. In a reloadable scenario, this behavior is undesirable because it will result in components losing their local state. Unfortunately, the current Devcards &lt;code class=&quot;language-text&quot;&gt;om-next-root&lt;/code&gt; and &lt;code class=&quot;language-text&quot;&gt;defcard-om-next&lt;/code&gt; helpers employ this exact approach, which although simple, makes impossible to set up an actual interactive programming environment.&lt;/p&gt;
@@ -1326,7 +1453,7 @@ In a recent post, I've put together a checklist covering the steps involved in [
 &lt;p&gt;&lt;sup&gt;&lt;sub&gt;1&lt;/sub&gt;&lt;/sup&gt; keep in mind that you must still follow the recommendations in the &lt;a href=&quot;2016/01/writing-om-next-reloadable-code-a-checklist&quot;&gt;reloadable code checklist&lt;/a&gt; to see this in action &lt;em&gt;i.e.&lt;/em&gt;, you must supply a reconciler that has been defined with &lt;code class=&quot;language-text&quot;&gt;defonce&lt;/code&gt; for it to work. The &lt;code class=&quot;language-text&quot;&gt;(om-next-root Component)&lt;/code&gt; or &lt;code class=&quot;language-text&quot;&gt;(defcard-om-next my-card Component)&lt;/code&gt; shortcuts don&apos;t count as reloadable (they define a reconciler under the hood everytime) and will therefore reset the component&apos;s local state.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Writing Om Next Reloadable Code — A Checklist]]></title><description><![CDATA[
 It didn't take long since [Figwheel](https://github.com/bhauman/lein-figwheel) came into our ClojureScript environments for it to become a crucial part of our development workflow. Its code hot loading magic provides the basis for an easy, enjoyable [interactive programming](https://en.wikipedia.org/wiki/Interactive_programming) experience. The rest — writing code that can be repeatedly evaluated without disturbing our running program's state — is up to us. In this post I will go through what you need to know to start writing reloadable code in Om Next.
 
-]]></description><link>https://anmonteiro.com/2016/01/writing-om-next-reloadable-code-a-checklist/</link><guid isPermaLink="false">https://anmonteiro.com/2016/01/writing-om-next-reloadable-code-a-checklist/</guid><pubDate>Thu, 21 Jan 2016 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;It didn&apos;t take long since &lt;a href=&quot;https://github.com/bhauman/lein-figwheel&quot;&gt;Figwheel&lt;/a&gt; came into our ClojureScript environments for it to become a crucial part of our development workflow. Its code hot loading magic provides the basis for an easy, enjoyable &lt;a href=&quot;https://en.wikipedia.org/wiki/Interactive_programming&quot;&gt;interactive programming&lt;/a&gt; experience. The rest — writing code that can be repeatedly evaluated without disturbing our running program&apos;s state — is up to us. In this post I will go through what you need to know to start writing reloadable code in Om Next.&lt;/p&gt;
+]]></description><link>https://anmonteiro.com/2016/01/writing-om-next-reloadable-code-a-checklist/</link><guid isPermaLink="false">https://anmonteiro.com/2016/01/writing-om-next-reloadable-code-a-checklist/</guid><pubDate>Thu, 21 Jan 2016 08:00:00 GMT</pubDate><content:encoded>&lt;p&gt;It didn&apos;t take long since &lt;a href=&quot;https://github.com/bhauman/lein-figwheel&quot;&gt;Figwheel&lt;/a&gt; came into our ClojureScript environments for it to become a crucial part of our development workflow. Its code hot loading magic provides the basis for an easy, enjoyable &lt;a href=&quot;https://en.wikipedia.org/wiki/Interactive_programming&quot;&gt;interactive programming&lt;/a&gt; experience. The rest — writing code that can be repeatedly evaluated without disturbing our running program&apos;s state — is up to us. In this post I will go through what you need to know to start writing reloadable code in Om Next.&lt;/p&gt;
 &lt;!--more--&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;h3&gt;&lt;strong&gt;&lt;code&gt;defonce&lt;/code&gt; your app-state and reconciler&lt;/strong&gt;&lt;/h3&gt;&lt;/li&gt;
@@ -1349,7 +1476,7 @@ It didn't take long since [Figwheel](https://github.com/bhauman/lein-figwheel) c
 &lt;p&gt;&lt;sup&gt;&lt;sub&gt;1&lt;/sub&gt;&lt;/sup&gt; also keep in mind that this might not be desirable if you change whatever that definition contains. A full reload will probably be necessary in that case.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[An Exploration of Object Recursion Design Patterns with Om Next Recursive Queries - Part 2]]></title><description><![CDATA[
 This is part two of a series of posts that aim to demonstrate how to build classical Software Engineering object recursion patterns in Om Next. In the [previous post](2016/01/exploration-patterns-om-next-part-1), we explored the Om Next constructs of the Composite. This time around we will use the [Decorator](https://en.wikipedia.org/wiki/Decorator_pattern) design pattern to build a simple component hierarchy that provides runtime extensibility.
 
-]]></description><link>https://anmonteiro.com/2016/01/exploration-patterns-om-next-part-2/</link><guid isPermaLink="false">https://anmonteiro.com/2016/01/exploration-patterns-om-next-part-2/</guid><pubDate>Sat, 09 Jan 2016 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;This is part two of a series of posts that aim to demonstrate how to build classical Software Engineering object recursion patterns in Om Next. In the &lt;a href=&quot;2016/01/exploration-patterns-om-next-part-1&quot;&gt;previous post&lt;/a&gt;, we explored the Om Next constructs of the Composite. This time around we will use the &lt;a href=&quot;https://en.wikipedia.org/wiki/Decorator_pattern&quot;&gt;Decorator&lt;/a&gt; design pattern to build a simple component hierarchy that provides runtime extensibility.&lt;/p&gt;
+]]></description><link>https://anmonteiro.com/2016/01/exploration-patterns-om-next-part-2/</link><guid isPermaLink="false">https://anmonteiro.com/2016/01/exploration-patterns-om-next-part-2/</guid><pubDate>Sat, 09 Jan 2016 08:00:00 GMT</pubDate><content:encoded>&lt;p&gt;This is part two of a series of posts that aim to demonstrate how to build classical Software Engineering object recursion patterns in Om Next. In the &lt;a href=&quot;2016/01/exploration-patterns-om-next-part-1&quot;&gt;previous post&lt;/a&gt;, we explored the Om Next constructs of the Composite. This time around we will use the &lt;a href=&quot;https://en.wikipedia.org/wiki/Decorator_pattern&quot;&gt;Decorator&lt;/a&gt; design pattern to build a simple component hierarchy that provides runtime extensibility.&lt;/p&gt;
 &lt;!--more--&gt;
 &lt;h2&gt;The Decorator design pattern&lt;/h2&gt;
 &lt;div style=&quot;max-width:75%;margin:15px auto 0;&quot;&gt;
@@ -1418,7 +1545,7 @@ We adopt the nomenclature present in the pattern diagram, except for our concret
 &lt;script type=&quot;text/javascript&quot; src=&quot;/js/exploration-dp-2.js&quot;&gt;&lt;/script&gt;</content:encoded></item><item><title><![CDATA[An Exploration of Object Recursion Design Patterns with Om Next Recursive Queries - Part 1]]></title><description><![CDATA[
 The recent [landing of recursive union queries](https://github.com/omcljs/om/pull/562) in Om Next allows for defining recursive, heterogeneous data in a simple, expressive way. In a series of posts, I will explore how this conjugates with well-known Software Engineering structural design patterns that are based on object recursion. In this part 1 we will put together a simple component hierarchy that uses the [Composite](https://en.wikipedia.org/wiki/Composite_pattern) design pattern. Let's dig into it.
 
-]]></description><link>https://anmonteiro.com/2016/01/exploration-patterns-om-next-part-1/</link><guid isPermaLink="false">https://anmonteiro.com/2016/01/exploration-patterns-om-next-part-1/</guid><pubDate>Thu, 07 Jan 2016 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;The recent &lt;a href=&quot;https://github.com/omcljs/om/pull/562&quot;&gt;landing of recursive union queries&lt;/a&gt; in Om Next allows for defining recursive, heterogeneous data in a simple, expressive way. In a series of posts, I will explore how this conjugates with well-known Software Engineering structural design patterns that are based on object recursion. In this part 1 we will put together a simple component hierarchy that uses the &lt;a href=&quot;https://en.wikipedia.org/wiki/Composite_pattern&quot;&gt;Composite&lt;/a&gt; design pattern. Let&apos;s dig into it.&lt;/p&gt;
+]]></description><link>https://anmonteiro.com/2016/01/exploration-patterns-om-next-part-1/</link><guid isPermaLink="false">https://anmonteiro.com/2016/01/exploration-patterns-om-next-part-1/</guid><pubDate>Thu, 07 Jan 2016 08:00:00 GMT</pubDate><content:encoded>&lt;p&gt;The recent &lt;a href=&quot;https://github.com/omcljs/om/pull/562&quot;&gt;landing of recursive union queries&lt;/a&gt; in Om Next allows for defining recursive, heterogeneous data in a simple, expressive way. In a series of posts, I will explore how this conjugates with well-known Software Engineering structural design patterns that are based on object recursion. In this part 1 we will put together a simple component hierarchy that uses the &lt;a href=&quot;https://en.wikipedia.org/wiki/Composite_pattern&quot;&gt;Composite&lt;/a&gt; design pattern. Let&apos;s dig into it.&lt;/p&gt;
 &lt;!--more--&gt;
 &lt;h2&gt;The Composite design pattern&lt;/h2&gt;
 &lt;div style=&quot;max-width:75%;margin:15px auto 0;&quot;&gt;
@@ -1472,7 +1599,7 @@ The recent [landing of recursive union queries](https://github.com/omcljs/om/pul
 &lt;script type=&quot;text/javascript&quot; src=&quot;/js/exploration-dp-1.js&quot;&gt;&lt;/script&gt;</content:encoded></item><item><title><![CDATA[Om Next Query Syntax Explained]]></title><description><![CDATA[
 As more people start tinkering with Om Next, similar questions keep popping up increasingly often. While this is a natural thing given any new learning efforts, there can never be too many resources when we start learning something new. This write-up is an attempt to get people up and running with Om Next's query syntax by providing comprehensive examples and a quick syntax reference for the future.
 
-]]></description><link>https://anmonteiro.com/2016/01/om-next-query-syntax/</link><guid isPermaLink="false">https://anmonteiro.com/2016/01/om-next-query-syntax/</guid><pubDate>Mon, 04 Jan 2016 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;As more people start tinkering with Om Next, similar questions keep popping up increasingly often. While this is a natural thing given any new learning efforts, there can never be too many resources when we start learning something new. This write-up is an attempt to get people up and running with Om Next&apos;s query syntax by providing comprehensive examples and a quick syntax reference for the future.&lt;/p&gt;
+]]></description><link>https://anmonteiro.com/2016/01/om-next-query-syntax/</link><guid isPermaLink="false">https://anmonteiro.com/2016/01/om-next-query-syntax/</guid><pubDate>Mon, 04 Jan 2016 08:00:00 GMT</pubDate><content:encoded>&lt;p&gt;As more people start tinkering with Om Next, similar questions keep popping up increasingly often. While this is a natural thing given any new learning efforts, there can never be too many resources when we start learning something new. This write-up is an attempt to get people up and running with Om Next&apos;s query syntax by providing comprehensive examples and a quick syntax reference for the future.&lt;/p&gt;
 &lt;!--more--&gt;
 &lt;h2&gt;&lt;strong&gt;Read queries&lt;/strong&gt;&lt;/h2&gt;
 &lt;p&gt;This section covers the syntax for read queries, which are the ones we put into components that implement the &lt;code class=&quot;language-text&quot;&gt;IQuery&lt;/code&gt; protocol. The examples start out with the simplest form, progressing to more complex use cases as more syntax is revealed.&lt;/p&gt;
@@ -1689,7 +1816,7 @@ As more people start tinkering with Om Next, similar questions keep popping up i
 &lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Om Next Study Material]]></title><description><![CDATA[
 It has been a while since Martin Klepsch posted his [Om Next reading list](http://www.martinklepsch.org/posts/om-next-reading-list.html). If you're learning Om Next or planning to, there are a bunch more excellent resources that have recently appeared, and this post compiles a list of some of them.
 
-]]></description><link>https://anmonteiro.com/2015/12/om-next-study-material/</link><guid isPermaLink="false">https://anmonteiro.com/2015/12/om-next-study-material/</guid><pubDate>Thu, 10 Dec 2015 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;It has been a while since Martin Klepsch posted his &lt;a href=&quot;http://www.martinklepsch.org/posts/om-next-reading-list.html&quot;&gt;Om Next reading list&lt;/a&gt;. If you&apos;re learning Om Next or planning to, there are a bunch more excellent resources that have recently appeared, and this post compiles a list of some of them.&lt;/p&gt;
+]]></description><link>https://anmonteiro.com/2015/12/om-next-study-material/</link><guid isPermaLink="false">https://anmonteiro.com/2015/12/om-next-study-material/</guid><pubDate>Thu, 10 Dec 2015 08:00:00 GMT</pubDate><content:encoded>&lt;p&gt;It has been a while since Martin Klepsch posted his &lt;a href=&quot;http://www.martinklepsch.org/posts/om-next-reading-list.html&quot;&gt;Om Next reading list&lt;/a&gt;. If you&apos;re learning Om Next or planning to, there are a bunch more excellent resources that have recently appeared, and this post compiles a list of some of them.&lt;/p&gt;
 &lt;!--more--&gt;
 &lt;h3&gt;&lt;strong&gt;David Nolen&apos;s talks&lt;/strong&gt;&lt;/h3&gt;
 &lt;p&gt;&lt;a href=&quot;https://twitter.com/swannodette&quot;&gt;David Nolen&lt;/a&gt; has recently given a few talks presenting Om Next. They are presented in this section in chronological order — some content from previous talks might already be slightly outdated, but they all contain very good content (you can always get updated content every next talk :-) ).&lt;/p&gt;
@@ -1717,13 +1844,13 @@ It has been a while since Martin Klepsch posted his [Om Next reading list](http:
 &lt;p&gt;I hope all the above content is useful in your path learning Om Next. I&apos;d love to hear your suggestions regarding any additional content that you have found helpful during your Om Next study path. Happy hacking!&lt;/p&gt;</content:encoded></item><item><title><![CDATA[clj-isitup - a simple isitup.org API client]]></title><description><![CDATA[
 For sometime around last year, I had been toying with a simple [isitup.org](https://isitup.org/) API client and command line tool in Clojure. Just until a few days ago, it was just sitting in [my GitHub page](https://github.com/anmonteiro). Until I decided to put it out there.
 
-]]></description><link>https://anmonteiro.com/2015/11/clj-isitup-a-simple-isitup-org-api-client/</link><guid isPermaLink="false">https://anmonteiro.com/2015/11/clj-isitup-a-simple-isitup-org-api-client/</guid><pubDate>Tue, 17 Nov 2015 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;For sometime around last year, I had been toying with a simple &lt;a href=&quot;https://isitup.org/&quot;&gt;isitup.org&lt;/a&gt; API client and command line tool in Clojure. Just until a few days ago, it was just sitting in &lt;a href=&quot;https://github.com/anmonteiro&quot;&gt;my GitHub page&lt;/a&gt;. Until I decided to put it out there.&lt;/p&gt;
+]]></description><link>https://anmonteiro.com/2015/11/clj-isitup-a-simple-isitup-org-api-client/</link><guid isPermaLink="false">https://anmonteiro.com/2015/11/clj-isitup-a-simple-isitup-org-api-client/</guid><pubDate>Tue, 17 Nov 2015 08:00:00 GMT</pubDate><content:encoded>&lt;p&gt;For sometime around last year, I had been toying with a simple &lt;a href=&quot;https://isitup.org/&quot;&gt;isitup.org&lt;/a&gt; API client and command line tool in Clojure. Just until a few days ago, it was just sitting in &lt;a href=&quot;https://github.com/anmonteiro&quot;&gt;my GitHub page&lt;/a&gt;. Until I decided to put it out there.&lt;/p&gt;
 &lt;!--more--&gt;
 &lt;p&gt;So &lt;code class=&quot;language-text&quot;&gt;clj-isitup&lt;/code&gt; is out there now, both on  &lt;a href=&quot;https://github.com/anmonteiro/clj-isitup&quot;&gt;GitHub&lt;/a&gt; and in &lt;a href=&quot;https://clojars.org/clj-isitup&quot;&gt;Clojars&lt;/a&gt;. It is working pretty well, but it still needs some polishing around the corners, such as its own &lt;a href=&quot;https://github.com/anmonteiro/clj-isitup/issues/3&quot;&gt;command line executable&lt;/a&gt; (for now you can try it out via &lt;code class=&quot;language-text&quot;&gt;lein run&lt;/code&gt; or &lt;code class=&quot;language-text&quot;&gt;lein trampoline&lt;/code&gt;).&lt;/p&gt;
 &lt;p&gt;Go ahead then, and you too toy with it. Feel free to report any issues or add your own thoughts in the comments below.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Hosting files on the cloud via GitHub Issues]]></title><description><![CDATA[
 Ever wanted to host pictures or other files on GitHub without storing them in a repository? Here's a simple hack which allows us to host our files directly on GitHub's cloud.
 
-]]></description><link>https://anmonteiro.com/2015/09/hosting-files-on-the-cloud-via-github-issues/</link><guid isPermaLink="false">https://anmonteiro.com/2015/09/hosting-files-on-the-cloud-via-github-issues/</guid><pubDate>Fri, 25 Sep 2015 23:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Ever wanted to host pictures or other files on GitHub without storing them in a repository? Here&apos;s a simple hack which allows us to host our files directly on GitHub&apos;s cloud.&lt;/p&gt;
+]]></description><link>https://anmonteiro.com/2015/09/hosting-files-on-the-cloud-via-github-issues/</link><guid isPermaLink="false">https://anmonteiro.com/2015/09/hosting-files-on-the-cloud-via-github-issues/</guid><pubDate>Sat, 26 Sep 2015 07:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Ever wanted to host pictures or other files on GitHub without storing them in a repository? Here&apos;s a simple hack which allows us to host our files directly on GitHub&apos;s cloud.&lt;/p&gt;
 &lt;!--more--&gt;
 &lt;p&gt;To use this simple approach, we first have to open an issue on any GitHub repository of our choice. Once the issue is open, we simply have to drag a file of our choosing to the comment box, just like in the picture below.&lt;/p&gt;
 &lt;img title=&quot;Drag file to comment box&quot; src=&quot;https://cloud.githubusercontent.com/assets/661909/10117392/c12a9ab0-6455-11e5-96b2-720f8e77759b.png&quot;&gt;
@@ -1735,7 +1862,7 @@ Ever wanted to host pictures or other files on GitHub without storing them in a 
 &lt;p&gt;Thanks for reading!&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Solving Closure Library's Html5history double event dispatch]]></title><description><![CDATA[
 Most Clojurescript apps that rely on browser routing are wired in some manner to either the Google Closure Library's [HTML5 History](https://closure-library.googlecode.com/git-history/docs/class_goog_history_Html5History.html) module or - in an increasingly lower number of cases - the [History](https://closure-library.googlecode.com/git-history/docs/class_goog_History.html) module. While both [`pushState`](https://developer.mozilla.org/en-US/docs/Web/API/History_API)- and [fragment](https://en.wikipedia.org/wiki/Fragment_identifier)-based routing are supported, the module always dispatches two navigation events when opting for the latter, which can become a source of unexpected behavior. Here's how to fix it.
 
-]]></description><link>https://anmonteiro.com/2015/09/solving-closure-librarys-html5history-double-event-dispatch/</link><guid isPermaLink="false">https://anmonteiro.com/2015/09/solving-closure-librarys-html5history-double-event-dispatch/</guid><pubDate>Thu, 10 Sep 2015 23:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Most Clojurescript apps that rely on browser routing are wired in some manner to either the Google Closure Library&apos;s &lt;a href=&quot;https://closure-library.googlecode.com/git-history/docs/class_goog_history_Html5History.html&quot;&gt;HTML5 History&lt;/a&gt; module or - in an increasingly lower number of cases - the &lt;a href=&quot;https://closure-library.googlecode.com/git-history/docs/class_goog_History.html&quot;&gt;History&lt;/a&gt; module. While both &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/API/History_API&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;pushState&lt;/code&gt;&lt;/a&gt;- and &lt;a href=&quot;https://en.wikipedia.org/wiki/Fragment_identifier&quot;&gt;fragment&lt;/a&gt;-based routing are supported, the module always dispatches two navigation events when opting for the latter, which can become a source of unexpected behavior. Here&apos;s how to fix it.&lt;/p&gt;
+]]></description><link>https://anmonteiro.com/2015/09/solving-closure-librarys-html5history-double-event-dispatch/</link><guid isPermaLink="false">https://anmonteiro.com/2015/09/solving-closure-librarys-html5history-double-event-dispatch/</guid><pubDate>Fri, 11 Sep 2015 07:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Most Clojurescript apps that rely on browser routing are wired in some manner to either the Google Closure Library&apos;s &lt;a href=&quot;https://closure-library.googlecode.com/git-history/docs/class_goog_history_Html5History.html&quot;&gt;HTML5 History&lt;/a&gt; module or - in an increasingly lower number of cases - the &lt;a href=&quot;https://closure-library.googlecode.com/git-history/docs/class_goog_History.html&quot;&gt;History&lt;/a&gt; module. While both &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/API/History_API&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;pushState&lt;/code&gt;&lt;/a&gt;- and &lt;a href=&quot;https://en.wikipedia.org/wiki/Fragment_identifier&quot;&gt;fragment&lt;/a&gt;-based routing are supported, the module always dispatches two navigation events when opting for the latter, which can become a source of unexpected behavior. Here&apos;s how to fix it.&lt;/p&gt;
 &lt;!--more--&gt;
 &lt;h3&gt;Understanding the problem&lt;/h3&gt;
 &lt;p&gt;Opting for the hash based routing approach with Google Closure&apos;s Html5history module can be done with the following (simplistic) Clojurescript code:&lt;/p&gt;
@@ -1774,7 +1901,7 @@ Most Clojurescript apps that rely on browser routing are wired in some manner to
 &lt;p&gt;If you&apos;ve got any feedback, don&apos;t hesitate to &lt;a href=&quot;https://twitter.com/%7B%7B%20site.author.twitter_username%20%7D%7D&quot;&gt;contact me&lt;/a&gt; or post in the comments below. Happy coding!&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Setting up Heroku config variables with Clojure]]></title><description><![CDATA[
 Configuration or environment variables are really useful whether you want to externally affect the way your apps run or if you simply want to keep private, sensitive data out of your version control system. The other day I ran into some trouble having [Heroku](https://www.heroku.com/) read the config variables of a Clojure app of mine. So here's how to get it working.
 
-]]></description><link>https://anmonteiro.com/2015/09/setting-up-heroku-config-variables-with-clojure/</link><guid isPermaLink="false">https://anmonteiro.com/2015/09/setting-up-heroku-config-variables-with-clojure/</guid><pubDate>Wed, 02 Sep 2015 23:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Configuration or environment variables are really useful whether you want to externally affect the way your apps run or if you simply want to keep private, sensitive data out of your version control system. The other day I ran into some trouble having &lt;a href=&quot;https://www.heroku.com/&quot;&gt;Heroku&lt;/a&gt; read the config variables of a Clojure app of mine. So here&apos;s how to get it working.&lt;/p&gt;
+]]></description><link>https://anmonteiro.com/2015/09/setting-up-heroku-config-variables-with-clojure/</link><guid isPermaLink="false">https://anmonteiro.com/2015/09/setting-up-heroku-config-variables-with-clojure/</guid><pubDate>Thu, 03 Sep 2015 07:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Configuration or environment variables are really useful whether you want to externally affect the way your apps run or if you simply want to keep private, sensitive data out of your version control system. The other day I ran into some trouble having &lt;a href=&quot;https://www.heroku.com/&quot;&gt;Heroku&lt;/a&gt; read the config variables of a Clojure app of mine. So here&apos;s how to get it working.&lt;/p&gt;
 &lt;!--more--&gt;
 &lt;h3&gt;1. Add the variables to Heroku&lt;/h3&gt;
 &lt;p&gt;In your Heroku app dashboard, go into settings and click &quot;Reveal Config Vars&quot;. If you haven&apos;t added any configuration variables yet, it should look something like this:&lt;/p&gt;
@@ -1816,7 +1943,7 @@ Configuration or environment variables are really useful whether you want to ext
 &lt;p&gt;If you liked this post or have any questions / suggestions, be sure to &lt;a href=&quot;mailto:%7B%7B%20site.author.email%20%7D%7D&quot;&gt;drop me a line&lt;/a&gt; or reach me on &lt;a href=&quot;https://twitter.com/%7B%7B%20site.author.twitter_username%20%7D%7D&quot;&gt;Twitter&lt;/a&gt;. Happy hacking!&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Jekyll related posts revamped]]></title><description><![CDATA[
 [Jekyll](http://jekyllrb.com/) hosted in [Github Pages](https://pages.github.com) features a simple "Related posts" variable per post page, which contains the 10 most recent posts. As one might think, these most *recent* posts might not quite correspond, at all, to any *related* posts. So I devised a way to show recent **and** related posts in this blog using solely [Liquid](https://github.com/Shopify/liquid/wiki) tags.
 
-]]></description><link>https://anmonteiro.com/2015/08/jekyll-related-posts-revamped/</link><guid isPermaLink="false">https://anmonteiro.com/2015/08/jekyll-related-posts-revamped/</guid><pubDate>Fri, 28 Aug 2015 23:00:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;a href=&quot;http://jekyllrb.com/&quot;&gt;Jekyll&lt;/a&gt; hosted in &lt;a href=&quot;https://pages.github.com&quot;&gt;Github Pages&lt;/a&gt; features a simple &quot;Related posts&quot; variable per post page, which contains the 10 most recent posts. As one might think, these most &lt;em&gt;recent&lt;/em&gt; posts might not quite correspond, at all, to any &lt;em&gt;related&lt;/em&gt; posts. So I devised a way to show recent &lt;strong&gt;and&lt;/strong&gt; related posts in this blog using solely &lt;a href=&quot;https://github.com/Shopify/liquid/wiki&quot;&gt;Liquid&lt;/a&gt; tags.&lt;/p&gt;
+]]></description><link>https://anmonteiro.com/2015/08/jekyll-related-posts-revamped/</link><guid isPermaLink="false">https://anmonteiro.com/2015/08/jekyll-related-posts-revamped/</guid><pubDate>Sat, 29 Aug 2015 07:00:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;a href=&quot;http://jekyllrb.com/&quot;&gt;Jekyll&lt;/a&gt; hosted in &lt;a href=&quot;https://pages.github.com&quot;&gt;Github Pages&lt;/a&gt; features a simple &quot;Related posts&quot; variable per post page, which contains the 10 most recent posts. As one might think, these most &lt;em&gt;recent&lt;/em&gt; posts might not quite correspond, at all, to any &lt;em&gt;related&lt;/em&gt; posts. So I devised a way to show recent &lt;strong&gt;and&lt;/strong&gt; related posts in this blog using solely &lt;a href=&quot;https://github.com/Shopify/liquid/wiki&quot;&gt;Liquid&lt;/a&gt; tags.&lt;/p&gt;
 &lt;!--more--&gt;
 &lt;p&gt;It works by going through the related posts collection and selecting the posts that contain any tags in common with the current post, up to a defined limit. If there are enough posts to fill that limit, fine, it stops there. Otherwise, it goes again through the most recent, possibly unrelated posts, and outputs them until the limit is finally reached.&lt;/p&gt;
 &lt;p&gt;It can also be easily adapted to work with Jekyll&apos;s categories instead of tags, by changing at most 3 or 4 lines of code.
@@ -1825,7 +1952,7 @@ The full gist is presented below.&lt;/p&gt;
 &lt;p&gt;If you have any questions or suggestions, don&apos;t hesitate to drop me a line, either on &lt;a href=&quot;https://twitter.com/%7B%7B%20site.author.twitter_username%20%7D%7D&quot;&gt;Twitter&lt;/a&gt; or by &lt;a href=&quot;mailto:%7B%7B%20site.author.email%20%7D%7D&quot;&gt;email&lt;/a&gt;.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Custom subdomains in GitHub project pages]]></title><description><![CDATA[
 If you host your website, blog or project pages in [GitHub Pages](https://pages.github.com/), you might already be rolling your own [custom domain](https://help.github.com/articles/setting-up-a-custom-domain-with-github-pages/). However, while there is plenty of information on how to set that up, what you might not know is that you can also set up a custom subdomain for your project pages.
 
-]]></description><link>https://anmonteiro.com/2015/08/custom-subdomains-in-github-project-pages/</link><guid isPermaLink="false">https://anmonteiro.com/2015/08/custom-subdomains-in-github-project-pages/</guid><pubDate>Sun, 23 Aug 2015 23:00:00 GMT</pubDate><content:encoded>&lt;p&gt;If you host your website, blog or project pages in &lt;a href=&quot;https://pages.github.com/&quot;&gt;GitHub Pages&lt;/a&gt;, you might already be rolling your own &lt;a href=&quot;https://help.github.com/articles/setting-up-a-custom-domain-with-github-pages/&quot;&gt;custom domain&lt;/a&gt;. However, while there is plenty of information on how to set that up, what you might not know is that you can also set up a custom subdomain for your project pages.&lt;/p&gt;
+]]></description><link>https://anmonteiro.com/2015/08/custom-subdomains-in-github-project-pages/</link><guid isPermaLink="false">https://anmonteiro.com/2015/08/custom-subdomains-in-github-project-pages/</guid><pubDate>Mon, 24 Aug 2015 07:00:00 GMT</pubDate><content:encoded>&lt;p&gt;If you host your website, blog or project pages in &lt;a href=&quot;https://pages.github.com/&quot;&gt;GitHub Pages&lt;/a&gt;, you might already be rolling your own &lt;a href=&quot;https://help.github.com/articles/setting-up-a-custom-domain-with-github-pages/&quot;&gt;custom domain&lt;/a&gt;. However, while there is plenty of information on how to set that up, what you might not know is that you can also set up a custom subdomain for your project pages.&lt;/p&gt;
 &lt;!--more--&gt;
 &lt;p class=&quot;message&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; when you use your own domain (e.g. &lt;code&gt;mydomain.com&lt;/code&gt;) with GitHub Pages, you get your project pages under that domain for free (e.g. &lt;code&gt;myusername.github.io/pjname&lt;/code&gt; will also be available under &lt;code&gt;mydomain.com/pjname&lt;/code&gt;)&lt;/p&gt;
 &lt;p&gt;So, if you&apos;d like to publish your project page under &lt;code class=&quot;language-text&quot;&gt;pjname.mydomain.com&lt;/code&gt;, even though it will live under &lt;code class=&quot;language-text&quot;&gt;mydomain.com/pjname&lt;/code&gt; anyway, but you might just prefer it this way), simply follow these steps:&lt;/p&gt;
@@ -1840,7 +1967,7 @@ Hello, and welcome to my humble corner in the Internet. This is where I'll focus
 
 As I'm hosting the blog on [GitHub Pages](https://pages.github.com), there are no comments for now. However, you can always reach me on Twitter - [@{{ site.author.twitter_username }}](http://twitter.com/{{ site.author.twitter_username }}) - or by [email](mailto:{{ site.author.email }}).
 
-]]></description><link>https://anmonteiro.com/2015/08/grand-opening/</link><guid isPermaLink="false">https://anmonteiro.com/2015/08/grand-opening/</guid><pubDate>Mon, 17 Aug 2015 23:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Hello, and welcome to my humble corner in the Internet. This is where I&apos;ll focus on writing about &lt;strong&gt;software engineering&lt;/strong&gt;, &lt;strong&gt;programming&lt;/strong&gt; and &lt;strong&gt;lifestyle&lt;/strong&gt;.&lt;/p&gt;
+]]></description><link>https://anmonteiro.com/2015/08/grand-opening/</link><guid isPermaLink="false">https://anmonteiro.com/2015/08/grand-opening/</guid><pubDate>Tue, 18 Aug 2015 07:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Hello, and welcome to my humble corner in the Internet. This is where I&apos;ll focus on writing about &lt;strong&gt;software engineering&lt;/strong&gt;, &lt;strong&gt;programming&lt;/strong&gt; and &lt;strong&gt;lifestyle&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;As I&apos;m hosting the blog on &lt;a href=&quot;https://pages.github.com&quot;&gt;GitHub Pages&lt;/a&gt;, there are no comments for now. However, you can always reach me on Twitter - &lt;a href=&quot;http://twitter.com/%7B%7B%20site.author.twitter_username%20%7D%7D&quot;&gt;@{{ site.author.twitter_username }}&lt;/a&gt; - or by &lt;a href=&quot;mailto:%7B%7B%20site.author.email%20%7D%7D&quot;&gt;email&lt;/a&gt;.&lt;/p&gt;
 &lt;!--more--&gt;
 &lt;p&gt;Go on and read some more &lt;a href=&quot;%7B%7B%20site.baseurl%20%7D%7D/about&quot;&gt;about me&lt;/a&gt;.&lt;/p&gt;

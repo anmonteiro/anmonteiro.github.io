@@ -6,6 +6,7 @@
 <url> <loc>https://anmonteiro.com/page4</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://anmonteiro.com/page5</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://anmonteiro.com/page6</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://anmonteiro.com/2021/03/on-ocaml-and-the-js-platform/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://anmonteiro.com/2018/11/reason-and-the-language-server-protocol-the-landscape/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://anmonteiro.com/2017/09/the-state-of-clojurescript-compilation-in-lumo/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://anmonteiro.com/2017/08/shipping-a-very-simplistic-reasonreact-app/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
