@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[anmonteiro]]></title><description><![CDATA[
     I'm a Software Engineer with a passion for entrepreneurship and open-source
     software. This is where I write about software engineering, programming and
-    lifestyle.]]></description><link>http://github.com/dylang/node-rss</link><generator>RSS for Node</generator><lastBuildDate>Fri, 12 Mar 2021 23:15:51 GMT</lastBuildDate><item><title><![CDATA[On OCaml and the JS platform]]></title><description><![CDATA[
+    lifestyle.]]></description><link>http://github.com/dylang/node-rss</link><generator>RSS for Node</generator><lastBuildDate>Sat, 13 Mar 2021 08:44:12 GMT</lastBuildDate><item><title><![CDATA[On OCaml and the JS platform]]></title><description><![CDATA[
 [ReScript](https://rescript-lang.org/), née
 [BuckleScript](https://bucklescript.netlify.app/), is a state-of-the-art
 compiler that used to target OCaml (and Reason), but is fast moving away from
@@ -111,6 +111,10 @@ as folks are interested in trying out the project.&lt;/p&gt;
 &lt;a href=&quot;https://twitter.com/_anmonteiro&quot;&gt;@_anmonteiro&lt;/a&gt;, or otherwise catch me on the
 OCaml / Reason Discord servers.&lt;/p&gt;
 &lt;p&gt;Thanks for reading and happy hacking!&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Addendum&lt;/strong&gt;: The initial version of this post failed to acknowledge the BuckleScript
+authors. Even though I fixed that right away in
+&lt;a href=&quot;https://twitter.com/_anmonteiro/status/1370613252036554752&quot;&gt;tweet&lt;/a&gt; form, I
+took a suggestion from a Twitter reply and added here for posterity.&lt;/p&gt;
 &lt;hr&gt;
 &lt;div id=&quot;fn:1&quot;&gt;
   &lt;sup&gt;&lt;sub&gt;1&lt;/sub&gt;&lt;/sup&gt; &lt;sub&gt;I&amp;apos;m going to avoid talking specifically about
