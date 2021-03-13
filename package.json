@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "classnames": "^2.2.6",
-    "gatsby": "^2.0.67",
+    "gatsby": "^3.0.4",
     "gatsby-plugin-catch-links": "^2.0.9",
     "gatsby-plugin-feed": "^2.1.0",
     "gatsby-plugin-google-fonts": "0.0.4",

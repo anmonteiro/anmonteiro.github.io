@@ -107,6 +107,12 @@ OCaml / Reason Discord servers.
 
 Thanks for reading and happy hacking!
 
+
+**Addendum**: The initial version of this post failed to acknowledge the BuckleScript
+authors. Even though I fixed that right away in
+[tweet](https://twitter.com/_anmonteiro/status/1370613252036554752) form, I
+took a suggestion from a Twitter reply and added here for posterity.
+
 ---
 
 <div id="fn:1">
