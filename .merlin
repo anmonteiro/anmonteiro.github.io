@@ -1,0 +1,21 @@
+####{BSB GENERATED: NO EDIT
+FLG -ppx 'melc -as-ppx -bs-jsx 3'
+S /Users/anmonteiro/projects/melange/_build/default/lib/melange
+B /Users/anmonteiro/projects/melange/_build/default/lib/melange
+S /Users/anmonteiro/projects/melange/_build/default/jscomp/lib/melange
+B /Users/anmonteiro/projects/melange/_build/default/jscomp/lib/melange
+FLG -w +a-4-29-40-41-42-44-45-48-58-59-60-61-63..70-102-44-101-40-42-61
+S /Users/anmonteiro/projects/anmonteiro.github.io/node_modules/@rescript/react/src
+B /Users/anmonteiro/projects/anmonteiro.github.io/_build/default/node_modules/@rescript/react/src
+S /Users/anmonteiro/projects/anmonteiro.github.io/node_modules/@rescript/react/src/legacy
+B /Users/anmonteiro/projects/anmonteiro.github.io/_build/default/node_modules/@rescript/react/src/legacy
+B /Users/anmonteiro/projects/anmonteiro.github.io/_build/default/.melange.eobjs/node_modules/@rescript/react
+S /Users/anmonteiro/projects/anmonteiro.github.io/node_modules/reason-promise/src/js
+B /Users/anmonteiro/projects/anmonteiro.github.io/_build/default/node_modules/reason-promise/src/js
+B /Users/anmonteiro/projects/anmonteiro.github.io/_build/default/.melange.eobjs/node_modules/reason-promise
+S /Users/anmonteiro/projects/anmonteiro.github.io/./src/components
+B /Users/anmonteiro/projects/anmonteiro.github.io/_build/default/./src/components
+S /Users/anmonteiro/projects/anmonteiro.github.io/./src/utils
+B /Users/anmonteiro/projects/anmonteiro.github.io/_build/default/./src/utils
+B _build/default/.melange.eobjs
+####BSB GENERATED: NO EDIT}

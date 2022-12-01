@@ -9,7 +9,7 @@ const NavLink = ({ className, test, text, url }) => {
   const classes = classnames('pagination-item', className);
   if (!test) {
     return (
-      <Link to={url} className={classes}>
+      <Link href={url} className={classes}>
         {text}
       </Link>
     );
@@ -19,7 +19,7 @@ const NavLink = ({ className, test, text, url }) => {
 };
 
 export const query = graphql`
-  query($skip: Int!, $limit: Int!) {
+  query ($skip: Int!, $limit: Int!) {
     allMarkdownRemark(
       sort: { fields: [fileAbsolutePath], order: DESC }
       limit: $limit
@@ -51,33 +51,33 @@ export default ({ data, pageContext }) => {
   return (
     <Layout>
       <SEO pageData={{}} />
-      <div className='posts'>
+      <div className="posts">
         {data.allMarkdownRemark.edges.map(({ node }, idx) => (
-          <div key={idx} className='post'>
-            <h1 className='post-title'>
-              <Link to={node.fields.slug} className='post-title'>
+          <div key={idx} className="post">
+            <h1 className="post-title">
+              <Link href={node.fields.slug} className="post-title">
                 {node.fields.title}
               </Link>
             </h1>
 
-            <span className='post-date'>{node.fields.date}</span>
+            <span className="post-date">{node.fields.date}</span>
 
             <div dangerouslySetInnerHTML={{ __html: node.excerpt }} />
             <p>
-              <Link to={node.fields.slug} className='post-title'>
+              <Link href={node.fields.slug} className="post-title">
                 Read more &nbsp;&#10137;
               </Link>
             </p>
           </div>
         ))}
       </div>
-      <div className='pagination'>
-        <NavLink test={last} url={nextUrl} text='Older' className='older' />
+      <div className="pagination">
+        <NavLink test={last} url={nextUrl} text="Older" className="older" />
         <NavLink
           test={first}
           url={previousUrl}
-          text='Newer'
-          className='newer'
+          text="Newer"
+          className="newer"
         />
       </div>
     </Layout>

@@ -31,7 +31,7 @@ function TwitterPlug({ tags }) {
 }
 
 function Disqus({ url, slug }) {
-  const identifierParts = slug.split('/').filter(x => x !== '');
+  const identifierParts = slug.split('/').filter((x) => x !== '');
   const identifier = identifierParts[identifierParts.length - 1].split('.')[0];
   useScriptTag(`
   var disqus_config = function () {
@@ -119,7 +119,7 @@ function RelatedPosts({ allPosts, currentPost }) {
     }
     const post = allPosts[i].node;
     const { tags } = post.fields;
-    if (tags.some(tag => currentPost.fields.tags.indexOf(tag) !== -1)) {
+    if (tags.some((tag) => currentPost.fields.tags.indexOf(tag) !== -1)) {
       relatedPosts.push(post);
     }
   }
@@ -131,7 +131,7 @@ function RelatedPosts({ allPosts, currentPost }) {
       }
       const post = allPosts[i].node;
       const { slug } = post.fields;
-      if (!relatedPosts.some(post => post.fields.slug === slug)) {
+      if (!relatedPosts.some((post) => post.fields.slug === slug)) {
         relatedPosts.push(post);
       }
     }
@@ -146,7 +146,7 @@ function RelatedPosts({ allPosts, currentPost }) {
           return (
             <li key={idx}>
               <h3>
-                <Link to={slug}>
+                <Link href={slug}>
                   {title} <small>{date}</small>
                 </Link>
               </h3>

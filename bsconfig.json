@@ -1,0 +1,27 @@
+{
+  "name": "anmonteiro",
+  "sources": [
+    {
+      "dir": "src",
+      "subdirs": true
+    }
+  ],
+  "bs-dependencies": [
+    "@rescript/react",
+    "reason-promise"
+  ],
+  "warnings": {
+    "error": "+A",
+    "number": "-44-101"
+  },
+  "reason": {
+    "react-jsx": 3
+  },
+  "package-specs": [
+    {
+      "module": "es6",
+      "in-source": true,
+      "suffix": ".bs.js"
+    }
+  ]
+}

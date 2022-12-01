@@ -1,0 +1,583 @@
+
+(subdir node_modules/@rescript/react/src
+(dirs :standard legacy)
+(rule
+(targets  React.ast)
+ (deps (:inputs  React.res)  ../../../../.melange.eobjs/node_modules/@rescript/react/.bsbuild)
+(action
+ (run melc  -w a -bs-jsx 3  -absname -bs-ast -o %{targets} %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  React.d)
+ (deps (:inputs  .././src/React.ast) )
+(action (run meldep  -root-dir ../../../.. -p @rescript/react -proj-dir ..  %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  React.cmj React.cmi React.cmt React.bs.js)
+ (alias mel)
+ (mode (promote (until-clean) (only React.bs.js)))(deps (:inputs  React.ast)  (include React.d) ../bsconfig.json)
+(action
+  (run melc -I legacy -I .    -w a -bs-package-name @rescript/react -bs-package-output es6:./src:.bs.js -o React.cmj %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  ReactDOM.ast)
+ (deps (:inputs  ReactDOM.res)  ../../../../.melange.eobjs/node_modules/@rescript/react/.bsbuild)
+(action
+ (run melc  -w a -bs-jsx 3  -absname -bs-ast -o %{targets} %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  ReactDOM.d)
+ (deps (:inputs  .././src/ReactDOM.ast) )
+(action (run meldep  -root-dir ../../../.. -p @rescript/react -proj-dir ..  %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  ReactDOM.cmj ReactDOM.cmi ReactDOM.cmt ReactDOM.bs.js)
+ (alias mel)
+ (mode (promote (until-clean) (only ReactDOM.bs.js)))(deps (:inputs  ReactDOM.ast)  (include ReactDOM.d) ../bsconfig.json)
+(action
+  (run melc -I legacy -I .    -w a -bs-package-name @rescript/react -bs-package-output es6:./src:.bs.js -o ReactDOM.cmj %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  ReactEvent.ast)
+ (deps (:inputs  ReactEvent.res)  ../../../../.melange.eobjs/node_modules/@rescript/react/.bsbuild)
+(action
+ (run melc  -w a -bs-jsx 3  -absname -bs-ast -o %{targets} %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  ReactEvent.d)
+ (deps (:inputs  .././src/ReactEvent.ast .././src/ReactEvent.iast) )
+(action (run meldep  -root-dir ../../../.. -p @rescript/react -proj-dir ..  %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  ReactEvent.iast)
+ (deps (:inputs  ReactEvent.resi) )
+(action
+ (run melc  -w a -bs-jsx 3  -absname -bs-ast -o %{targets} %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  ReactEvent.cmi ReactEvent.cmti)
+ (alias mel)
+ (deps (:inputs  ReactEvent.iast)  (include ReactEvent.d) ../bsconfig.json)
+(action
+  (run melc -I legacy -I .    -w a -o ReactEvent.cmi %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  ReactEvent.cmj ReactEvent.cmt ReactEvent.bs.js)
+ (alias mel)
+ (mode (promote (until-clean) (only ReactEvent.bs.js)))(deps (:inputs  ReactEvent.ast)  ReactEvent.cmi (include ReactEvent.d) ../bsconfig.json)
+(action
+  (run melc -bs-read-cmi -I legacy -I .    -w a -bs-package-name @rescript/react -bs-package-output es6:./src:.bs.js -o ReactEvent.cmj %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  ReactDOMStyle.ast)
+ (deps (:inputs  ReactDOMStyle.res)  ../../../../.melange.eobjs/node_modules/@rescript/react/.bsbuild)
+(action
+ (run melc  -w a -bs-jsx 3  -absname -bs-ast -o %{targets} %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  ReactDOMStyle.d)
+ (deps (:inputs  .././src/ReactDOMStyle.ast) )
+(action (run meldep  -root-dir ../../../.. -p @rescript/react -proj-dir ..  %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  ReactDOMStyle.cmj ReactDOMStyle.cmi ReactDOMStyle.cmt ReactDOMStyle.bs.js)
+ (alias mel)
+ (mode (promote (until-clean) (only ReactDOMStyle.bs.js)))(deps (:inputs  ReactDOMStyle.ast)  (include ReactDOMStyle.d) ../bsconfig.json)
+(action
+  (run melc -I legacy -I .    -w a -bs-package-name @rescript/react -bs-package-output es6:./src:.bs.js -o ReactDOMStyle.cmj %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  ReactDOMServer.ast)
+ (deps (:inputs  ReactDOMServer.res)  ../../../../.melange.eobjs/node_modules/@rescript/react/.bsbuild)
+(action
+ (run melc  -w a -bs-jsx 3  -absname -bs-ast -o %{targets} %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  ReactDOMServer.d)
+ (deps (:inputs  .././src/ReactDOMServer.ast) )
+(action (run meldep  -root-dir ../../../.. -p @rescript/react -proj-dir ..  %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  ReactDOMServer.cmj ReactDOMServer.cmi ReactDOMServer.cmt ReactDOMServer.bs.js)
+ (alias mel)
+ (mode (promote (until-clean) (only ReactDOMServer.bs.js)))(deps (:inputs  ReactDOMServer.ast)  (include ReactDOMServer.d) ../bsconfig.json)
+(action
+  (run melc -I legacy -I .    -w a -bs-package-name @rescript/react -bs-package-output es6:./src:.bs.js -o ReactDOMServer.cmj %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  ReactTestUtils.ast)
+ (deps (:inputs  ReactTestUtils.res)  ../../../../.melange.eobjs/node_modules/@rescript/react/.bsbuild)
+(action
+ (run melc  -w a -bs-jsx 3  -absname -bs-ast -o %{targets} %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  ReactTestUtils.d)
+ (deps (:inputs  .././src/ReactTestUtils.ast .././src/ReactTestUtils.iast) )
+(action (run meldep  -root-dir ../../../.. -p @rescript/react -proj-dir ..  %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  ReactTestUtils.iast)
+ (deps (:inputs  ReactTestUtils.resi) )
+(action
+ (run melc  -w a -bs-jsx 3  -absname -bs-ast -o %{targets} %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  ReactTestUtils.cmi ReactTestUtils.cmti)
+ (alias mel)
+ (deps (:inputs  ReactTestUtils.iast)  (include ReactTestUtils.d) ../bsconfig.json)
+(action
+  (run melc -I legacy -I .    -w a -o ReactTestUtils.cmi %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  ReactTestUtils.cmj ReactTestUtils.cmt ReactTestUtils.bs.js)
+ (alias mel)
+ (mode (promote (until-clean) (only ReactTestUtils.bs.js)))(deps (:inputs  ReactTestUtils.ast)  ReactTestUtils.cmi (include ReactTestUtils.d) ../bsconfig.json)
+(action
+  (run melc -bs-read-cmi -I legacy -I .    -w a -bs-package-name @rescript/react -bs-package-output es6:./src:.bs.js -o ReactTestUtils.cmj %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  RescriptReactRouter.ast)
+ (deps (:inputs  RescriptReactRouter.res)  ../../../../.melange.eobjs/node_modules/@rescript/react/.bsbuild)
+(action
+ (run melc  -w a -bs-jsx 3  -absname -bs-ast -o %{targets} %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  RescriptReactRouter.d)
+ (deps (:inputs  .././src/RescriptReactRouter.ast .././src/RescriptReactRouter.iast) )
+(action (run meldep  -root-dir ../../../.. -p @rescript/react -proj-dir ..  %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  RescriptReactRouter.iast)
+ (deps (:inputs  RescriptReactRouter.resi) )
+(action
+ (run melc  -w a -bs-jsx 3  -absname -bs-ast -o %{targets} %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  RescriptReactRouter.cmi RescriptReactRouter.cmti)
+ (alias mel)
+ (deps (:inputs  RescriptReactRouter.iast)  (include RescriptReactRouter.d) ../bsconfig.json)
+(action
+  (run melc -I legacy -I .    -w a -o RescriptReactRouter.cmi %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  RescriptReactRouter.cmj RescriptReactRouter.cmt RescriptReactRouter.bs.js)
+ (alias mel)
+ (mode (promote (until-clean) (only RescriptReactRouter.bs.js)))(deps (:inputs  RescriptReactRouter.ast)  RescriptReactRouter.cmi (include RescriptReactRouter.d) ../bsconfig.json)
+(action
+  (run melc -bs-read-cmi -I legacy -I .    -w a -bs-package-name @rescript/react -bs-package-output es6:./src:.bs.js -o RescriptReactRouter.cmj %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  RescriptReactErrorBoundary.ast)
+ (deps (:inputs  RescriptReactErrorBoundary.res)  ../../../../.melange.eobjs/node_modules/@rescript/react/.bsbuild)
+(action
+ (run melc  -w a -bs-jsx 3  -absname -bs-ast -o %{targets} %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  RescriptReactErrorBoundary.d)
+ (deps (:inputs  .././src/RescriptReactErrorBoundary.ast .././src/RescriptReactErrorBoundary.iast) )
+(action (run meldep  -root-dir ../../../.. -p @rescript/react -proj-dir ..  %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  RescriptReactErrorBoundary.iast)
+ (deps (:inputs  RescriptReactErrorBoundary.resi) )
+(action
+ (run melc  -w a -bs-jsx 3  -absname -bs-ast -o %{targets} %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  RescriptReactErrorBoundary.cmi RescriptReactErrorBoundary.cmti)
+ (alias mel)
+ (deps (:inputs  RescriptReactErrorBoundary.iast)  (include RescriptReactErrorBoundary.d) ../bsconfig.json)
+(action
+  (run melc -I legacy -I .    -w a -o RescriptReactErrorBoundary.cmi %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  RescriptReactErrorBoundary.cmj RescriptReactErrorBoundary.cmt RescriptReactErrorBoundary.bs.js)
+ (alias mel)
+ (mode (promote (until-clean) (only RescriptReactErrorBoundary.bs.js)))(deps (:inputs  RescriptReactErrorBoundary.ast)  RescriptReactErrorBoundary.cmi (include RescriptReactErrorBoundary.d) ../bsconfig.json)
+(action
+  (run melc -bs-read-cmi -I legacy -I .    -w a -bs-package-name @rescript/react -bs-package-output es6:./src:.bs.js -o RescriptReactErrorBoundary.cmj %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ )
+(subdir node_modules/@rescript/react/src/legacy
+(rule
+(targets  ReactDOMRe.ast)
+ (deps (:inputs  ReactDOMRe.res)  ../../../../../.melange.eobjs/node_modules/@rescript/react/.bsbuild)
+(action
+ (run melc  -w a -bs-jsx 3  -absname -bs-ast -o %{targets} %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  ReactDOMRe.d)
+ (deps (:inputs  ../.././src/legacy/ReactDOMRe.ast) )
+(action (run meldep  -root-dir ../../../../.. -p @rescript/react -proj-dir ../..  %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  ReactDOMRe.cmj ReactDOMRe.cmi ReactDOMRe.cmt ReactDOMRe.bs.js)
+ (alias mel)
+ (mode (promote (until-clean) (only ReactDOMRe.bs.js)))(deps (:inputs  ReactDOMRe.ast)  (include ReactDOMRe.d) ../../bsconfig.json)
+(action
+  (run melc -I . -I ..    -w a -bs-package-name @rescript/react -bs-package-output es6:./src/legacy:.bs.js -o ReactDOMRe.cmj %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  ReasonReact.ast)
+ (deps (:inputs  ReasonReact.res)  ../../../../../.melange.eobjs/node_modules/@rescript/react/.bsbuild)
+(action
+ (run melc  -w a -bs-jsx 3  -absname -bs-ast -o %{targets} %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  ReasonReact.d)
+ (deps (:inputs  ../.././src/legacy/ReasonReact.ast) )
+(action (run meldep  -root-dir ../../../../.. -p @rescript/react -proj-dir ../..  %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  ReasonReact.cmj ReasonReact.cmi ReasonReact.cmt ReasonReact.bs.js)
+ (alias mel)
+ (mode (promote (until-clean) (only ReasonReact.bs.js)))(deps (:inputs  ReasonReact.ast)  (include ReasonReact.d) ../../bsconfig.json)
+(action
+  (run melc -I . -I ..    -w a -bs-package-name @rescript/react -bs-package-output es6:./src/legacy:.bs.js -o ReasonReact.cmj %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ )
+
+(subdir .melange.eobjs/node_modules/@rescript/react
+(rule (write-file .bsbuild MTAKUmVhY3QKUmVhY3RET00KUmVhY3RET01SZQpSZWFjdEV2ZW50ClJlYXNvblJlYWN0ClJlYWN0RE9NU3R5bGUKUmVhY3RET01TZXJ2ZXIKUmVhY3RUZXN0VXRpbHMKUmVzY3JpcHRSZWFjdFJvdXRlcgpSZXNjcmlwdFJlYWN0RXJyb3JCb3VuZGFyeQouL3NyYwkuL3NyYy9sZWdhY3kJCjEBAQMBAwEBAQEBCjAK))
+)
+
+(subdir node_modules/reason-promise/src/js
+(rule
+(targets  promise.ast)
+ (deps (:inputs  promise.re)  ../../../../.melange.eobjs/node_modules/reason-promise/.bsbuild)
+(action
+ (run melc  -w a  -absname -bs-ast -o %{targets} %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  promise.d)
+ (deps (:inputs  ../.././src/js/promise.ast ../.././src/js/promise.iast) )
+(action (run meldep  -root-dir ../../../.. -p reason-promise -proj-dir ../..  %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  promise.iast)
+ (deps (:inputs  promise.rei) )
+(action
+ (run melc  -w a  -absname -bs-ast -o %{targets} %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  promise.cmi promise.cmti)
+ (alias mel)
+ (deps (:inputs  promise.iast)  (include promise.d) ../../bsconfig.json)
+(action
+  (run melc -bs-re-out -I .    -w a -o promise.cmi %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  promise.cmj promise.cmt promise.bs.js)
+ (alias mel)
+ (mode (promote (until-clean) (only promise.bs.js)))(deps (:inputs  promise.ast)  promise.cmi (include promise.d) ../../bsconfig.json)
+(action
+  (run melc -bs-read-cmi -bs-re-out -I .    -w a -bs-package-name reason-promise -bs-package-output es6:./src/js:.bs.js -o promise.cmj %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ )
+
+(subdir .melange.eobjs/node_modules/reason-promise
+(rule (write-file .bsbuild MQpQcm9taXNlCi4vc3JjL2pzCQoxAAowCg==))
+)
+
+(subdir src
+
+(alias (name mel)
+(enabled_if %{bin-available:melc})))
+(subdir src/pages
+
+(alias (name mel)
+(enabled_if %{bin-available:melc})))
+(subdir src/pages/posts
+
+(alias (name mel)
+(enabled_if %{bin-available:melc})))
+(subdir src/font
+
+(alias (name mel)
+(enabled_if %{bin-available:melc})))
+(subdir src/templates
+
+(alias (name mel)
+(enabled_if %{bin-available:melc})))
+(subdir src/common
+
+(alias (name mel)
+(enabled_if %{bin-available:melc})))
+(subdir src/components
+(rule
+(targets  next_app.ast)
+ (deps (:inputs  next_app.re)  ../../.melange.eobjs/.bsbuild)
+(action
+ (run melc -w -44-101 -warn-error +A -bs-jsx 3  -absname -bs-ast -o %{targets} %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  next_app.d)
+ (deps (:inputs  ../.././src/components/next_app.ast) )
+(action (run meldep  -root-dir ../.. -p anmonteiro -proj-dir ../..  %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  next_app.cmj next_app.cmi next_app.cmt next_app.bs.js)
+ (alias mel)
+ (mode (promote (until-clean) (only next_app.bs.js)))(deps (:inputs  next_app.ast)  (include next_app.d) ../../bsconfig.json(alias ../../node_modules/@rescript/react/src/mel)(alias ../../node_modules/@rescript/react/src/legacy/mel)(alias ../../node_modules/reason-promise/src/js/mel))
+(action
+  (run melc -bs-re-out -I ../css -I ../plugins -I ../utils -I ../.next/cache/swc/plugins/v4 -I ../.next/cache/swc/plugins -I ../.next/cache/swc -I ../.next/cache/webpack/client-development -I ../.next/cache/webpack/server-development -I ../.next/cache/webpack/client-development-fallback -I ../.next/cache/webpack -I ../.next/cache -I ../.next/server/pages/posts -I ../.next/server/pages -I ../.next/server -I ../.next/static/development -I ../.next/static/webpack -I ../.next/static/chunks/pages/posts -I ../.next/static/chunks/pages -I ../.next/static/chunks -I ../.next/static/media -I ../.next/static -I ../.next -I . -I ../common -I ../templates -I ../font -I ../pages/posts -I ../pages -I .. -I ../../node_modules/@rescript/react/src -I ../../node_modules/@rescript/react/src/legacy -I ../../node_modules/reason-promise/src/js  -w -44-101 -warn-error +A -bs-package-name anmonteiro -bs-package-output es6:./src/components:.bs.js -o next_app.cmj %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ )
+(subdir src/.next
+
+(alias (name mel)
+(enabled_if %{bin-available:melc})))
+(subdir src/.next/static
+
+(alias (name mel)
+(enabled_if %{bin-available:melc})))
+(subdir src/.next/static/media
+
+(alias (name mel)
+(enabled_if %{bin-available:melc})))
+(subdir src/.next/static/chunks
+
+(alias (name mel)
+(enabled_if %{bin-available:melc})))
+(subdir src/.next/static/chunks/pages
+
+(alias (name mel)
+(enabled_if %{bin-available:melc})))
+(subdir src/.next/static/chunks/pages/posts
+
+(alias (name mel)
+(enabled_if %{bin-available:melc})))
+(subdir src/.next/static/webpack
+
+(alias (name mel)
+(enabled_if %{bin-available:melc})))
+(subdir src/.next/static/development
+
+(alias (name mel)
+(enabled_if %{bin-available:melc})))
+(subdir src/.next/server
+
+(alias (name mel)
+(enabled_if %{bin-available:melc})))
+(subdir src/.next/server/pages
+
+(alias (name mel)
+(enabled_if %{bin-available:melc})))
+(subdir src/.next/server/pages/posts
+
+(alias (name mel)
+(enabled_if %{bin-available:melc})))
+(subdir src/.next/cache
+
+(alias (name mel)
+(enabled_if %{bin-available:melc})))
+(subdir src/.next/cache/webpack
+
+(alias (name mel)
+(enabled_if %{bin-available:melc})))
+(subdir src/.next/cache/webpack/client-development-fallback
+
+(alias (name mel)
+(enabled_if %{bin-available:melc})))
+(subdir src/.next/cache/webpack/server-development
+
+(alias (name mel)
+(enabled_if %{bin-available:melc})))
+(subdir src/.next/cache/webpack/client-development
+
+(alias (name mel)
+(enabled_if %{bin-available:melc})))
+(subdir src/.next/cache/swc
+
+(alias (name mel)
+(enabled_if %{bin-available:melc})))
+(subdir src/.next/cache/swc/plugins
+
+(alias (name mel)
+(enabled_if %{bin-available:melc})))
+(subdir src/.next/cache/swc/plugins/v4
+
+(alias (name mel)
+(enabled_if %{bin-available:melc})))
+(subdir src/utils
+(rule
+(targets  next.ast)
+ (deps (:inputs  next.re)  ../../.melange.eobjs/.bsbuild)
+(action
+ (run melc -w -44-101 -warn-error +A -bs-jsx 3  -absname -bs-ast -o %{targets} %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  next.d)
+ (deps (:inputs  ../.././src/utils/next.ast) )
+(action (run meldep  -root-dir ../.. -p anmonteiro -proj-dir ../..  %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  next.cmj next.cmi next.cmt next.bs.js)
+ (alias mel)
+ (mode (promote (until-clean) (only next.bs.js)))(deps (:inputs  next.ast)  (include next.d) ../../bsconfig.json(alias ../../node_modules/@rescript/react/src/mel)(alias ../../node_modules/@rescript/react/src/legacy/mel)(alias ../../node_modules/reason-promise/src/js/mel))
+(action
+  (run melc -bs-re-out -I ../css -I ../plugins -I . -I ../.next/cache/swc/plugins/v4 -I ../.next/cache/swc/plugins -I ../.next/cache/swc -I ../.next/cache/webpack/client-development -I ../.next/cache/webpack/server-development -I ../.next/cache/webpack/client-development-fallback -I ../.next/cache/webpack -I ../.next/cache -I ../.next/server/pages/posts -I ../.next/server/pages -I ../.next/server -I ../.next/static/development -I ../.next/static/webpack -I ../.next/static/chunks/pages/posts -I ../.next/static/chunks/pages -I ../.next/static/chunks -I ../.next/static/media -I ../.next/static -I ../.next -I ../components -I ../common -I ../templates -I ../font -I ../pages/posts -I ../pages -I .. -I ../../node_modules/@rescript/react/src -I ../../node_modules/@rescript/react/src/legacy -I ../../node_modules/reason-promise/src/js  -w -44-101 -warn-error +A -bs-package-name anmonteiro -bs-package-output es6:./src/utils:.bs.js -o next.cmj %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  std__react.ast)
+ (deps (:inputs  std__react.re)  ../../.melange.eobjs/.bsbuild)
+(action
+ (run melc -w -44-101 -warn-error +A -bs-jsx 3  -absname -bs-ast -o %{targets} %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  std__react.d)
+ (deps (:inputs  ../.././src/utils/std__react.ast) )
+(action (run meldep  -root-dir ../.. -p anmonteiro -proj-dir ../..  %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ (rule
+(targets  std__react.cmj std__react.cmi std__react.cmt std__react.bs.js)
+ (alias mel)
+ (mode (promote (until-clean) (only std__react.bs.js)))(deps (:inputs  std__react.ast)  (include std__react.d) ../../bsconfig.json(alias ../../node_modules/@rescript/react/src/mel)(alias ../../node_modules/@rescript/react/src/legacy/mel)(alias ../../node_modules/reason-promise/src/js/mel))
+(action
+  (run melc -bs-re-out -I ../css -I ../plugins -I . -I ../.next/cache/swc/plugins/v4 -I ../.next/cache/swc/plugins -I ../.next/cache/swc -I ../.next/cache/webpack/client-development -I ../.next/cache/webpack/server-development -I ../.next/cache/webpack/client-development-fallback -I ../.next/cache/webpack -I ../.next/cache -I ../.next/server/pages/posts -I ../.next/server/pages -I ../.next/server -I ../.next/static/development -I ../.next/static/webpack -I ../.next/static/chunks/pages/posts -I ../.next/static/chunks/pages -I ../.next/static/chunks -I ../.next/static/media -I ../.next/static -I ../.next -I ../components -I ../common -I ../templates -I ../font -I ../pages/posts -I ../pages -I .. -I ../../node_modules/@rescript/react/src -I ../../node_modules/@rescript/react/src/legacy -I ../../node_modules/reason-promise/src/js  -w -44-101 -warn-error +A -bs-package-name anmonteiro -bs-package-output es6:./src/utils:.bs.js -o std__react.cmj %{inputs}))
+(enabled_if %{bin-available:melc}) )
+ )
+(subdir src/plugins
+
+(alias (name mel)
+(enabled_if %{bin-available:melc})))
+(subdir src/css
+
+(alias (name mel)
+(enabled_if %{bin-available:melc})))
+
+(subdir .melange.eobjs
+(rule (write-file .bsbuild MwpOZXh0Ck5leHRfYXBwClN0ZF9fcmVhY3QKLi9zcmMvdXRpbHMJLi9zcmMvY29tcG9uZW50cwkKMQACAAowCg==))
+(rule (write-file .sourcedirs.json "{ \"dirs\" : [ \"/Users/anmonteiro/projects/anmonteiro.github.io/node_modules/@rescript/react/./src\" , \"/Users/anmonteiro/projects/anmonteiro.github.io/node_modules/@rescript/react/./src/legacy\" , \"/Users/anmonteiro/projects/anmonteiro.github.io/node_modules/reason-promise/./src/js\" , \"/Users/anmonteiro/projects/anmonteiro.github.io/./src\" , \"/Users/anmonteiro/projects/anmonteiro.github.io/./src/pages\" , \"/Users/anmonteiro/projects/anmonteiro.github.io/./src/pages/posts\" , \"/Users/anmonteiro/projects/anmonteiro.github.io/./src/font\" , \"/Users/anmonteiro/projects/anmonteiro.github.io/./src/templates\" , \"/Users/anmonteiro/projects/anmonteiro.github.io/./src/common\" , \"/Users/anmonteiro/projects/anmonteiro.github.io/./src/components\" , \"/Users/anmonteiro/projects/anmonteiro.github.io/./src/.next\" , \"/Users/anmonteiro/projects/anmonteiro.github.io/./src/.next/static\" , \"/Users/anmonteiro/projects/anmonteiro.github.io/./src/.next/static/media\" , \"/Users/anmonteiro/projects/anmonteiro.github.io/./src/.next/static/chunks\" , \"/Users/anmonteiro/projects/anmonteiro.github.io/./src/.next/static/chunks/pages\" , \"/Users/anmonteiro/projects/anmonteiro.github.io/./src/.next/static/chunks/pages/posts\" , \"/Users/anmonteiro/projects/anmonteiro.github.io/./src/.next/static/webpack\" , \"/Users/anmonteiro/projects/anmonteiro.github.io/./src/.next/static/development\" , \"/Users/anmonteiro/projects/anmonteiro.github.io/./src/.next/server\" , \"/Users/anmonteiro/projects/anmonteiro.github.io/./src/.next/server/pages\" , \"/Users/anmonteiro/projects/anmonteiro.github.io/./src/.next/server/pages/posts\" , \"/Users/anmonteiro/projects/anmonteiro.github.io/./src/.next/cache\" , \"/Users/anmonteiro/projects/anmonteiro.github.io/./src/.next/cache/webpack\" , \"/Users/anmonteiro/projects/anmonteiro.github.io/./src/.next/cache/webpack/client-development-fallback\" , \"/Users/anmonteiro/projects/anmonteiro.github.io/./src/.next/cache/webpack/server-development\" , \"/Users/anmonteiro/projects/anmonteiro.github.io/./src/.next/cache/webpack/client-development\" , \"/Users/anmonteiro/projects/anmonteiro.github.io/./src/.next/cache/swc\" , \"/Users/anmonteiro/projects/anmonteiro.github.io/./src/.next/cache/swc/plugins\" , \"/Users/anmonteiro/projects/anmonteiro.github.io/./src/.next/cache/swc/plugins/v4\" , \"/Users/anmonteiro/projects/anmonteiro.github.io/./src/utils\" , \"/Users/anmonteiro/projects/anmonteiro.github.io/./src/plugins\" , \"/Users/anmonteiro/projects/anmonteiro.github.io/./src/css\" ] , \"pkgs\" : [ [ \"@rescript/react\" , \"/Users/anmonteiro/projects/anmonteiro.github.io/node_modules/@rescript/react\" ] , [ \"reason-promise\" , \"/Users/anmonteiro/projects/anmonteiro.github.io/node_modules/reason-promise\" ] ] , \"generated\" : [] }")) 
+)
+
+(data_only_dirs node_modules  .melange.eobjs)
+(alias (name mel) (deps .melange.eobjs/.sourcedirs.json (alias node_modules/@rescript/react/src/mel)(alias node_modules/@rescript/react/src/legacy/mel)(alias node_modules/reason-promise/src/js/mel)))
+
+(rule (targets (dir melange.es6))
+ (alias UNSTABLE_mel)
+(action (chdir %{targets} (progn 
+(run mkdir -p src)
+(run cp %{sources-0} src) (system "rm -f src/*.{ast,cm*,d}")
+(run mkdir -p src/pages)
+(run cp %{sources-1} src/pages) (system "rm -f src/pages/*.{ast,cm*,d}")
+(run mkdir -p src/pages/posts)
+(run cp %{sources-2} src/pages/posts) (system "rm -f src/pages/posts/*.{ast,cm*,d}")
+(run mkdir -p src/font)
+(run cp %{sources-3} src/font) (system "rm -f src/font/*.{ast,cm*,d}")
+(run mkdir -p src/templates)
+(run cp %{sources-4} src/templates) (system "rm -f src/templates/*.{ast,cm*,d}")
+(run mkdir -p src/common)
+(run cp %{sources-5} src/common) (system "rm -f src/common/*.{ast,cm*,d}")
+(run mkdir -p src/components)
+(run cp %{sources-6} src/components) (system "rm -f src/components/*.{ast,cm*,d}")
+ (run rm -f src/components/next_app.bs.js)
+ (run melc -I ../src/css -I ../src/plugins -I ../src/utils -I ../src/.next/cache/swc/plugins/v4 -I ../src/.next/cache/swc/plugins -I ../src/.next/cache/swc -I ../src/.next/cache/webpack/client-development -I ../src/.next/cache/webpack/server-development -I ../src/.next/cache/webpack/client-development-fallback -I ../src/.next/cache/webpack -I ../src/.next/cache -I ../src/.next/server/pages/posts -I ../src/.next/server/pages -I ../src/.next/server -I ../src/.next/static/development -I ../src/.next/static/webpack -I ../src/.next/static/chunks/pages/posts -I ../src/.next/static/chunks/pages -I ../src/.next/static/chunks -I ../src/.next/static/media -I ../src/.next/static -I ../src/.next -I ../src/components -I ../src/common -I ../src/templates -I ../src/font -I ../src/pages/posts -I ../src/pages -I ../src -I ../node_modules/@rescript/react/src -I ../node_modules/@rescript/react/src/legacy -I ../node_modules/reason-promise/src/js -bs-package-name anmonteiro -bs-module-type es6 ../src/components/next_app.cmj -o src/components/next_app.bs.js)
+(run mkdir -p src/.next)
+(run cp %{sources-7} src/.next) (system "rm -f src/.next/*.{ast,cm*,d}")
+(run mkdir -p src/.next/static)
+(run cp %{sources-8} src/.next/static) (system "rm -f src/.next/static/*.{ast,cm*,d}")
+(run mkdir -p src/.next/static/media)
+(run cp %{sources-9} src/.next/static/media) (system "rm -f src/.next/static/media/*.{ast,cm*,d}")
+(run mkdir -p src/.next/static/chunks)
+(run cp %{sources-10} src/.next/static/chunks) (system "rm -f src/.next/static/chunks/*.{ast,cm*,d}")
+(run mkdir -p src/.next/static/chunks/pages)
+(run cp %{sources-11} src/.next/static/chunks/pages) (system "rm -f src/.next/static/chunks/pages/*.{ast,cm*,d}")
+(run mkdir -p src/.next/static/chunks/pages/posts)
+(run cp %{sources-12} src/.next/static/chunks/pages/posts) (system "rm -f src/.next/static/chunks/pages/posts/*.{ast,cm*,d}")
+(run mkdir -p src/.next/static/webpack)
+(run cp %{sources-13} src/.next/static/webpack) (system "rm -f src/.next/static/webpack/*.{ast,cm*,d}")
+(run mkdir -p src/.next/static/development)
+(run cp %{sources-14} src/.next/static/development) (system "rm -f src/.next/static/development/*.{ast,cm*,d}")
+(run mkdir -p src/.next/server)
+(run cp %{sources-15} src/.next/server) (system "rm -f src/.next/server/*.{ast,cm*,d}")
+(run mkdir -p src/.next/server/pages)
+(run cp %{sources-16} src/.next/server/pages) (system "rm -f src/.next/server/pages/*.{ast,cm*,d}")
+(run mkdir -p src/.next/server/pages/posts)
+(run cp %{sources-17} src/.next/server/pages/posts) (system "rm -f src/.next/server/pages/posts/*.{ast,cm*,d}")
+(run mkdir -p src/.next/cache)
+(run cp %{sources-18} src/.next/cache) (system "rm -f src/.next/cache/*.{ast,cm*,d}")
+(run mkdir -p src/.next/cache/webpack)
+(run cp %{sources-19} src/.next/cache/webpack) (system "rm -f src/.next/cache/webpack/*.{ast,cm*,d}")
+(run mkdir -p src/.next/cache/webpack/client-development-fallback)
+(run cp %{sources-20} src/.next/cache/webpack/client-development-fallback) (system "rm -f src/.next/cache/webpack/client-development-fallback/*.{ast,cm*,d}")
+(run mkdir -p src/.next/cache/webpack/server-development)
+(run cp %{sources-21} src/.next/cache/webpack/server-development) (system "rm -f src/.next/cache/webpack/server-development/*.{ast,cm*,d}")
+(run mkdir -p src/.next/cache/webpack/client-development)
+(run cp %{sources-22} src/.next/cache/webpack/client-development) (system "rm -f src/.next/cache/webpack/client-development/*.{ast,cm*,d}")
+(run mkdir -p src/.next/cache/swc)
+(run cp %{sources-23} src/.next/cache/swc) (system "rm -f src/.next/cache/swc/*.{ast,cm*,d}")
+(run mkdir -p src/.next/cache/swc/plugins)
+(run cp %{sources-24} src/.next/cache/swc/plugins) (system "rm -f src/.next/cache/swc/plugins/*.{ast,cm*,d}")
+(run mkdir -p src/.next/cache/swc/plugins/v4)
+(run cp %{sources-25} src/.next/cache/swc/plugins/v4) (system "rm -f src/.next/cache/swc/plugins/v4/*.{ast,cm*,d}")
+(run mkdir -p src/utils)
+(run cp %{sources-26} src/utils) (system "rm -f src/utils/*.{ast,cm*,d}")
+ (run rm -f src/utils/next.bs.js)
+ (run melc -I ../src/css -I ../src/plugins -I ../src/utils -I ../src/.next/cache/swc/plugins/v4 -I ../src/.next/cache/swc/plugins -I ../src/.next/cache/swc -I ../src/.next/cache/webpack/client-development -I ../src/.next/cache/webpack/server-development -I ../src/.next/cache/webpack/client-development-fallback -I ../src/.next/cache/webpack -I ../src/.next/cache -I ../src/.next/server/pages/posts -I ../src/.next/server/pages -I ../src/.next/server -I ../src/.next/static/development -I ../src/.next/static/webpack -I ../src/.next/static/chunks/pages/posts -I ../src/.next/static/chunks/pages -I ../src/.next/static/chunks -I ../src/.next/static/media -I ../src/.next/static -I ../src/.next -I ../src/components -I ../src/common -I ../src/templates -I ../src/font -I ../src/pages/posts -I ../src/pages -I ../src -I ../node_modules/@rescript/react/src -I ../node_modules/@rescript/react/src/legacy -I ../node_modules/reason-promise/src/js -bs-package-name anmonteiro -bs-module-type es6 ../src/utils/next.cmj -o src/utils/next.bs.js)
+ (run rm -f src/utils/std__react.bs.js)
+ (run melc -I ../src/css -I ../src/plugins -I ../src/utils -I ../src/.next/cache/swc/plugins/v4 -I ../src/.next/cache/swc/plugins -I ../src/.next/cache/swc -I ../src/.next/cache/webpack/client-development -I ../src/.next/cache/webpack/server-development -I ../src/.next/cache/webpack/client-development-fallback -I ../src/.next/cache/webpack -I ../src/.next/cache -I ../src/.next/server/pages/posts -I ../src/.next/server/pages -I ../src/.next/server -I ../src/.next/static/development -I ../src/.next/static/webpack -I ../src/.next/static/chunks/pages/posts -I ../src/.next/static/chunks/pages -I ../src/.next/static/chunks -I ../src/.next/static/media -I ../src/.next/static -I ../src/.next -I ../src/components -I ../src/common -I ../src/templates -I ../src/font -I ../src/pages/posts -I ../src/pages -I ../src -I ../node_modules/@rescript/react/src -I ../node_modules/@rescript/react/src/legacy -I ../node_modules/reason-promise/src/js -bs-package-name anmonteiro -bs-module-type es6 ../src/utils/std__react.cmj -o src/utils/std__react.bs.js)
+(run mkdir -p src/plugins)
+(run cp %{sources-27} src/plugins) (system "rm -f src/plugins/*.{ast,cm*,d}")
+(run mkdir -p src/css)
+(run cp %{sources-28} src/css) (system "rm -f src/css/*.{ast,cm*,d}")
+(run mkdir -p node_modules/reason-promise/src/js)
+(run cp %{sources-29} node_modules/reason-promise/src/js) (system "rm -f node_modules/reason-promise/src/js/*.{ast,cm*,d}")
+ (run rm -f node_modules/reason-promise/src/js/promise.bs.js)
+ (run melc -I ../node_modules/reason-promise/src/js  -bs-package-name reason-promise -bs-module-type es6 ../node_modules/reason-promise/src/js/promise.cmj -o node_modules/reason-promise/src/js/promise.bs.js)
+(run mkdir -p node_modules/@rescript/react/src)
+(run cp %{sources-30} node_modules/@rescript/react/src) (system "rm -f node_modules/@rescript/react/src/*.{ast,cm*,d}")
+ (run rm -f node_modules/@rescript/react/src/React.bs.js)
+ (run melc -I ../node_modules/@rescript/react/src/legacy -I ../node_modules/@rescript/react/src  -bs-package-name @rescript/react -bs-module-type es6 ../node_modules/@rescript/react/src/React.cmj -o node_modules/@rescript/react/src/React.bs.js)
+ (run rm -f node_modules/@rescript/react/src/ReactDOM.bs.js)
+ (run melc -I ../node_modules/@rescript/react/src/legacy -I ../node_modules/@rescript/react/src  -bs-package-name @rescript/react -bs-module-type es6 ../node_modules/@rescript/react/src/ReactDOM.cmj -o node_modules/@rescript/react/src/ReactDOM.bs.js)
+ (run rm -f node_modules/@rescript/react/src/ReactEvent.bs.js)
+ (run melc -I ../node_modules/@rescript/react/src/legacy -I ../node_modules/@rescript/react/src  -bs-package-name @rescript/react -bs-module-type es6 ../node_modules/@rescript/react/src/ReactEvent.cmj -o node_modules/@rescript/react/src/ReactEvent.bs.js)
+ (run rm -f node_modules/@rescript/react/src/ReactDOMStyle.bs.js)
+ (run melc -I ../node_modules/@rescript/react/src/legacy -I ../node_modules/@rescript/react/src  -bs-package-name @rescript/react -bs-module-type es6 ../node_modules/@rescript/react/src/ReactDOMStyle.cmj -o node_modules/@rescript/react/src/ReactDOMStyle.bs.js)
+ (run rm -f node_modules/@rescript/react/src/ReactDOMServer.bs.js)
+ (run melc -I ../node_modules/@rescript/react/src/legacy -I ../node_modules/@rescript/react/src  -bs-package-name @rescript/react -bs-module-type es6 ../node_modules/@rescript/react/src/ReactDOMServer.cmj -o node_modules/@rescript/react/src/ReactDOMServer.bs.js)
+ (run rm -f node_modules/@rescript/react/src/ReactTestUtils.bs.js)
+ (run melc -I ../node_modules/@rescript/react/src/legacy -I ../node_modules/@rescript/react/src  -bs-package-name @rescript/react -bs-module-type es6 ../node_modules/@rescript/react/src/ReactTestUtils.cmj -o node_modules/@rescript/react/src/ReactTestUtils.bs.js)
+ (run rm -f node_modules/@rescript/react/src/RescriptReactRouter.bs.js)
+ (run melc -I ../node_modules/@rescript/react/src/legacy -I ../node_modules/@rescript/react/src  -bs-package-name @rescript/react -bs-module-type es6 ../node_modules/@rescript/react/src/RescriptReactRouter.cmj -o node_modules/@rescript/react/src/RescriptReactRouter.bs.js)
+ (run rm -f node_modules/@rescript/react/src/RescriptReactErrorBoundary.bs.js)
+ (run melc -I ../node_modules/@rescript/react/src/legacy -I ../node_modules/@rescript/react/src  -bs-package-name @rescript/react -bs-module-type es6 ../node_modules/@rescript/react/src/RescriptReactErrorBoundary.cmj -o node_modules/@rescript/react/src/RescriptReactErrorBoundary.bs.js)
+(run mkdir -p node_modules/@rescript/react/src/legacy)
+(run cp %{sources-31} node_modules/@rescript/react/src/legacy) (system "rm -f node_modules/@rescript/react/src/legacy/*.{ast,cm*,d}")
+ (run rm -f node_modules/@rescript/react/src/legacy/ReactDOMRe.bs.js)
+ (run melc -I ../node_modules/@rescript/react/src/legacy -I ../node_modules/@rescript/react/src  -bs-package-name @rescript/react -bs-module-type es6 ../node_modules/@rescript/react/src/legacy/ReactDOMRe.cmj -o node_modules/@rescript/react/src/legacy/ReactDOMRe.bs.js)
+ (run rm -f node_modules/@rescript/react/src/legacy/ReasonReact.bs.js)
+ (run melc -I ../node_modules/@rescript/react/src/legacy -I ../node_modules/@rescript/react/src  -bs-package-name @rescript/react -bs-module-type es6 ../node_modules/@rescript/react/src/legacy/ReasonReact.cmj -o node_modules/@rescript/react/src/legacy/ReasonReact.bs.js)
+(run cp -f ../bsconfig.json .) ))) (deps (:sources-0 (glob_files src/*))
+(:sources-1 (glob_files src/pages/*))
+(:sources-2 (glob_files src/pages/posts/*))
+(:sources-3 (glob_files src/font/*))
+(:sources-4 (glob_files src/templates/*))
+(:sources-5 (glob_files src/common/*))
+(:sources-6 (glob_files src/components/*))
+(:sources-7 (glob_files src/.next/*))
+(:sources-8 (glob_files src/.next/static/*))
+(:sources-9 (glob_files src/.next/static/media/*))
+(:sources-10 (glob_files src/.next/static/chunks/*))
+(:sources-11 (glob_files src/.next/static/chunks/pages/*))
+(:sources-12 (glob_files src/.next/static/chunks/pages/posts/*))
+(:sources-13 (glob_files src/.next/static/webpack/*))
+(:sources-14 (glob_files src/.next/static/development/*))
+(:sources-15 (glob_files src/.next/server/*))
+(:sources-16 (glob_files src/.next/server/pages/*))
+(:sources-17 (glob_files src/.next/server/pages/posts/*))
+(:sources-18 (glob_files src/.next/cache/*))
+(:sources-19 (glob_files src/.next/cache/webpack/*))
+(:sources-20 (glob_files src/.next/cache/webpack/client-development-fallback/*))
+(:sources-21 (glob_files src/.next/cache/webpack/server-development/*))
+(:sources-22 (glob_files src/.next/cache/webpack/client-development/*))
+(:sources-23 (glob_files src/.next/cache/swc/*))
+(:sources-24 (glob_files src/.next/cache/swc/plugins/*))
+(:sources-25 (glob_files src/.next/cache/swc/plugins/v4/*))
+(:sources-26 (glob_files src/utils/*))
+(:sources-27 (glob_files src/plugins/*))
+(:sources-28 (glob_files src/css/*))
+(:sources-29 (glob_files node_modules/reason-promise/src/js/*))
+(:sources-30 (glob_files node_modules/@rescript/react/src/*))
+(:sources-31 (glob_files node_modules/@rescript/react/src/legacy/*))))
